@@ -4,7 +4,7 @@
 # Run once as Administrator.
 
 $TaskName    = "DownloadsCategorizer"
-$ScriptPath  = "C:\Users\Karl\Documents\downloads sorter\downloads_watcher.py"
+$ScriptPath  = "C:\Users\Karl\Documents\productivity-os\02_downloads_categorizer\downloads_watcher.py"
 $PythonPath  = "C:\Users\Karl\AppData\Local\Programs\Python\Python312\python.exe"
 
 # Remove existing task if present
@@ -13,7 +13,7 @@ Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false -ErrorAction Silent
 $Action = New-ScheduledTaskAction `
     -Execute $PythonPath `
     -Argument "`"$ScriptPath`"" `
-    -WorkingDirectory "C:\Users\Karl\Documents\downloads sorter"
+    -WorkingDirectory "C:\Users\Karl\Documents\productivity-os\02_downloads_categorizer"
 
 $Trigger = New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME
 
@@ -34,8 +34,8 @@ Register-ScheduledTask `
 
 Write-Host ""
 Write-Host "Task registered: $TaskName"
+Write-Host "  Path: $ScriptPath"
 Write-Host "  Starts automatically at login"
-Write-Host "  Restarts up to 5x if it crashes"
 Write-Host ""
-Write-Host "To start right now without rebooting:"
+Write-Host "To start right now:"
 Write-Host "  Start-ScheduledTask -TaskName '$TaskName'"
