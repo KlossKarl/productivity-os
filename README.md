@@ -10,7 +10,7 @@
 | # | Project | Status | What it does |
 |---|---------|--------|--------------|
 | 02 | [Downloads Auto-Categorizer](./02_downloads_categorizer/) | ✅ Live | Watches Downloads, sorts files automatically using rules + LLM |
-| 03 | [Whisper Transcription](./03_whisper_transcription/) | 🔨 Building | Transcribes any audio/video locally, summarizes with Ollama |
+| 03 | [Whisper Transcription](./03_whisper_transcription/) | ✅ Live | Transcribes any audio/video locally, summarizes with Ollama, saves to Obsidian |
 | 04 | Git Commit Generator | ⬜ Planned | Auto-writes commit messages from your staged diff |
 | 05 | Changelog Generator | ⬜ Planned | Generates CHANGELOG.md from git history |
 | 06 | Code Search Engine | ⬜ Planned | Natural language search across all local projects |
