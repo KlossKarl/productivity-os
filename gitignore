@@ -1,0 +1,19 @@
+# Personal data - never commit these
+*.db
+*.log
+_categorizer_rules.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
