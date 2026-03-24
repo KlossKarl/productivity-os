@@ -2,10 +2,12 @@
 
 Local productivity intelligence stack.
 
-**Ingests:** git activity, browser history, app/window usage, audio/video files, filesystem events, mood logs.
-**Processes:** locally via Ollama (llama3:8b, deepseek-r1:14b) and Whisper.
-**Stores:** single SQLite DB + ChromaDB vector store. Nothing else.
-**Outputs:** daily briefings, focus scores, deep work blocks, RAG search over everything.
+| | |
+|---|---|
+| **Ingests** | git activity, browser history, app/window usage, audio/video files, filesystem events, mood logs |
+| **Processes** | locally via Ollama (llama3:8b, deepseek-r1:14b) and Whisper |
+| **Stores** | single SQLite DB + ChromaDB vector store. Nothing else |
+| **Outputs** | daily briefings, focus scores, deep work blocks, RAG search over everything |
 
 No accounts. No cloud dependencies. No data leaving your machine.
 
