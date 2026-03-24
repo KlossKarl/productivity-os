@@ -1,11 +1,13 @@
 # install_startup_task.ps1
-# Registers downloads_watcher.py as a Windows Task Scheduler job
-# Runs silently at login, restarts if it crashes.
+# Registers downloads_watcher.py as a Windows Task Scheduler job.
+# Runs SILENTLY at login (no console window) using pythonw.exe.
 # Run once as Administrator.
 
 $TaskName    = "DownloadsCategorizer"
 $ScriptPath  = "C:\Users\Karl\Documents\productivity-os\02_downloads_categorizer\downloads_watcher.py"
-$PythonPath  = "C:\Users\Karl\AppData\Local\Programs\Python\Python312\python.exe"
+
+# pythonw.exe = windowless Python — same as python.exe but no console popup
+$PythonPath  = "C:\Users\Karl\AppData\Local\Programs\Python\Python312\pythonw.exe"
 
 # Remove existing task if present
 Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false -ErrorAction SilentlyContinue
@@ -30,12 +32,20 @@ Register-ScheduledTask `
     -Trigger $Trigger `
     -Settings $Settings `
     -RunLevel Highest `
-    -Description "Karl Productivity OS - Downloads Auto-Categorizer" | Out-Null
+    -Description "Karl Productivity OS - Downloads Auto-Categorizer (silent)" | Out-Null
 
 Write-Host ""
 Write-Host "Task registered: $TaskName"
-Write-Host "  Path: $ScriptPath"
-Write-Host "  Starts automatically at login"
+Write-Host "  Path:    $ScriptPath"
+Write-Host "  Runner:  pythonw.exe (no console window)"
+Write-Host "  Trigger: At login — runs silently in background"
 Write-Host ""
-Write-Host "To start right now:"
+Write-Host "To start right now (no window will appear — that's correct):"
 Write-Host "  Start-ScheduledTask -TaskName '$TaskName'"
+Write-Host ""
+Write-Host "To check it's actually running:"
+Write-Host "  Get-Process pythonw"
+Write-Host ""
+Write-Host "To stop it:"
+Write-Host "  Stop-ScheduledTask -TaskName '$TaskName'"
+Write-Host "  # or just: Stop-Process -Name pythonw"
