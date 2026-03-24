@@ -20,9 +20,33 @@ import sqlite3
 import argparse
 import requests
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from collections import defaultdict, Counter
 from urllib.parse import urlparse
+
+# ─────────────────────────────────────────────
+# SHARED DB — finds db.py at repo root regardless of CWD
+# Works whether run from repo root or any subfolder
+# ─────────────────────────────────────────────
+def _find_repo_root():
+    candidate = Path(__file__).resolve().parent
+    for _ in range(4):
+        if (candidate / "db.py").exists():
+            return candidate
+        candidate = candidate.parent
+    return None
+
+_repo_root = _find_repo_root()
+if _repo_root and str(_repo_root) not in sys.path:
+    sys.path.insert(0, str(_repo_root))
+
+try:
+    from db import log_artifact, log_session, log_metric, log_event, init_db
+    SHARED_DB_AVAILABLE = True
+    print(f"[db] Loaded from: {_repo_root}")
+except ImportError:
+    SHARED_DB_AVAILABLE = False
+    print("[db] db.py not found — shared DB writes disabled")
 
 # ─────────────────────────────────────────────
 # CONFIG
@@ -394,6 +418,120 @@ tags:
     return report
 
 # ─────────────────────────────────────────────
+# SHARED DB INTEGRATION
+# ─────────────────────────────────────────────
+
+def write_to_shared_db(stats: dict, llm: dict, visits: list, days: int,
+                       obsidian_path: str = None, date_str: str = None):
+    """
+    Write browser analysis results into the shared productivity_os.db.
+    Called once per report run (per days window).
+    Writes:
+      - 1 artifact row  (the report itself)
+      - 1 session row   (the browsing window as a session)
+      - N metric rows   (focus score, visit counts, distraction counts)
+    """
+    if not SHARED_DB_AVAILABLE:
+        return
+
+    date_str = date_str or datetime.now().strftime("%Y-%m-%d")
+    topics   = llm.get("topics_deep_in", [])
+    killers  = llm.get("focus_killers", [])
+
+    # ── 1. Artifact: the report note ──────────────────────────────────────
+    artifact_id = log_artifact(
+        artifact_type="browser_report",
+        source_tool="browser_analyzer",
+        path_or_url=str(obsidian_path) if obsidian_path else None,
+        title=f"Browser Report {date_str} ({days}d)",
+        summary=llm.get("weekly_summary", ""),
+        obsidian_path=str(obsidian_path) if obsidian_path else None,
+        tags=(
+            ["browser-report", f"{days}d"]
+            + [t.lower().replace(" ", "-") for t in topics[:5]]
+        ),
+        extra={
+            "days_window":         days,
+            "focus_score":         stats["focus_score"],
+            "total_visits":        stats["total_visits"],
+            "unique_domains":      stats["unique_domains"],
+            "productive_visits":   stats["productive_visits"],
+            "distraction_visits":  stats["distraction_visits"],
+            "peak_hours":          stats["peak_hours"],
+            "most_active_day":     stats["most_active_day"],
+            "topics_deep_in":      topics,
+            "focus_killers":       killers,
+            "explore_next":        llm.get("explore_next", []),
+            "recommendations":     llm.get("recommendations", []),
+        }
+    )
+
+    # ── 2. Session: the browsing window itself ─────────────────────────────
+    # Approximate start = N days ago at midnight
+    window_start = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%dT00:00:00Z")
+    window_end   = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    log_session(
+        kind="browser",
+        source_tool="browser_analyzer",
+        start_ts=window_start,
+        end_ts=window_end,
+        focus_score=stats["focus_score"],
+        summary=f"{days}-day window: {stats['total_visits']} visits, "
+                f"focus {stats['focus_score']}%. "
+                f"Top topics: {', '.join(topics[:3]) if topics else 'N/A'}",
+        artifact_id=artifact_id,
+        extra={
+            "days_window":        days,
+            "unique_domains":     stats["unique_domains"],
+            "top_productive":     [d for d, _ in stats["top_productive_domains"][:5]],
+            "top_distractions":   [d for d, _ in stats["top_distraction_domains"][:5]],
+        }
+    )
+
+    # ── 3. Metrics: one row per metric for today ───────────────────────────
+    # Only write the 7-day window as "today's" metrics to avoid overwriting
+    # with stale 30-day aggregates. 30-day run still writes its own extras.
+    if days == 7:
+        log_metric(
+            metric_name="browser_focus_score",
+            value=stats["focus_score"],
+            source_tool="browser_analyzer",
+            date_str=date_str,
+            notes=f"7-day window, {stats['total_visits']} visits",
+        )
+        log_metric(
+            metric_name="browser_total_visits_7d",
+            value=stats["total_visits"],
+            source_tool="browser_analyzer",
+            date_str=date_str,
+        )
+        log_metric(
+            metric_name="browser_distraction_visits_7d",
+            value=stats["distraction_visits"],
+            source_tool="browser_analyzer",
+            date_str=date_str,
+        )
+        log_metric(
+            metric_name="browser_productive_visits_7d",
+            value=stats["productive_visits"],
+            source_tool="browser_analyzer",
+            date_str=date_str,
+        )
+
+    # Always write the window-specific focus score so trends are queryable
+    log_metric(
+        metric_name=f"browser_focus_score_{days}d",
+        value=stats["focus_score"],
+        source_tool="browser_analyzer",
+        date_str=date_str,
+        notes=f"{stats['total_visits']} visits over {days} days",
+    )
+
+    print(f"  [db] Written to shared DB — artifact {artifact_id[:8]}...")
+
+
+# ─────────────────────────────────────────────
 # MAIN
 # ─────────────────────────────────────────────
 
@@ -432,6 +570,16 @@ def run_report(days_list: list[int], no_obsidian: bool = False):
         # Always save local backup
         local_path = OUTPUT_DIR / filename
         local_path.write_text(report, encoding="utf-8")
+
+        # Write to shared productivity_os.db
+        write_to_shared_db(
+            stats=stats,
+            llm=llm,
+            visits=visits,
+            days=days,
+            obsidian_path=obsidian_path if not no_obsidian else None,
+            date_str=date_str,
+        )
 
         # Print key findings to terminal
         print(f"\n{'='*60}")

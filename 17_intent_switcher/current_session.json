@@ -1,0 +1,27 @@
+{
+  "mode": "learn",
+  "started_at": "2026-03-24T12:57:09.331143",
+  "db_id": 1,
+  "inferred": false,
+  "config": {
+    "description": "Studying, reading docs, watching tutorials, taking notes",
+    "vscode_workspace": null,
+    "obsidian_open": null,
+    "obsidian_notes": [
+      "Learning",
+      "Transcripts"
+    ],
+    "focus_level": "moderate",
+    "blocked_sites": [
+      "instagram.com",
+      "tiktok.com",
+      "netflix.com",
+      "x.com",
+      "twitter.com",
+      "facebook.com"
+    ],
+    "welcome_message": "Learn mode. YouTube whitelisted for tutorials. Take notes in Obsidian.",
+    "terminal_commands": [],
+    "git_repos": []
+  }
+}

@@ -1,0 +1,125 @@
+# Intent Switcher — Mode Configuration
+# Karl's Productivity OS - Project 17
+#
+# Edit this file to customize what each mode does.
+# Changes take effect immediately — no restart needed.
+#
+# Focus levels: strict | moderate | light
+# obsidian_open: filename inside your vault (e.g. "Tasks.md") or null
+# vscode_workspace: path to .code-workspace file, or null to skip
+# terminal_commands: list of shell commands to run on mode entry
+
+build:
+  description: "Deep coding — shipping features, writing scripts, building projects"
+  vscode_workspace: 'C:\Users\Karl\Documents\productivity-os\.vscode\productivity-os.code-workspace'
+  obsidian_open: "Tasks.md"
+  obsidian_notes:
+    - Tasks
+    - Projects
+  focus_level: strict
+  blocked_sites:
+    - reddit.com
+    - x.com
+    - twitter.com
+    - instagram.com
+    - youtube.com
+    - twitch.tv
+    - netflix.com
+    - tiktok.com
+    - 9gag.com
+    - facebook.com
+  welcome_message: "Time to ship. Distractions blocked. Let's build."
+  terminal_commands: []
+  git_repos:
+    - 'C:\Users\Karl\Documents\productivity-os'
+
+debug:
+  description: "Investigating bugs, reading logs, tracing through issues"
+  vscode_workspace: 'C:\Users\Karl\Documents\productivity-os\.vscode\productivity-os.code-workspace'
+  obsidian_open: null
+  obsidian_notes:
+    - Notes
+  focus_level: moderate
+  blocked_sites:
+    - instagram.com
+    - tiktok.com
+    - netflix.com
+    - facebook.com
+    - 9gag.com
+  welcome_message: "Debug mode. Stack Overflow permitted. Stay systematic."
+  terminal_commands: []
+  git_repos:
+    - 'C:\Users\Karl\Documents\productivity-os'
+
+learn:
+  description: "Studying, reading docs, watching tutorials, taking notes"
+  vscode_workspace: null
+  obsidian_open: null
+  obsidian_notes:
+    - Learning
+    - Transcripts
+  focus_level: moderate
+  blocked_sites:
+    - instagram.com
+    - tiktok.com
+    - netflix.com
+    - x.com
+    - twitter.com
+    - facebook.com
+  welcome_message: "Learn mode. YouTube whitelisted for tutorials. Take notes in Obsidian."
+  terminal_commands: []
+  git_repos: []
+
+admin:
+  description: "Email, planning, scheduling, non-coding work tasks"
+  vscode_workspace: null
+  obsidian_open: "Tasks.md"
+  obsidian_notes:
+    - Tasks
+    - Briefings
+  focus_level: light
+  blocked_sites:
+    - tiktok.com
+    - netflix.com
+    - twitch.tv
+    - 9gag.com
+  welcome_message: "Admin mode. Clear the inbox, update the task list, then get back to building."
+  terminal_commands: []
+  git_repos: []
+
+review:
+  description: "Code review, reading PRs, reviewing docs or reports, weekly reflection"
+  vscode_workspace: 'C:\Users\Karl\Documents\productivity-os\.vscode\productivity-os.code-workspace'
+  obsidian_open: null
+  obsidian_notes:
+    - Browser Reports
+    - Briefings
+  focus_level: moderate
+  blocked_sites:
+    - instagram.com
+    - tiktok.com
+    - netflix.com
+    - facebook.com
+  welcome_message: "Review mode. Read carefully. Flag everything worth flagging."
+  terminal_commands: []
+  git_repos: []
+
+# ─────────────────────────────────────────────────────────
+# HOW TO ADD A CUSTOM MODE
+# ─────────────────────────────────────────────────────────
+# Just add a new top-level key. Example:
+#
+# deep_work:
+#   description: "Pomodoro-style deep work blocks"
+#   vscode_workspace: 'C:\path\to\workspace.code-workspace'
+#   obsidian_open: "Current Sprint.md"
+#   obsidian_notes: []
+#   focus_level: strict
+#   blocked_sites:
+#     - reddit.com
+#     - youtube.com
+#     - x.com
+#     - instagram.com
+#   welcome_message: "Deep work block started. 90 minutes. No interruptions."
+#   terminal_commands: []
+#   git_repos: []

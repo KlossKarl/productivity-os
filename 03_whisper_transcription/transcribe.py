@@ -21,9 +21,32 @@ import argparse
 import time
 import shutil
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+
+# ─────────────────────────────────────────────
+# SHARED DB — finds db.py at repo root regardless of CWD
+# ─────────────────────────────────────────────
+def _find_repo_root():
+    candidate = Path(__file__).resolve().parent
+    for _ in range(4):
+        if (candidate / "db.py").exists():
+            return candidate
+        candidate = candidate.parent
+    return None
+
+_repo_root = _find_repo_root()
+if _repo_root and str(_repo_root) not in sys.path:
+    sys.path.insert(0, str(_repo_root))
+
+try:
+    from db import log_artifact, log_session, log_task, log_metric
+    SHARED_DB_AVAILABLE = True
+    print(f"[db] Loaded from: {_repo_root}")
+except ImportError:
+    SHARED_DB_AVAILABLE = False
+    print("[db] db.py not found — shared DB writes disabled")
 
 # ─────────────────────────────────────────────
 # CONFIG
@@ -304,6 +327,98 @@ def save_obsidian_note(filepath: Path, content: str) -> Path:
     return note_path
 
 # ─────────────────────────────────────────────
+# SHARED DB INTEGRATION
+# ─────────────────────────────────────────────
+
+def write_to_shared_db(filepath, transcript, analysis, obsidian_path, transcript_path):
+    """
+    Write transcription results to the shared productivity_os.db.
+    Called at the end of process_file() after everything is saved.
+    Writes:
+      - 1 artifact  (the transcript note)
+      - 1 session   (the listening/recording session)
+      - N tasks     (one per action item Ollama extracted)
+      - 1 metric    (transcript_minutes for today)
+    """
+    if not SHARED_DB_AVAILABLE:
+        return
+
+    duration_secs = transcript.get("duration_secs", 0)
+    word_count    = len(transcript["text"].split())
+    tags          = analysis.get("tags", [])
+    rec_type      = analysis.get("type", "other")
+    action_items  = analysis.get("action_items", [])
+    people        = analysis.get("people", [])
+    topics        = analysis.get("topics", [])
+
+    # Combine tags — include rec_type and people as person-kind tags
+    all_tags = list(set([rec_type] + tags + [t.lower().replace(" ", "-") for t in topics[:5]]))
+
+    # ── 1. Artifact ───────────────────────────────────────────────────────
+    artifact_id = log_artifact(
+        artifact_type="transcript",
+        source_tool="whisper",
+        path_or_url=str(obsidian_path) if str(obsidian_path) != "(skipped)" else str(transcript_path),
+        title=filepath.stem,
+        summary=analysis.get("summary", ""),
+        obsidian_path=str(obsidian_path) if str(obsidian_path) != "(skipped)" else None,
+        word_count=word_count,
+        duration_secs=duration_secs,
+        language=transcript.get("language", "en"),
+        source_file=str(filepath),
+        tags=all_tags,
+        extra={
+            "whisper_model":  WHISPER_MODEL,
+            "rec_type":       rec_type,
+            "people":         people,
+            "decisions":      analysis.get("decisions", []),
+            "key_points":     analysis.get("key_points", []),
+            "action_items":   action_items,
+        }
+    )
+
+    # ── 2. Session ────────────────────────────────────────────────────────
+    # Approximate: session ended now, started duration_secs ago
+    from datetime import timedelta
+    end_ts   = datetime.now(timezone.utc)
+    start_ts = end_ts - timedelta(seconds=max(duration_secs, 1))
+
+    log_session(
+        kind="listening",
+        source_tool="whisper",
+        start_ts=start_ts.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        end_ts=end_ts.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        summary=f"{rec_type.title()}: {filepath.stem} ({duration_secs/60:.1f} min, {word_count} words)",
+        artifact_id=artifact_id,
+        extra={"source_file": str(filepath), "rec_type": rec_type, "people": people}
+    )
+
+    # ── 3. Tasks (one per action item) ────────────────────────────────────
+    task_count = 0
+    for item in action_items:
+        task_id = log_task(
+            title=item,
+            source_tool="whisper",
+            status="unconfirmed",
+            source_artifact=artifact_id,
+            source_note_path=str(obsidian_path) if str(obsidian_path) != "(skipped)" else None,
+            notes=f"Extracted from: {filepath.name}",
+        )
+        if task_id:
+            task_count += 1
+
+    # ── 4. Metric ─────────────────────────────────────────────────────────
+    log_metric(
+        metric_name="transcript_minutes",
+        value=round(duration_secs / 60, 2),
+        source_tool="whisper",
+        notes=f"{filepath.name} ({rec_type})",
+    )
+
+    print(f"  [db] artifact {artifact_id[:8]}... | {task_count} tasks | {duration_secs/60:.1f} min logged")
+
+
+# ─────────────────────────────────────────────
 # MAIN PIPELINE
 # ─────────────────────────────────────────────
 
@@ -356,7 +471,7 @@ def process_file(filepath: Path, transcript_only: bool = False, no_obsidian: boo
     else:
         print(f"\n[3/3] Skipping Obsidian (--no-obsidian flag)")
 
-    # Log to SQLite
+    # Log to SQLite (existing private DB)
     log_transcript(
         filename=filepath.name,
         source_path=filepath,
@@ -369,6 +484,9 @@ def process_file(filepath: Path, transcript_only: bool = False, no_obsidian: boo
         action_items=analysis.get("action_items", []),
         tags=analysis.get("tags", [])
     )
+
+    # Write to shared productivity_os.db
+    write_to_shared_db(filepath, transcript, analysis, obsidian_path, transcript_path)
 
     # Print summary
     print(f"\n{'='*60}")
