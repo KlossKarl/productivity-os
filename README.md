@@ -1,17 +1,25 @@
-# Productivity OS
+# productivity-os
 
-> Build a personal productivity OS from tools that run natively on your machine.
-> No subscriptions. No cloud lock-in. Your data stays yours.
+Local productivity intelligence stack.
+
+**Ingests:** git activity, browser history, app/window usage, audio/video files, filesystem events, mood logs.
+**Processes:** locally via Ollama (llama3:8b, deepseek-r1:14b) and Whisper.
+**Stores:** single SQLite DB + ChromaDB vector store. Nothing else.
+**Outputs:** daily briefings, focus scores, deep work blocks, RAG search over everything.
+
+No accounts. No cloud dependencies. No data leaving your machine.
+
+`Python 3.12` · `SQLite` · `ChromaDB` · `Ollama` · `Whisper` · `pygetwindow`
 
 ---
 
 ## Why This Exists
 
-Google, Microsoft, and your browser already track everything this OS tracks — they do it silently, send it to their servers, and sell the insights. This project does the same thing openly, locally, and gives you the data instead.
+The tools that do this well are either expensive, cloud-dependent, or abandoned. The ones that are free don't integrate. This fixes that.
 
-Every tool runs on your machine. All data stays in a SQLite file you own and can read. No accounts, no telemetry, no network calls except to localhost. You can delete the entire thing in 30 seconds.
+One local stack. One database. Everything talks to everything else. Built for people who want the insight without the subscription — and who'd rather own their data than rent access to it.
 
-This is built for developers and builders who want to understand their own work patterns without handing that data to anyone else.
+The entire pipeline — activity capture, transcription, browser analysis, LLM inference, vector search — runs on local hardware. Data lives in a SQLite file. Models run via Ollama. Nothing is transmitted. Nothing is monetized.
 
 ---
 
@@ -27,131 +35,114 @@ This is built for developers and builders who want to understand their own work 
 | 06 | Code Search Engine | ⬜ Planned | Natural language search across all local projects |
 | 07 | Browser History Analyzer | ✅ Live | Weekly report of browsing patterns, focus score, peak hours, and topic recommendations |
 | 08 | Obsidian Second Brain | ✅ Live | Chat with your notes and codebase via a local LLM — fully private RAG system |
-| 09 | Screenpipe Integration | ⬜ Planned | Searchable record of everything on screen |
+| 09 | Window Activity Tracker | ✅ Live | Tracks active app every 60s, classifies sessions, feeds focus scoring pipeline |
 | 10 | Browser Agent | ⬜ Planned | Automate web tasks with browser-use |
-| 11 | Daily Briefing | ✅ Live | Morning summary of open tasks, recent commits, focus score — Obsidian note + terminal output |
-| 12 | Unified Dashboard | ⬜ Planned | Single local web UI showing all OS metrics and a command palette |
-| 13 | Unified Task Brain | ⬜ Planned | SQLite-backed canonical task list fed by all sources with CLI interface |
-| 14 | Focus Guardian | ⬜ Planned | Context-aware distraction blocker tied to your actual focus data |
-| 15 | Communication Command Center | ⬜ Planned | Extract action items and deadlines from email into the Task Brain |
-| 16 | Time & Energy Observatory | ⬜ Planned | Correlate browser, git, and session data to map your peak productivity windows |
-| 17 | Intent-Aware Environment Switcher | ✅ Live | One keystroke to switch your entire work environment by declared mode |
-| 18 | Git Activity Watcher | ✅ Live | Polls repos every 5 min, summarizes commits with LLM, logs coding sessions to shared DB |
-| 19 | Deep Work Detector | ✅ Live | Correlates browser + git sessions to automatically score and log deep work blocks |
-| 20 | Forgotten Recall | ⬜ Planned | Weekly resurface of high-value notes not touched in 30+ days — adds to Daily Briefing |
-| 21 | Energy Correlator | ✅ Live | Quick mood logging CLI that correlates energy levels with productivity metrics over time |
-| 22 | Vault Cleanup Scanner | ⬜ Planned | Detects duplicate, stale, and orphaned Obsidian notes using embedding similarity |
-| 23 | Distraction Blocker | ⬜ Planned | Analyzes distraction patterns, generates Brave focus rules, reports effectiveness |
-| 24 | Idea Capture Processor | ⬜ Planned | Watches an Inbox folder for text/audio, transcribes, routes to the right project in Obsidian |
-| 25 | Project Health Checker | ⬜ Planned | Scores each project by commit velocity, task staleness, and focus allocation |
-| 26 | Productivity Dashboard | ⬜ Planned | Queries all metrics for 30/90-day KPI charts and narrative summaries saved to Obsidian |
-| 27 | Email Intelligence | ⬜ Planned | Gmail semantic search, action item extraction, thread summarization, attachment parsing |
-| 28 | Contact Memory Builder | ⬜ Planned | Builds per-person Obsidian profiles from mentions across transcripts and emails |
-| 29 | Receipt OCR Processor | ⬜ Planned | LLaVA OCR on receipt images, extracts merchant/amount/category, tracks monthly spend |
-
----
-
-## Stack
-
-- **OS:** Windows (PowerShell)
-- **Language:** Python 3.12
-- **Local LLMs:** Ollama — llava:7b, llava:13b, deepseek-coder:6.7b, llama3:8b, deepseek-r1:14b, gemma3:4b
-- **Embeddings:** mxbai-embed-large (ChromaDB)
-- **Editor:** VSCode
-- **Storage:** SQLite + ChromaDB (shared across all projects)
-- **Philosophy:** Free, local, private. No subscriptions, no cloud lock-in.
+| 11 | Daily Briefing | ✅ Live | Morning summary of open tasks, commits, focus score — reads from and writes to shared DB |
+| 12 | Unified Dashboard | ⬜ Planned | Single local web UI across all OS metrics |
+| 13 | Unified Task Brain | ⬜ Planned | CLI interface over the shared tasks table — fed by all sources |
+| 14 | Focus Guardian | ⬜ Planned | Context-aware distraction blocker driven by your actual focus history |
+| 15 | Communication Command Center | ⬜ Planned | Extract action items and deadlines from email into the task pipeline |
+| 16 | Time & Energy Observatory | ⬜ Planned | Cross-source correlation to map peak productivity windows |
+| 17 | Intent Switcher | ✅ Live | Hotkey-driven environment switching — opens workspace, Obsidian note, and focus rules per mode |
+| 18 | Git Activity Watcher | ✅ Live | Polls repos every 5 min, summarizes commits via LLM, logs coding sessions to shared DB |
+| 19 | Deep Work Detector | ✅ Live | Correlates browser + git sessions into scored deep work blocks, runs every 30 min |
+| 20 | Forgotten Recall | ⬜ Planned | Surfaces high-value notes not touched in 30+ days — pushes to Daily Briefing |
+| 21 | Energy Correlator | ✅ Live | CLI mood logging correlated against same-day focus score, commits, and deep work |
+| 22 | Vault Cleanup Scanner | ⬜ Planned | Detects duplicate and orphaned Obsidian notes via embedding similarity |
+| 23 | Distraction Blocker | ⬜ Planned | Analyzes distraction patterns, generates and installs Brave focus rules |
+| 24 | Idea Capture Processor | ⬜ Planned | Watches an Inbox folder for text/audio, transcribes, routes to the right project |
+| 25 | Project Health Checker | ⬜ Planned | Scores projects by commit velocity, task staleness, and focus allocation |
+| 26 | Productivity Dashboard | ⬜ Planned | 30/90-day KPI charts and narrative summaries from the shared DB |
+| 27 | Email Intelligence | ⬜ Planned | Gmail IMAP semantic search, action item extraction, thread summarization |
+| 28 | Contact Memory Builder | ⬜ Planned | Per-person Obsidian profiles built from mentions across transcripts and email |
+| 29 | Receipt OCR Processor | ⬜ Planned | LLaVA OCR on receipts — extracts merchant, amount, category, tracks spend |
 
 ---
 
 ## What's Built
 
 ### 01 — Screenshot Organizer
-Walks a screenshots folder and sends each image to a local LLaVA vision model. Generates a plain-English description and tags for every screenshot, renames files from timestamps to descriptive names, and builds a fully searchable `index.csv`. A companion script converts the index to an Obsidian markdown note for Second Brain indexing. Resumable — safe to stop and restart at any point.
+Walks a screenshots folder and sends each image to a local LLaVA vision model. Generates plain-English descriptions and tags, renames files from timestamps to descriptive names, builds a fully searchable `index.csv`. Companion script converts the index to Obsidian markdown for Second Brain indexing. Resumable — progress is saved after every file.
 
 ### 02 — Downloads Auto-Categorizer
-Runs silently at Windows startup via Task Scheduler. Watches your Downloads folder in real time and sorts every file into `PDFs/`, `Images/`, `Code/`, `Finance/`, `Reading/` and more. Uses extension rules first, Ollama LLM for ambiguous files (invoice vs whitepaper), quarantines unknowns to `_review/` with a daily digest. Learns from corrections via a `teach` command.
+Runs at startup via Task Scheduler. Watches Downloads in real time and sorts every incoming file by extension rules first, Ollama LLM for ambiguous cases. Quarantines unknowns to `_review/` with a daily digest. Learns new rules via `teach` command.
 
 ### 03 — Whisper Transcription Pipeline
-Point it at any `.mp4`, `.mp3`, `.m4a`, `.webm` or other audio/video file. Runs OpenAI Whisper locally — no API key, no cost. Outputs a full timestamped transcript, then sends it to Ollama for a structured summary with key points, action items, decisions, and people mentioned. Saves a formatted note directly into Obsidian. Supports watch mode for auto-transcription.
+Runs OpenAI Whisper locally — no API key, no cost. Outputs a full timestamped transcript, then sends it to Ollama for a structured summary: key points, action items, decisions, people mentioned. Saves to Obsidian. Watch mode monitors a folder and auto-processes anything dropped in.
 
 ### 07 — Browser History Analyzer
-Reads your Brave/Chrome history (local SQLite DB) and generates a structured weekly and monthly report. Smart classification — YouTube and Reddit are judged by page title and subreddit, not just domain. Reports include focus score, peak hours, topics you're deep in, focus killers, and personalized recommendations. Saves to Obsidian.
+Reads Brave/Chrome history from the local SQLite DB. YouTube and Reddit are classified by page title and subreddit, not just domain. Generates 7-day and 30-day reports with focus score, peak hours, deep topics, and distractions. Saves to Obsidian, writes metrics to shared DB.
 
 ### 08 — Obsidian Second Brain
-Full RAG system. Indexes your entire Obsidian vault and selected codebases into ChromaDB using `mxbai-embed-large` embeddings. Chat with all of it using `deepseek-r1:14b`. Supports `/notes`, `/code`, `/all` source filters. Includes a PDF-to-markdown converter for adding any PDF to the knowledge base. Gets smarter as your vault grows.
+Full RAG pipeline. Indexes the entire Obsidian vault and configured codebases into ChromaDB using `mxbai-embed-large`. Chat against all of it with `deepseek-r1:14b`. Source filters: `/notes`, `/code`, `/all`. Includes `pdf_to_md.py` for adding PDFs to the knowledge base.
+
+### 09 — Window Activity Tracker
+Polls the active foreground window every 60 seconds via `pygetwindow`. Groups consecutive same-app windows into sessions. Classifies by category: coding, terminal, browsing, notes, communication, gaming (neutral — doesn't affect focus score), distraction. Logs to `window_sessions` table and shared DB metrics. Startup task — runs silently.
 
 ### 11 — Daily Briefing
-Runs every morning via Task Scheduler. Scans recent transcripts, browser reports, and vault notes for action items. Auto-extracts tasks into `Tasks.md` marked as unconfirmed. Interactive triage mode (`--triage`) for single-keypress promotion or dismissal. Pulls yesterday's git commits and focus score. Generates a narrative briefing using `deepseek-r1:14b` and saves it to Obsidian. Reads from and writes to the shared DB.
+Runs at 8am via Task Scheduler. Scans Obsidian notes for action items and extracts them to `Tasks.md` as unconfirmed. Interactive triage mode for single-keypress promotion or dismissal. Reads open tasks from shared DB, pulls yesterday's commits and focus score, generates a narrative briefing with `deepseek-r1:14b`. Writes `daily_rollups` and metrics back to shared DB.
 
-### 17 — Intent-Aware Environment Switcher
-Declare a work mode — Build, Debug, Learn, Admin, or Review — via a single hotkey or CLI command. Automatically opens the right VSCode workspace, Obsidian note, and applies focus rules. Can infer your mode from recent browser activity, open tasks, and git commits using Ollama. Saves a re-entry note to Obsidian at session end so you can pick up exactly where you left off.
+### 17 — Intent Switcher
+Win+1 through Win+5 for Build / Debug / Learn / Admin / Review modes. Each mode opens the configured VSCode workspace and Obsidian note, writes focus rules to `active_focus_rules.json`, logs the session to shared DB. Win+0 lets Ollama infer the right mode from recent browser activity, open tasks, and git commits. Win+- ends the session and saves a re-entry note to Obsidian.
 
 ### 18 — Git Activity Watcher
-Runs silently at startup. Polls all configured repos every 5 minutes for new commits. Sends commit messages and diff stats to Ollama for a one-sentence summary of what was accomplished. Logs coding sessions, lines changed, and files touched to the shared database. `--today` command gives a full daily coding summary.
+Polls all configured repos every 5 minutes. On new commits: extracts diff stats, sends commit messages to Ollama for a one-sentence summary, logs a coding session to shared DB with lines added/removed/files changed. `--today` gives a full daily summary. Runs as a startup task.
 
 ### 19 — Deep Work Detector
-Runs every 30 minutes via Task Scheduler. Correlates git coding sessions and browser focus scores within rolling time windows. Scores each block 0-100 based on commit activity and distraction-free browsing. Logs deep work sessions to the shared DB — feeds into the Time & Energy Observatory when built.
+Runs every 30 minutes via Task Scheduler. Correlates git coding sessions with browser focus scores in rolling time windows. Scores each block 0-100: commit activity weighted at 40%, browser focus at 60%. Logs to `deep_work_blocks` table and shared sessions. `--today` and `--week` for summaries.
 
 ### 21 — Energy Correlator
-Quick CLI mood check-in — log your energy level (low/medium/high), a one-word reason, and an optional note in under 10 seconds. Correlates energy logs with same-day focus score, commit count, and deep work minutes. After a week of logging, `insights` shows real patterns: "high energy days average +23% focus and 2x the commits."
+Three-question CLI check-in: energy level (low/medium/high), one-word reason, optional note. Logs to `energy_logs`, writes `energy_score` to `metrics_daily`. After a week of data, `insights` shows cross-correlated patterns: how focus score, commit count, and deep work minutes shift by energy level.
 
 ---
 
 ## Shared Infrastructure
 
-Every tool writes to a shared SQLite database (`productivity_os.db`) instead of staying siloed. A shared access layer (`db.py`) handles all logging of artifacts, sessions, tasks, and daily metrics.
+All tools write to a single shared database rather than staying siloed.
 
 ```
-productivity_os.db   — 9-table shared SQLite DB
-db.py                — shared access layer (import and use, never open DB directly)
+productivity_os.db      SQLite — sessions, tasks, metrics, artifacts, rollups
+db.py                   shared access layer — import and call, never open DB directly
 ```
-
-### What each tool writes today
 
 | Tool | Sessions | Tasks | Metrics | Artifacts |
 |------|----------|-------|---------|-----------|
-| Whisper Transcription | ✅ | ✅ action items | ✅ transcript_minutes | ✅ |
-| Browser History Analyzer | ✅ | — | ✅ focus scores | ✅ |
-| Git Activity Watcher | ✅ coding | — | ✅ commits, lines | ✅ |
-| Daily Briefing | — | ✅ read + write | ✅ daily rollup | — |
-| Deep Work Detector | ✅ deep_work | — | ✅ deep_work_minutes | — |
+| Whisper | ✅ listening | ✅ action items | ✅ transcript_min | ✅ |
+| Browser Analyzer | ✅ browsing | — | ✅ focus scores | ✅ |
+| Git Watcher | ✅ coding | — | ✅ commits, lines | ✅ |
+| Daily Briefing | — | ✅ read/write | ✅ daily rollup | — |
+| Deep Work Detector | ✅ deep_work | — | ✅ dw_minutes | — |
 | Energy Correlator | — | — | ✅ energy_score | — |
-| Intent Switcher | ✅ mode sessions | — | — | — |
+| Intent Switcher | ✅ mode | — | — | — |
+| Window Tracker | ✅ app sessions | — | ✅ productive_min | — |
 
 ---
 
 ## Privacy
 
-This OS reads your browser history, file activity, git commits, and audio recordings. Here is exactly what it does with that data:
+This stack reads browser history, file activity, git commits, app usage, and audio. Here is exactly what happens to that data:
 
-- **Everything stays on your machine.** No data is sent anywhere except to `localhost:11434` (your local Ollama instance).
-- **No accounts, no telemetry, no API keys required.** The LLMs run locally via Ollama.
-- **All data lives in one SQLite file** at a path you choose. Open it with any SQLite viewer. Delete it whenever you want.
-- **No background phone-home.** All scheduled tasks are registered under your own Windows account and visible in Task Scheduler.
-- **You own the code.** Read every line before running anything.
-
-The difference between this and spyware: you run it, you read it, you own it.
+- All processing runs on `localhost`. The only network calls are to `localhost:11434` (Ollama).
+- No accounts. No API keys required for core functionality. No telemetry.
+- Everything lands in one SQLite file at a path you set. Open it with any SQLite viewer, delete it whenever you want.
+- All scheduled tasks are registered under your own Windows account and visible in Task Scheduler. Nothing is hidden.
+- The code is here. Read it before running it.
 
 ---
 
 ## Setup
 
-Clone the repo and go project by project. Each project lives in its own numbered folder with its own README and install instructions.
-
 ```powershell
 git clone https://github.com/KlossKarl/productivity-os.git
 cd productivity-os
-```
-
-**Core dependencies:**
-```powershell
-pip install watchdog requests openai-whisper chromadb pyyaml pdfplumber
+pip install watchdog requests openai-whisper chromadb pyyaml pdfplumber pygetwindow
 ollama pull llama3:8b
 ollama pull deepseek-r1:14b
 ollama pull mxbai-embed-large
 ```
 
+Each project has its own folder and install instructions. Start with whichever tool solves your most immediate problem — they're independent but designed to compound.
+
 ---
 
-*Living document — updated as each project ships.*
-*Last updated: March 2026 — Projects 1, 2, 3, 7, 8, 11, 17, 18, 19, 21 live.*
+*Last updated: March 2026 — Projects 1, 2, 3, 7, 8, 9, 11, 17, 18, 19, 21 live.*
