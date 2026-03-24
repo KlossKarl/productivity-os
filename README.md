@@ -5,6 +5,16 @@
 
 ---
 
+## Why This Exists
+
+Google, Microsoft, and your browser already track everything this OS tracks — they do it silently, send it to their servers, and sell the insights. This project does the same thing openly, locally, and gives you the data instead.
+
+Every tool runs on your machine. All data stays in a SQLite file you own and can read. No accounts, no telemetry, no network calls except to localhost. You can delete the entire thing in 30 seconds.
+
+This is built for developers and builders who want to understand their own work patterns without handing that data to anyone else.
+
+---
+
 ## Projects
 
 | # | Project | Status | What it does |
@@ -27,9 +37,9 @@
 | 16 | Time & Energy Observatory | ⬜ Planned | Correlate browser, git, and session data to map your peak productivity windows |
 | 17 | Intent-Aware Environment Switcher | ✅ Live | One keystroke to switch your entire work environment by declared mode |
 | 18 | Git Activity Watcher | ✅ Live | Polls repos every 5 min, summarizes commits with LLM, logs coding sessions to shared DB |
-| 19 | Deep Work Detector | ⬜ Planned | Correlates browser + git + screenshot sessions to automatically score deep work blocks |
+| 19 | Deep Work Detector | ✅ Live | Correlates browser + git sessions to automatically score and log deep work blocks |
 | 20 | Forgotten Recall | ⬜ Planned | Weekly resurface of high-value notes not touched in 30+ days — adds to Daily Briefing |
-| 21 | Energy Correlator | ⬜ Planned | Quick mood logging CLI that correlates energy levels with productivity metrics over time |
+| 21 | Energy Correlator | ✅ Live | Quick mood logging CLI that correlates energy levels with productivity metrics over time |
 | 22 | Vault Cleanup Scanner | ⬜ Planned | Detects duplicate, stale, and orphaned Obsidian notes using embedding similarity |
 | 23 | Distraction Blocker | ⬜ Planned | Analyzes distraction patterns, generates Brave focus rules, reports effectiveness |
 | 24 | Idea Capture Processor | ⬜ Planned | Watches an Inbox folder for text/audio, transcribes, routes to the right project in Obsidian |
@@ -71,13 +81,19 @@ Reads your Brave/Chrome history (local SQLite DB) and generates a structured wee
 Full RAG system. Indexes your entire Obsidian vault and selected codebases into ChromaDB using `mxbai-embed-large` embeddings. Chat with all of it using `deepseek-r1:14b`. Supports `/notes`, `/code`, `/all` source filters. Includes a PDF-to-markdown converter for adding any PDF to the knowledge base. Gets smarter as your vault grows.
 
 ### 11 — Daily Briefing
-Runs every morning via Task Scheduler. Scans recent transcripts, browser reports, and vault notes for action items. Auto-extracts tasks into `Tasks.md` marked as unconfirmed. Interactive triage mode (`--triage`) for single-keypress promotion or dismissal. Pulls yesterday's git commits and focus score. Generates a narrative briefing using `deepseek-r1:14b` and saves it to Obsidian.
+Runs every morning via Task Scheduler. Scans recent transcripts, browser reports, and vault notes for action items. Auto-extracts tasks into `Tasks.md` marked as unconfirmed. Interactive triage mode (`--triage`) for single-keypress promotion or dismissal. Pulls yesterday's git commits and focus score. Generates a narrative briefing using `deepseek-r1:14b` and saves it to Obsidian. Reads from and writes to the shared DB.
 
 ### 17 — Intent-Aware Environment Switcher
 Declare a work mode — Build, Debug, Learn, Admin, or Review — via a single hotkey or CLI command. Automatically opens the right VSCode workspace, Obsidian note, and applies focus rules. Can infer your mode from recent browser activity, open tasks, and git commits using Ollama. Saves a re-entry note to Obsidian at session end so you can pick up exactly where you left off.
 
 ### 18 — Git Activity Watcher
 Runs silently at startup. Polls all configured repos every 5 minutes for new commits. Sends commit messages and diff stats to Ollama for a one-sentence summary of what was accomplished. Logs coding sessions, lines changed, and files touched to the shared database. `--today` command gives a full daily coding summary.
+
+### 19 — Deep Work Detector
+Runs every 30 minutes via Task Scheduler. Correlates git coding sessions and browser focus scores within rolling time windows. Scores each block 0-100 based on commit activity and distraction-free browsing. Logs deep work sessions to the shared DB — feeds into the Time & Energy Observatory when built.
+
+### 21 — Energy Correlator
+Quick CLI mood check-in — log your energy level (low/medium/high), a one-word reason, and an optional note in under 10 seconds. Correlates energy logs with same-day focus score, commit count, and deep work minutes. After a week of logging, `insights` shows real patterns: "high energy days average +23% focus and 2x the commits."
 
 ---
 
@@ -89,6 +105,32 @@ Every tool writes to a shared SQLite database (`productivity_os.db`) instead of 
 productivity_os.db   — 9-table shared SQLite DB
 db.py                — shared access layer (import and use, never open DB directly)
 ```
+
+### What each tool writes today
+
+| Tool | Sessions | Tasks | Metrics | Artifacts |
+|------|----------|-------|---------|-----------|
+| Whisper Transcription | ✅ | ✅ action items | ✅ transcript_minutes | ✅ |
+| Browser History Analyzer | ✅ | — | ✅ focus scores | ✅ |
+| Git Activity Watcher | ✅ coding | — | ✅ commits, lines | ✅ |
+| Daily Briefing | — | ✅ read + write | ✅ daily rollup | — |
+| Deep Work Detector | ✅ deep_work | — | ✅ deep_work_minutes | — |
+| Energy Correlator | — | — | ✅ energy_score | — |
+| Intent Switcher | ✅ mode sessions | — | — | — |
+
+---
+
+## Privacy
+
+This OS reads your browser history, file activity, git commits, and audio recordings. Here is exactly what it does with that data:
+
+- **Everything stays on your machine.** No data is sent anywhere except to `localhost:11434` (your local Ollama instance).
+- **No accounts, no telemetry, no API keys required.** The LLMs run locally via Ollama.
+- **All data lives in one SQLite file** at a path you choose. Open it with any SQLite viewer. Delete it whenever you want.
+- **No background phone-home.** All scheduled tasks are registered under your own Windows account and visible in Task Scheduler.
+- **You own the code.** Read every line before running anything.
+
+The difference between this and spyware: you run it, you read it, you own it.
 
 ---
 
@@ -112,4 +154,4 @@ ollama pull mxbai-embed-large
 ---
 
 *Living document — updated as each project ships.*
-*Last updated: March 2026 — Projects 1, 2, 3, 7, 8, 11, 17, 18 live.*
+*Last updated: March 2026 — Projects 1, 2, 3, 7, 8, 11, 17, 18, 19, 21 live.*
