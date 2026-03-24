@@ -69,6 +69,175 @@ OLLAMA_MODEL_SMART  = "deepseek-r1:14b"  # used for briefing narrative only
 
 SCAN_DAYS_DEFAULT   = 7             # how far back to scan for new tasks
 
+SHARED_DB           = Path(r"C:\Users\Karl\Documents\productivity_os.db")
+
+# ─────────────────────────────────────────────
+# SHARED DB — read tasks, write rollups/metrics
+# ─────────────────────────────────────────────
+
+class SharedDB:
+    """
+    Thin wrapper around productivity_os.db.
+    Graceful fallback — if DB not found, all methods return empty/None silently.
+    """
+
+    def __init__(self):
+        self.available = SHARED_DB.exists()
+
+    def _conn(self):
+        return sqlite3.connect(str(SHARED_DB))
+
+    def get_open_tasks(self) -> list:
+        """Read open tasks from the shared tasks table."""
+        if not self.available:
+            return []
+        try:
+            conn = self._conn()
+            rows = conn.execute("""
+                SELECT title, priority, source_tool, created_at
+                FROM tasks
+                WHERE status = 'open'
+                ORDER BY
+                    CASE priority
+                        WHEN 'high'   THEN 1
+                        WHEN 'medium' THEN 2
+                        WHEN 'low'    THEN 3
+                        ELSE 4
+                    END,
+                    created_at DESC
+                LIMIT 50
+            """).fetchall()
+            conn.close()
+            return [
+                {"title": r[0], "priority": r[1] or "medium",
+                 "source": r[2] or "manual", "created_at": r[3]}
+                for r in rows
+            ]
+        except Exception as e:
+            print(f"  [DB] Could not read tasks: {e}")
+            return []
+
+    def get_yesterday_metrics(self) -> dict:
+        """Pull yesterday's key metrics from metrics_daily."""
+        if not self.available:
+            return {}
+        try:
+            yesterday = (date.today() - timedelta(days=1)).isoformat()
+            conn = self._conn()
+            rows = conn.execute(
+                "SELECT metric_name, value FROM metrics_daily WHERE date = ?",
+                (yesterday,)
+            ).fetchall()
+            conn.close()
+            return {r[0]: r[1] for r in rows}
+        except Exception:
+            return {}
+
+    def get_recent_sessions(self, days: int = 1) -> list:
+        """Pull recent sessions for briefing context."""
+        if not self.available:
+            return []
+        try:
+            cutoff = (datetime.now() - timedelta(days=days)).isoformat()
+            conn = self._conn()
+            rows = conn.execute("""
+                SELECT kind, summary, start_ts, source_tool
+                FROM sessions
+                WHERE start_ts > ?
+                ORDER BY start_ts DESC
+                LIMIT 20
+            """, (cutoff,)).fetchall()
+            conn.close()
+            return [
+                {"kind": r[0], "summary": r[1], "start_ts": r[2], "source": r[3]}
+                for r in rows
+            ]
+        except Exception:
+            return []
+
+    def write_daily_rollup(self, briefing_date, task_stats, browser, commits, narrative):
+        """Write one daily_rollup row summarizing the entire day."""
+        if not self.available:
+            return
+        try:
+            conn = self._conn()
+            tables = {r[0] for r in conn.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'"
+            ).fetchall()}
+
+            if "daily_rollups" not in tables:
+                conn.execute("""
+                    CREATE TABLE IF NOT EXISTS daily_rollups (
+                        id               INTEGER PRIMARY KEY AUTOINCREMENT,
+                        date             TEXT NOT NULL UNIQUE,
+                        focus_score      REAL,
+                        open_tasks       INTEGER,
+                        done_tasks       INTEGER,
+                        commits          INTEGER,
+                        briefing_summary TEXT,
+                        top_priorities   TEXT,
+                        created_at       TEXT DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now'))
+                    )
+                """)
+
+            conn.execute("""
+                INSERT INTO daily_rollups
+                    (date, focus_score, open_tasks, done_tasks, commits, briefing_summary, top_priorities)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(date) DO UPDATE SET
+                    focus_score      = excluded.focus_score,
+                    open_tasks       = excluded.open_tasks,
+                    done_tasks       = excluded.done_tasks,
+                    commits          = excluded.commits,
+                    briefing_summary = excluded.briefing_summary,
+                    top_priorities   = excluded.top_priorities
+            """, (
+                briefing_date,
+                browser.get("focus_score"),
+                task_stats.get("open", 0),
+                task_stats.get("done", 0),
+                len(commits),
+                narrative.get("yesterday_summary", ""),
+                json.dumps(narrative.get("top_3_priorities", [])),
+            ))
+            conn.commit()
+            conn.close()
+            print(f"  [DB] Daily rollup written for {briefing_date}")
+        except Exception as e:
+            print(f"  [DB] Could not write daily rollup: {e}")
+
+    def write_briefing_metrics(self, browser, task_stats, commits):
+        """Write per-metric rows to metrics_daily for today."""
+        if not self.available:
+            return
+        try:
+            today = date.today().isoformat()
+            conn = self._conn()
+            metrics = [
+                ("briefing_focus_score",  browser.get("focus_score", 0)),
+                ("briefing_open_tasks",   task_stats.get("open", 0)),
+                ("briefing_done_tasks",   task_stats.get("done", 0)),
+                ("briefing_unconfirmed",  task_stats.get("unconfirmed", 0)),
+                ("briefing_commits",      len(commits)),
+            ]
+            for metric_name, value in metrics:
+                existing = conn.execute(
+                    "SELECT id FROM metrics_daily WHERE date=? AND metric_name=? AND source_tool='briefing'",
+                    (today, metric_name)
+                ).fetchone()
+                if existing:
+                    conn.execute("UPDATE metrics_daily SET value=? WHERE id=?", (value, existing[0]))
+                else:
+                    conn.execute("""
+                        INSERT INTO metrics_daily (date, metric_name, value, source_tool)
+                        VALUES (?, ?, ?, 'briefing')
+                    """, (today, metric_name, value))
+            conn.commit()
+            conn.close()
+            print(f"  [DB] Briefing metrics written")
+        except Exception as e:
+            print(f"  [DB] Could not write metrics: {e}")
+
 # Noise domains — skip for focus stats
 NOISE_DOMAINS = {
     "google.com", "googleapis.com", "gstatic.com",
@@ -799,6 +968,30 @@ def run_full_briefing(days: int):
     print(f"\n  Productivity OS — Daily Briefing")
     print(f"  {today.strftime('%A, %B')} {today.day}, {today.year}\n")
 
+    # 0. Connect to shared DB (graceful fallback if unavailable)
+    db = SharedDB()
+    if db.available:
+        print(f"  [DB] Connected to shared productivity_os.db")
+        db_tasks = db.get_open_tasks()
+        db_sessions = db.get_recent_sessions(days=1)
+        yesterday_metrics = db.get_yesterday_metrics()
+        if db_tasks:
+            print(f"  [DB] {len(db_tasks)} open tasks in shared DB")
+        if db_sessions:
+            print(f"  [DB] {len(db_sessions)} sessions yesterday")
+        if yesterday_metrics:
+            git_commits = int(yesterday_metrics.get("git_commits", 0))
+            focus = yesterday_metrics.get("browser_focus_score_7d") or yesterday_metrics.get("browser_focus_score")
+            if git_commits:
+                print(f"  [DB] Yesterday: {git_commits} commits logged by git watcher")
+            if focus:
+                print(f"  [DB] Yesterday focus score: {focus}%")
+    else:
+        db_tasks = []
+        db_sessions = []
+        yesterday_metrics = {}
+        print(f"  [DB] Shared DB not found — running in standalone mode")
+
     # 1. Ensure Tasks.md exists
     ensure_tasks_file()
 
@@ -818,13 +1011,28 @@ def run_full_briefing(days: int):
     task_stats = count_open_tasks(tasks_raw)
     stale_tasks = get_stale_tasks(tasks_raw, stale_days=3)
 
+    # Enrich commits with git watcher data if available
+    if not commits and yesterday_metrics.get("git_commits"):
+        print(f"       (git watcher logged {int(yesterday_metrics['git_commits'])} commits yesterday)")
+
     recent_notes = (
         get_recent_notes(TRANSCRIPTS_FOLDER, 3) +
         get_recent_notes(BROWSER_REPORTS_FOLDER, 3)
     )
     note_names = [n["name"] for n in recent_notes]
 
+    # Enrich context with DB sessions summary
+    sessions_summary = ""
+    if db_sessions:
+        kinds = [s["kind"] for s in db_sessions if s.get("kind")]
+        kind_counts = {}
+        for k in kinds:
+            kind_counts[k] = kind_counts.get(k, 0) + 1
+        sessions_summary = ", ".join(f"{v}x {k}" for k, v in kind_counts.items())
+
     print(f"       {len(commits)} commits | {task_stats['open']} open tasks | focus: {browser.get('focus_score', 'N/A')}%")
+    if db_tasks:
+        print(f"       {len(db_tasks)} tasks in shared DB ({sum(1 for t in db_tasks if t['priority']=='high')} high priority)")
 
     # 4. Generate narrative
     print("[3/4] Generating briefing with LLM...")
@@ -836,6 +1044,10 @@ def run_full_briefing(days: int):
         "browser": browser,
         "recent_note_names": note_names,
         "new_tasks_found": total_new,
+        "db_tasks": db_tasks,
+        "db_sessions": db_sessions,
+        "sessions_summary": sessions_summary,
+        "yesterday_metrics": yesterday_metrics,
     }
     narrative = generate_briefing_narrative(context)
 
@@ -848,7 +1060,12 @@ def run_full_briefing(days: int):
     briefing_path.write_text(note_content, encoding="utf-8")
     print(f"       Saved: Briefings/{briefing_filename}")
 
-    # 6. Print terminal summary
+    # 6. Write to shared DB
+    if db.available:
+        db.write_daily_rollup(today.isoformat(), task_stats, browser, commits, narrative)
+        db.write_briefing_metrics(browser, task_stats, commits)
+
+    # 7. Print terminal summary
     print_terminal_summary(narrative, context, briefing_path)
 
 def run_tasks_only():
