@@ -18,10 +18,24 @@ from datetime import datetime, date
 from uuid import uuid4
 
 # ─────────────────────────────────────────────
-# CONFIG — adjust path if needed
+# CONFIG — reads from config.yaml at repo root
 # ─────────────────────────────────────────────
 
-DB_PATH = Path(r"C:\Users\Karl\Documents\productivity_os.db")
+def _get_db_path() -> Path:
+    """Read shared_db path from config.yaml, fallback to Documents if not found."""
+    try:
+        import yaml
+        config_path = Path(__file__).parent / "config.yaml"
+        if config_path.exists():
+            with open(config_path, 'r') as f:
+                cfg = yaml.safe_load(f)
+            return Path(cfg['paths']['shared_db'])
+    except Exception:
+        pass
+    # Fallback — safe default next to the repo
+    return Path.home() / "Documents" / "productivity_os.db"
+
+DB_PATH = _get_db_path()
 SCHEMA_PATH = Path(__file__).parent / "productivity_os_schema.sql"
 
 

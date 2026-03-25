@@ -37,25 +37,33 @@ except ImportError:
 # CONFIG
 # ─────────────────────────────────────────────
 
-CONFIG_PATH      = Path(__file__).parent / "config.yaml"
-CHROMA_DIR       = Path(r"C:\Users\Karl\Documents\second_brain_db")
+CONFIG_PATH      = Path(__file__).parent.parent / "config.yaml"  # repo root
 OLLAMA_URL       = "http://localhost:11434/api/generate"
 OLLAMA_EMBED_URL = "http://localhost:11434/api/embeddings"
 
 def load_config() -> dict:
     if not CONFIG_PATH.exists():
-        print(f"[ERROR] config.yaml not found at {CONFIG_PATH}")
+        print(f"[ERROR] config.yaml not found. Run: python setup.py")
         sys.exit(1)
     with open(CONFIG_PATH, 'r') as f:
         return yaml.safe_load(f)
+
+def get_chroma_dir() -> Path:
+    cfg = load_config()
+    return Path(cfg['paths']['chroma_dir'])
+
+def get_user_name() -> str:
+    cfg = load_config()
+    return cfg.get('user', {}).get('name', 'User')
 
 # ─────────────────────────────────────────────
 # CHROMADB
 # ─────────────────────────────────────────────
 
 def get_collection():
-    CHROMA_DIR.mkdir(parents=True, exist_ok=True)
-    client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+    chroma_dir = get_chroma_dir()
+    chroma_dir.mkdir(parents=True, exist_ok=True)
+    client = chromadb.PersistentClient(path=str(chroma_dir))
     return client.get_or_create_collection(
         name="second_brain",
         metadata={"hnsw:space": "cosine"}
@@ -121,10 +129,11 @@ def strip_frontmatter(text: str):
 
 def collect_files(cfg: dict) -> list:
     files = []
-    skip_folders = set(cfg.get('skip_folders', []))
-    code_extensions = set(cfg.get('code_extensions', ['.py', '.md', '.js', '.ts']))
+    sb = cfg.get('second_brain', cfg)  # support both nested and flat config
+    skip_folders = set(sb.get('skip_folders', []))
+    code_extensions = set(sb.get('code_extensions', ['.py', '.md', '.js', '.ts']))
 
-    for vault_path in cfg.get('vaults', []):
+    for vault_path in sb.get('vaults', []):
         vault = Path(vault_path)
         if not vault.exists():
             print(f"  [WARN] Vault not found: {vault}")
@@ -135,7 +144,7 @@ def collect_files(cfg: dict) -> list:
                     continue
                 files.append((f, 'note', vault.name, vault))
 
-    for repo_path in cfg.get('codebases', []):
+    for repo_path in sb.get('codebases', []):
         repo = Path(repo_path)
         if not repo.exists():
             print(f"  [WARN] Repo not found: {repo}")
@@ -160,9 +169,10 @@ def collect_files(cfg: dict) -> list:
 def index_all(force: bool = False):
     cfg = load_config()
     collection = get_collection()
-    embed_model = cfg.get('embed_model', 'nomic-embed-text')
-    chunk_size = cfg.get('chunk_size', 800)
-    chunk_overlap = cfg.get('chunk_overlap', 150)
+    sb = cfg.get('second_brain', cfg)
+    embed_model = sb.get('embed_model', 'mxbai-embed-large')
+    chunk_size = sb.get('chunk_size', 800)
+    chunk_overlap = sb.get('chunk_overlap', 150)
 
     files = collect_files(cfg)
     print(f"\n[INDEX] Found {len(files)} files across vault + codebases")
@@ -252,6 +262,7 @@ def index_all(force: bool = False):
 
 def show_stats():
     cfg = load_config()
+    sb = cfg.get('second_brain', cfg)
     collection = get_collection()
     count = collection.count()
     try:
@@ -265,9 +276,9 @@ def show_stats():
     print(f"  Total chunks:   {count}")
     print(f"  Note chunks:    {notes}")
     print(f"  Code chunks:    {code}")
-    print(f"  Embed model:    {cfg.get('embed_model', 'nomic-embed-text')}")
-    print(f"  Chat model:     {cfg.get('chat_model', 'deepseek-r1:14b')}")
-    print(f"  DB:             {CHROMA_DIR}")
+    print(f"  Embed model:    {sb.get('embed_model', 'mxbai-embed-large')}")
+    print(f"  Chat model:     {sb.get('chat_model', 'deepseek-r1:14b')}")
+    print(f"  DB:             {get_chroma_dir()}")
 
 # ─────────────────────────────────────────────
 # RETRIEVAL
@@ -275,8 +286,9 @@ def show_stats():
 
 def retrieve(query: str, cfg: dict, source_filter: str = None) -> list:
     collection = get_collection()
-    embed_model = cfg.get('embed_model', 'nomic-embed-text')
-    top_k = cfg.get('top_k', 6)
+    sb = cfg.get('second_brain', cfg)
+    embed_model = sb.get('embed_model', 'mxbai-embed-large')
+    top_k = sb.get('top_k', 6)
 
     if collection.count() == 0:
         print("[WARN] Nothing indexed yet. Run: python second_brain.py --index")
@@ -327,7 +339,7 @@ def quick_search(query: str):
 # CHAT
 # ─────────────────────────────────────────────
 
-def build_prompt(query: str, chunks: list, history: list) -> str:
+def build_prompt(query: str, chunks: list, history: list, user_name: str) -> str:
     context_parts = []
     for c in chunks:
         tag = "CODE" if c['source_type'] == 'code' else "NOTE"
@@ -341,24 +353,26 @@ def build_prompt(query: str, chunks: list, history: list) -> str:
     if history:
         lines = []
         for turn in history[-6:]:
-            lines.append(f"Karl: {turn['user']}")
+            lines.append(f"{user_name}: {turn['user']}")
             lines.append(f"Assistant: {turn['assistant']}")
         history_str = "\n".join(lines)
 
-    return f"""You are Karl's Second Brain assistant with access to his Obsidian notes, transcripts, browser reports, and codebase. Answer using the context below. Be direct and specific. Reference source names. Surface cross-source patterns when relevant.
+    return f"""You are {user_name}'s Second Brain assistant with access to their Obsidian notes, transcripts, browser reports, and codebase. Answer using the context below. Be direct and specific. Reference source names. Surface cross-source patterns when relevant.
 
 CONTEXT:
 {context}
 
 {"HISTORY:" + chr(10) + history_str if history_str else ""}
 
-Karl: {query}
+{user_name}: {query}
 
 Answer directly. Cite sources by name. Connect dots across notes when you see patterns."""
 
 def chat_with_brain():
     cfg = load_config()
-    chat_model = cfg.get('chat_model', 'deepseek-r1:14b')
+    sb = cfg.get('second_brain', cfg)
+    chat_model = sb.get('chat_model', 'deepseek-r1:14b')
+    user_name = cfg.get('user', {}).get('name', 'User')
     collection = get_collection()
 
     if collection.count() == 0:
@@ -422,7 +436,7 @@ def chat_with_brain():
             print("Brain: No relevant content found.\n")
             continue
 
-        prompt = build_prompt(query, chunks, history)
+        prompt = build_prompt(query, chunks, history, user_name)
         print(f"\nBrain: ", end='', flush=True)
         full_response = ""
         in_think = False

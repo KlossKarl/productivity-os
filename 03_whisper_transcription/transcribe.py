@@ -3,10 +3,14 @@ Whisper Transcription Pipeline
 Karl's Productivity OS - Project 3
 
 Usage:
-    python transcribe.py <file>                        # transcribe + summarize + save to Obsidian
-    python transcribe.py <file> --transcript-only      # just transcribe, no summary
-    python transcribe.py <file> --no-obsidian          # transcribe + summarize, don't save to Obsidian
-    python transcribe.py --watch                       # watch _review/ folder for audio files
+    python transcribe.py <file>                          # transcribe + summarize + save to Obsidian
+    python transcribe.py <file> --transcript-only        # just transcribe, no summary
+    python transcribe.py <file> --no-obsidian            # transcribe + summarize, don't save to Obsidian
+    python transcribe.py <file> --summarizer claude      # use Claude API for summary (default from config)
+    python transcribe.py <file> --summarizer local       # use local Ollama for summary
+    python transcribe.py --batch <folder>                # process all audio files in a folder
+    python transcribe.py --batch <folder> --limit 5      # process first 5 files only
+    python transcribe.py --watch                         # watch _review/ folder for audio files
 
 Supports: .mp4 .mp3 .wav .m4a .mkv .mov .avi .webm .flac .aac .ogg
 """
@@ -52,16 +56,46 @@ except ImportError:
 # CONFIG
 # ─────────────────────────────────────────────
 
-OBSIDIAN_VAULT      = Path(r"C:\Users\Karl\Documents\Obsidian Vault")
-OBSIDIAN_FOLDER     = OBSIDIAN_VAULT / "Transcripts"   # subfolder inside vault
-DOWNLOADS_REVIEW    = Path(r"C:\Users\Karl\Downloads\_review")
-OUTPUT_DIR          = Path(r"C:\Users\Karl\Documents\transcripts")  # local backup
-DB_PATH             = Path(r"C:\Users\Karl\Documents\transcripts\transcripts.db")
+try:
+    import yaml
+except ImportError:
+    print("[ERROR] pyyaml not installed. Run: pip install pyyaml")
+    sys.exit(1)
 
+_config_path = (_repo_root / "config.yaml") if _repo_root else None
+
+def _load_config() -> dict:
+    if _config_path and _config_path.exists():
+        with open(_config_path, 'r') as f:
+            return yaml.safe_load(f)
+    return {}
+
+_cfg = _load_config()
+
+if _cfg:
+    OBSIDIAN_VAULT      = Path(_cfg['paths']['obsidian_vault'])
+    DOWNLOADS_REVIEW    = Path(_cfg['paths']['downloads_dir']) / "_review"
+    OUTPUT_DIR          = Path(_cfg['paths']['output_dir'])
+    OLLAMA_MODEL        = _cfg.get('models', {}).get('transcription', 'deepseek-r1:14b')
+    WHISPER_MODEL       = _cfg.get('whisper', {}).get('model', 'medium')
+    SUMMARIZER          = _cfg.get('summarizer', 'claude')
+    ANTHROPIC_API_KEY   = _cfg.get('anthropic', {}).get('api_key', '') or os.environ.get('ANTHROPIC_API_KEY', '')
+    CLAUDE_MODEL        = _cfg.get('anthropic', {}).get('model', 'claude-sonnet-4-5')
+else:
+    print("[config] config.yaml not found — run setup.py to configure paths")
+    OBSIDIAN_VAULT      = Path(r"C:\Users\Karl\Documents\Obsidian Vault")
+    DOWNLOADS_REVIEW    = Path(r"C:\Users\Karl\Downloads\_review")
+    OUTPUT_DIR          = Path(r"C:\Users\Karl\Documents\transcripts")
+    OLLAMA_MODEL        = "deepseek-r1:14b"
+    WHISPER_MODEL       = "medium"
+    SUMMARIZER          = "claude"
+    ANTHROPIC_API_KEY   = os.environ.get('ANTHROPIC_API_KEY', '')
+    CLAUDE_MODEL        = "claude-sonnet-4-5"
+
+OBSIDIAN_FOLDER     = OBSIDIAN_VAULT / "Transcripts"
+DB_PATH             = OUTPUT_DIR / "transcripts.db"
 OLLAMA_URL          = "http://localhost:11434/api/generate"
-OLLAMA_MODEL        = "llama3:8b"
-WHISPER_MODEL       = "medium"   # tiny | base | small | medium | large
-                                  # medium = best quality/speed balance (~1.5GB)
+ANTHROPIC_URL       = "https://api.anthropic.com/v1/messages"
 
 SUPPORTED_EXTENSIONS = {
     ".mp4", ".mp3", ".wav", ".m4a", ".mkv",
@@ -121,9 +155,6 @@ def log_transcript(filename, source_path, transcript_path, obsidian_path,
 # ─────────────────────────────────────────────
 
 def transcribe(filepath: Path, model_name: str = WHISPER_MODEL) -> dict:
-    """
-    Run Whisper on a file. Returns dict with text, segments, language, duration.
-    """
     try:
         import whisper
     except ImportError:
@@ -150,7 +181,6 @@ def transcribe(filepath: Path, model_name: str = WHISPER_MODEL) -> dict:
     }
 
 def format_transcript_with_timestamps(segments: list) -> str:
-    """Format segments into a readable timestamped transcript."""
     lines = []
     for seg in segments:
         start = seg.get("start", 0)
@@ -164,20 +194,57 @@ def format_transcript_with_timestamps(segments: list) -> str:
 # SUMMARIZATION
 # ─────────────────────────────────────────────
 
-def summarize(transcript_text: str, filename: str) -> dict:
-    """
-    Send transcript to Ollama for structured analysis.
-    Returns dict with summary, action_items, key_points, people, decisions, tags.
-    """
-    print(f"\n[2/3] Summarizing with {OLLAMA_MODEL}...")
+def detect_content_type(filename: str, transcript_text: str) -> str:
+    name_lower = filename.lower()
+    text_lower = transcript_text[:600].lower()
 
-    # Truncate very long transcripts to fit context window
-    max_chars = 12000
+    if any(k in name_lower for k in ['lecture', 'lec', 'lesson', 'class', 'course',
+                                      'cs1', 'cs2', 'cs3', 'ee', 'math', 'phys']):
+        return 'lecture'
+    if any(k in name_lower for k in ['meeting', 'standup', 'sync', 'call', 'interview']):
+        return 'meeting'
+    if any(k in name_lower for k in ['podcast', 'episode']):
+        return 'podcast'
+    if any(k in text_lower for k in ["welcome to", "today we're going to", "in today's lecture",
+                                      "today i want to", "so today we'll", "let's start with",
+                                      "this is lecture", "i'm your instructor", "welcome back"]):
+        return 'lecture'
+    return 'other'
+
+
+def _build_prompt(transcript_text: str, filename: str, content_type: str) -> str:
+    max_chars = 40000 if content_type == 'lecture' else 12000
     text = transcript_text[:max_chars]
     if len(transcript_text) > max_chars:
-        text += "\n\n[Transcript truncated for summarization]"
+        text += "\n\n[Transcript continues — summarize based on what's here]"
 
-    prompt = f"""Analyze this transcript and return a single-line JSON object with no newlines inside string values.
+    if content_type == 'lecture':
+        return f"""You are analyzing a university or technical lecture transcript. Produce a dense, detailed study guide — not a shallow summary. Be specific and thorough.
+
+Recording: "{filename}"
+
+Transcript:
+{text}
+
+Respond with ONLY raw JSON on a single line, no markdown, no code fences, no text before or after.
+
+{{"summary":"A rich 4-6 sentence analytical paragraph capturing the lecture thesis, arc, key arguments, and conclusions. Write this as something a student could read instead of attending — specific, not generic.","key_concepts":["ConceptName: one sentence explanation of what it is and why it matters"],"key_points":["Specific factual or conceptual point made — detailed enough for revision"],"definitions":["Term: its definition as given in the lecture"],"examples":["Concrete example, analogy, or case study the instructor used"],"action_items":["Any assignments, readings, or follow-up tasks mentioned"],"people":["Names of researchers, theorists, or figures mentioned"],"topics":["High-level subject tags e.g. machine learning, neural networks"],"tags":["obsidian-friendly tags"],"type":"lecture"}}
+
+Use empty arrays [] for fields with no content. Aim for 6-10 key_concepts and 8-12 key_points."""
+
+    elif content_type == 'meeting':
+        return f"""Analyze this meeting transcript. Extract decisions, actions, and context.
+
+Recording: "{filename}"
+
+Transcript:
+{text}
+
+Respond with ONLY raw JSON on a single line, no markdown, no code fences:
+{{"summary":"3-4 sentence summary of what was discussed and decided","key_points":["..."],"action_items":["Verb-first action item"],"decisions":["decision made"],"people":["name"],"topics":["topic"],"tags":["tag"],"type":"meeting"}}"""
+
+    else:
+        return f"""Analyze this transcript and return a single-line JSON object with no newlines inside string values.
 
 Recording: "{filename}"
 
@@ -185,61 +252,117 @@ Transcript:
 {text}
 
 Rules: respond with ONLY raw JSON, no markdown, no code fences, no text before or after.
-Use this exact structure on a single line:
-{{"summary":"short summary here","key_points":["point1","point2"],"action_items":["Do something","Follow up on X"],"decisions":["decision1"],"people":["name1"],"topics":["topic1","topic2"],"tags":["tag1","tag2"],"type":"interview"}}
+{{"summary":"summary here","key_points":["point1","point2"],"action_items":["Do something"],"decisions":["decision1"],"people":["name1"],"topics":["topic1"],"tags":["tag1"],"type":"{content_type}"}}
 
-type must be one of: meeting, voice_memo, podcast, lecture, interview, other
-Use empty arrays [] for fields with no content.
-Action items must start with a verb."""
+Use empty arrays [] for fields with no content. Action items must start with a verb."""
+
+
+def _parse_llm_response(raw: str, content_type: str) -> dict:
+    raw = re.sub(r"```json\s*", "", raw)
+    raw = re.sub(r"```\s*", "", raw)
+    raw = re.sub(r"<think>.*?</think>", "", raw, flags=re.DOTALL)
+    match = re.search(r'\{.*\}', raw, re.DOTALL)
+    if match:
+        raw = match.group(0)
+    return json.loads(raw)
+
+
+def _empty_analysis(content_type: str, reason: str) -> dict:
+    return {
+        "summary": f"Summary unavailable — {reason}.",
+        "key_concepts": [], "key_points": [], "action_items": [], "decisions": [],
+        "definitions": [], "examples": [], "people": [], "topics": [], "tags": [],
+        "type": content_type
+    }
+
+
+def summarize_with_claude(transcript_text: str, filename: str, content_type: str) -> dict:
+    if not ANTHROPIC_API_KEY:
+        print("      [WARN] No Anthropic API key found — falling back to local")
+        return summarize_with_ollama(transcript_text, filename, content_type)
+
+    prompt = _build_prompt(transcript_text, filename, content_type)
+
+    try:
+        resp = requests.post(
+            ANTHROPIC_URL,
+            headers={
+                "x-api-key": ANTHROPIC_API_KEY,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+            json={
+                "model": CLAUDE_MODEL,
+                "max_tokens": 4096,
+                "messages": [{"role": "user", "content": prompt}],
+            },
+            timeout=120,
+        )
+        resp.raise_for_status()
+        raw = resp.json()["content"][0]["text"].strip()
+        data = _parse_llm_response(raw, content_type)
+        n_concepts = len(data.get('key_concepts', data.get('key_points', [])))
+        print(f"      Done. Type: {data.get('type','unknown')} | Concepts/points: {n_concepts} | Action items: {len(data.get('action_items', []))}")
+        return data
+
+    except json.JSONDecodeError as e:
+        print(f"      [WARN] Could not parse Claude response as JSON: {e}")
+        return _empty_analysis(content_type, "Claude response could not be parsed")
+    except Exception as e:
+        print(f"      [WARN] Claude API error: {e}")
+        print("      Falling back to local Ollama...")
+        return summarize_with_ollama(transcript_text, filename, content_type)
+
+
+def summarize_with_ollama(transcript_text: str, filename: str, content_type: str) -> dict:
+    prompt = _build_prompt(transcript_text, filename, content_type)
 
     try:
         resp = requests.post(
             OLLAMA_URL,
             json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False},
-            timeout=120,
+            timeout=300,
         )
         resp.raise_for_status()
         raw = resp.json().get("response", "").strip()
-
-        # Strip markdown code fences if present
-        raw = re.sub(r"```json\s*", "", raw)
-        raw = re.sub(r"```\s*", "", raw)
-
-        # Extract JSON object if there's surrounding text
-        match = re.search(r'\{.*\}', raw, re.DOTALL)
-        if match:
-            raw = match.group(0)
-
-        data = json.loads(raw)
-        print(f"      Done. Type: {data.get('type', 'unknown')} | Action items: {len(data.get('action_items', []))}")
+        data = _parse_llm_response(raw, content_type)
+        n_concepts = len(data.get('key_concepts', data.get('key_points', [])))
+        print(f"      Done. Type: {data.get('type','unknown')} | Concepts/points: {n_concepts} | Action items: {len(data.get('action_items', []))}")
         return data
 
     except json.JSONDecodeError as e:
-        print(f"      [WARN] Could not parse LLM response as JSON: {e}")
-        return {
-            "summary": "Summary unavailable - LLM response could not be parsed.",
-            "key_points": [], "action_items": [], "decisions": [],
-            "people": [], "topics": [], "tags": [], "type": "other"
-        }
+        print(f"      [WARN] Could not parse Ollama response as JSON: {e}")
+        return _empty_analysis(content_type, "Ollama response could not be parsed")
     except Exception as e:
         print(f"      [WARN] Ollama unavailable: {e}")
-        return {
-            "summary": "Summary unavailable - Ollama not running.",
-            "key_points": [], "action_items": [], "decisions": [],
-            "people": [], "topics": [], "tags": [], "type": "other"
-        }
+        return _empty_analysis(content_type, "Ollama not running")
+
+
+def summarize(transcript_text: str, filename: str, summarizer: str = None) -> dict:
+    active = summarizer or SUMMARIZER
+    content_type = detect_content_type(filename, transcript_text)
+
+    if active == 'claude':
+        print(f"\n[2/3] Summarizing with Claude ({CLAUDE_MODEL}) (detected: {content_type})...")
+    else:
+        print(f"\n[2/3] Summarizing with Ollama ({OLLAMA_MODEL}) (detected: {content_type})...")
+
+    if active == 'claude':
+        return summarize_with_claude(transcript_text, filename, content_type)
+    else:
+        return summarize_with_ollama(transcript_text, filename, content_type)
 
 # ─────────────────────────────────────────────
 # OBSIDIAN NOTE
 # ─────────────────────────────────────────────
 
-def build_obsidian_note(filepath: Path, transcript: dict, analysis: dict) -> str:
-    """Build a formatted Obsidian markdown note."""
+def build_obsidian_note(filepath: Path, transcript: dict, analysis: dict, summarizer: str = None) -> str:
     now = datetime.now()
     date_str = now.strftime("%Y-%m-%d")
     time_str = now.strftime("%H:%M")
     duration_min = transcript["duration_secs"] / 60
     word_count = len(transcript["text"].split())
+    active_summarizer = summarizer or SUMMARIZER
 
     tags = analysis.get("tags", [])
     rec_type = analysis.get("type", "other")
@@ -248,15 +371,20 @@ def build_obsidian_note(filepath: Path, transcript: dict, analysis: dict) -> str
 
     tag_str = "\n".join([f"  - {t}" for t in tags]) if tags else "  - transcript"
 
-    key_points = analysis.get("key_points", [])
-    action_items = analysis.get("action_items", [])
-    decisions = analysis.get("decisions", [])
-    people = analysis.get("people", [])
-    topics = analysis.get("topics", [])
+    key_concepts  = analysis.get("key_concepts", [])
+    key_points    = analysis.get("key_points", [])
+    definitions   = analysis.get("definitions", [])
+    examples      = analysis.get("examples", [])
+    action_items  = analysis.get("action_items", [])
+    decisions     = analysis.get("decisions", [])
+    people        = analysis.get("people", [])
+    topics        = analysis.get("topics", [])
 
     timestamped = format_transcript_with_timestamps(transcript.get("segments", []))
     if not timestamped:
         timestamped = transcript["text"]
+
+    summarizer_label = CLAUDE_MODEL if active_summarizer == 'claude' else OLLAMA_MODEL
 
     note = f"""---
 title: "{filepath.stem}"
@@ -268,6 +396,7 @@ duration: {duration_min:.1f} min
 words: {word_count}
 language: {transcript.get("language", "en")}
 whisper_model: {WHISPER_MODEL}
+summarizer: {summarizer_label}
 tags:
 {tag_str}
 ---
@@ -284,10 +413,36 @@ tags:
 
 """
 
+    if key_concepts:
+        note += "## Key Concepts\n\n"
+        for concept in key_concepts:
+            if ':' in concept:
+                name, _, desc = concept.partition(':')
+                note += f"- **{name.strip()}**: {desc.strip()}\n"
+            else:
+                note += f"- {concept}\n"
+        note += "\n"
+
     if key_points:
         note += "## Key Points\n\n"
         for point in key_points:
             note += f"- {point}\n"
+        note += "\n"
+
+    if definitions:
+        note += "## Definitions\n\n"
+        for d in definitions:
+            if ':' in d:
+                term, _, defn = d.partition(':')
+                note += f"- **{term.strip()}**: {defn.strip()}\n"
+            else:
+                note += f"- {d}\n"
+        note += "\n"
+
+    if examples:
+        note += "## Examples & Analogies\n\n"
+        for ex in examples:
+            note += f"- {ex}\n"
         note += "\n"
 
     if action_items:
@@ -317,7 +472,6 @@ tags:
     return note
 
 def save_obsidian_note(filepath: Path, content: str) -> Path:
-    """Save note to Obsidian vault, return the path."""
     date_str = datetime.now().strftime("%Y-%m-%d")
     safe_stem = re.sub(r'[<>:"/\\|?*]', "-", filepath.stem)
     note_filename = f"{date_str} {safe_stem}.md"
@@ -331,15 +485,6 @@ def save_obsidian_note(filepath: Path, content: str) -> Path:
 # ─────────────────────────────────────────────
 
 def write_to_shared_db(filepath, transcript, analysis, obsidian_path, transcript_path):
-    """
-    Write transcription results to the shared productivity_os.db.
-    Called at the end of process_file() after everything is saved.
-    Writes:
-      - 1 artifact  (the transcript note)
-      - 1 session   (the listening/recording session)
-      - N tasks     (one per action item Ollama extracted)
-      - 1 metric    (transcript_minutes for today)
-    """
     if not SHARED_DB_AVAILABLE:
         return
 
@@ -351,10 +496,8 @@ def write_to_shared_db(filepath, transcript, analysis, obsidian_path, transcript
     people        = analysis.get("people", [])
     topics        = analysis.get("topics", [])
 
-    # Combine tags — include rec_type and people as person-kind tags
     all_tags = list(set([rec_type] + tags + [t.lower().replace(" ", "-") for t in topics[:5]]))
 
-    # ── 1. Artifact ───────────────────────────────────────────────────────
     artifact_id = log_artifact(
         artifact_type="transcript",
         source_tool="whisper",
@@ -373,12 +516,11 @@ def write_to_shared_db(filepath, transcript, analysis, obsidian_path, transcript
             "people":         people,
             "decisions":      analysis.get("decisions", []),
             "key_points":     analysis.get("key_points", []),
+            "key_concepts":   analysis.get("key_concepts", []),
             "action_items":   action_items,
         }
     )
 
-    # ── 2. Session ────────────────────────────────────────────────────────
-    # Approximate: session ended now, started duration_secs ago
     from datetime import timedelta
     end_ts   = datetime.now(timezone.utc)
     start_ts = end_ts - timedelta(seconds=max(duration_secs, 1))
@@ -393,7 +535,6 @@ def write_to_shared_db(filepath, transcript, analysis, obsidian_path, transcript
         extra={"source_file": str(filepath), "rec_type": rec_type, "people": people}
     )
 
-    # ── 3. Tasks (one per action item) ────────────────────────────────────
     task_count = 0
     for item in action_items:
         task_id = log_task(
@@ -407,7 +548,6 @@ def write_to_shared_db(filepath, transcript, analysis, obsidian_path, transcript
         if task_id:
             task_count += 1
 
-    # ── 4. Metric ─────────────────────────────────────────────────────────
     log_metric(
         metric_name="transcript_minutes",
         value=round(duration_secs / 60, 2),
@@ -419,31 +559,30 @@ def write_to_shared_db(filepath, transcript, analysis, obsidian_path, transcript
 
 
 # ─────────────────────────────────────────────
-# MAIN PIPELINE
+# MAIN PIPELINE — single file
 # ─────────────────────────────────────────────
 
-def process_file(filepath: Path, transcript_only: bool = False, no_obsidian: bool = False):
+def process_file(filepath: Path, transcript_only: bool = False,
+                 no_obsidian: bool = False, summarizer: str = None):
     filepath = Path(filepath).resolve()
 
     if not filepath.exists():
         print(f"[ERROR] File not found: {filepath}")
-        return
+        return False
 
     if filepath.suffix.lower() not in SUPPORTED_EXTENSIONS:
         print(f"[ERROR] Unsupported file type: {filepath.suffix}")
-        print(f"        Supported: {', '.join(sorted(SUPPORTED_EXTENSIONS))}")
-        return
+        return False
 
     setup()
     print(f"\n{'='*60}")
     print(f"  Productivity OS - Whisper Pipeline")
     print(f"  File: {filepath.name}")
+    print(f"  Summarizer: {summarizer or SUMMARIZER}")
     print(f"{'='*60}")
 
-    # Step 1: Transcribe
     transcript = transcribe(filepath)
 
-    # Save raw transcript to local backup
     date_str = datetime.now().strftime("%Y-%m-%d")
     safe_stem = re.sub(r'[<>:"/\\|?*]', "-", filepath.stem)
     transcript_path = OUTPUT_DIR / f"{date_str}_{safe_stem}_transcript.md"
@@ -457,21 +596,18 @@ def process_file(filepath: Path, transcript_only: bool = False, no_obsidian: boo
     if transcript_only:
         print(f"\n[DONE] Transcript saved: {transcript_path}")
         print(f"       Words: {len(transcript['text'].split())}")
-        return
+        return True
 
-    # Step 2: Summarize
-    analysis = summarize(transcript["text"], filepath.name)
+    analysis = summarize(transcript["text"], filepath.name, summarizer)
 
-    # Step 3: Save to Obsidian
     obsidian_path = Path("(skipped)")
     if not no_obsidian:
         print(f"\n[3/3] Saving to Obsidian...")
-        note_content = build_obsidian_note(filepath, transcript, analysis)
+        note_content = build_obsidian_note(filepath, transcript, analysis, summarizer)
         obsidian_path = save_obsidian_note(filepath, note_content)
     else:
         print(f"\n[3/3] Skipping Obsidian (--no-obsidian flag)")
 
-    # Log to SQLite (existing private DB)
     log_transcript(
         filename=filepath.name,
         source_path=filepath,
@@ -485,10 +621,8 @@ def process_file(filepath: Path, transcript_only: bool = False, no_obsidian: boo
         tags=analysis.get("tags", [])
     )
 
-    # Write to shared productivity_os.db
     write_to_shared_db(filepath, transcript, analysis, obsidian_path, transcript_path)
 
-    # Print summary
     print(f"\n{'='*60}")
     print(f"  DONE")
     print(f"{'='*60}")
@@ -505,10 +639,126 @@ def process_file(filepath: Path, transcript_only: bool = False, no_obsidian: boo
         for item in action_items:
             print(f"    [ ] {item}")
 
+    key_concepts = analysis.get("key_concepts", [])
+    if key_concepts:
+        print(f"\n  Key Concepts ({len(key_concepts)}):")
+        for c in key_concepts[:5]:
+            print(f"    • {c[:80]}")
+
     print(f"{'='*60}\n")
+    return True
+
 
 # ─────────────────────────────────────────────
-# WATCH MODE (monitors _review/ for audio files)
+# BATCH MODE
+# ─────────────────────────────────────────────
+
+def run_batch(folder: Path, limit: int = None, transcript_only: bool = False,
+              no_obsidian: bool = False, summarizer: str = None):
+    """
+    Process all audio files in a folder.
+    Files are sorted alphabetically — works naturally for numbered lecture series.
+    Skips files that already have a matching Obsidian note.
+    """
+    folder = Path(folder).resolve()
+    if not folder.exists():
+        print(f"[ERROR] Folder not found: {folder}")
+        return
+
+    # Collect all supported audio files, sorted
+    all_files = sorted([
+        f for f in folder.iterdir()
+        if f.is_file() and f.suffix.lower() in SUPPORTED_EXTENSIONS
+    ])
+
+    if not all_files:
+        print(f"[ERROR] No supported audio files found in: {folder}")
+        print(f"        Supported: {', '.join(sorted(SUPPORTED_EXTENSIONS))}")
+        return
+
+    # Check which already have Obsidian notes (skip already-processed)
+    already_done = set()
+    if OBSIDIAN_FOLDER.exists():
+        existing_notes = {n.stem for n in OBSIDIAN_FOLDER.glob("*.md")}
+        for f in all_files:
+            safe_stem = re.sub(r'[<>:"/\\|?*]', "-", f.stem)
+            # Match any date-prefixed version of this file
+            for note_stem in existing_notes:
+                if safe_stem in note_stem:
+                    already_done.add(f)
+                    break
+
+    pending = [f for f in all_files if f not in already_done]
+
+    if not pending:
+        print(f"\n  All {len(all_files)} files already processed. Nothing to do.")
+        return
+
+    # Apply limit
+    if limit:
+        pending = pending[:limit]
+
+    skipped_count = len(all_files) - len([f for f in all_files if f not in already_done])
+
+    print(f"\n{'='*60}")
+    print(f"  Batch Transcription")
+    print(f"  Folder:     {folder}")
+    print(f"  Found:      {len(all_files)} audio files")
+    print(f"  Skipping:   {len(already_done)} already processed")
+    print(f"  Processing: {len(pending)} files{f' (limit: {limit})' if limit else ''}")
+    print(f"  Summarizer: {summarizer or SUMMARIZER}")
+    print(f"{'='*60}")
+
+    if already_done:
+        print(f"\n  Already done (skipping):")
+        for f in sorted(already_done):
+            print(f"    ✓ {f.name}")
+
+    setup()
+
+    succeeded = []
+    failed = []
+    start_time = time.time()
+
+    for i, filepath in enumerate(pending, 1):
+        print(f"\n  ── File {i}/{len(pending)} ──────────────────────────────────")
+        try:
+            ok = process_file(
+                filepath,
+                transcript_only=transcript_only,
+                no_obsidian=no_obsidian,
+                summarizer=summarizer,
+            )
+            if ok:
+                succeeded.append(filepath.name)
+            else:
+                failed.append(filepath.name)
+        except Exception as e:
+            print(f"  [ERROR] {filepath.name}: {e}")
+            failed.append(filepath.name)
+
+    elapsed = time.time() - start_time
+    elapsed_str = f"{elapsed/60:.1f} min" if elapsed > 60 else f"{elapsed:.0f}s"
+
+    print(f"\n{'='*60}")
+    print(f"  BATCH COMPLETE")
+    print(f"{'='*60}")
+    print(f"  Processed:  {len(succeeded)}/{len(pending)} files")
+    print(f"  Time:       {elapsed_str}")
+    if succeeded:
+        print(f"\n  ✓ Done:")
+        for name in succeeded:
+            print(f"    • {name}")
+    if failed:
+        print(f"\n  ✗ Failed:")
+        for name in failed:
+            print(f"    • {name}")
+    print(f"\n  Notes saved to: Obsidian/Transcripts/")
+    print(f"{'='*60}\n")
+
+
+# ─────────────────────────────────────────────
+# WATCH MODE
 # ─────────────────────────────────────────────
 
 class AudioHandler(FileSystemEventHandler):
@@ -517,7 +767,7 @@ class AudioHandler(FileSystemEventHandler):
             return
         path = Path(event.src_path)
         if path.suffix.lower() in SUPPORTED_EXTENSIONS:
-            time.sleep(2)  # wait for file to finish copying
+            time.sleep(2)
             print(f"\n[WATCH] Detected audio file: {path.name}")
             process_file(path)
 
@@ -547,31 +797,50 @@ def run_watch_mode():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Whisper transcription + Ollama summarization pipeline"
+        description="Whisper transcription + summarization pipeline"
     )
-    parser.add_argument("file", nargs="?", help="Audio/video file to transcribe")
+    parser.add_argument("file", nargs="?", help="Single audio/video file to transcribe")
+    parser.add_argument("--batch", type=str, metavar="FOLDER",
+                        help="Process all audio files in a folder")
+    parser.add_argument("--limit", type=int, default=None,
+                        help="Max files to process in batch mode (e.g. --limit 5)")
     parser.add_argument("--transcript-only", action="store_true", help="Skip summarization")
     parser.add_argument("--no-obsidian", action="store_true", help="Skip saving to Obsidian")
     parser.add_argument("--watch", action="store_true", help="Watch _review/ folder for audio files")
     parser.add_argument("--model", default=WHISPER_MODEL,
                         help=f"Whisper model to use (default: {WHISPER_MODEL})")
+    parser.add_argument("--summarizer", choices=["claude", "local"], default=None,
+                        help="'claude' (Anthropic API) or 'local' (Ollama). Defaults to config.")
 
     args = parser.parse_args()
 
     if args.watch:
         run_watch_mode()
+    elif args.batch:
+        WHISPER_MODEL = args.model
+        run_batch(
+            folder=Path(args.batch),
+            limit=args.limit,
+            transcript_only=args.transcript_only,
+            no_obsidian=args.no_obsidian,
+            summarizer=args.summarizer,
+        )
     elif args.file:
         WHISPER_MODEL = args.model
         process_file(
             Path(args.file),
             transcript_only=args.transcript_only,
-            no_obsidian=args.no_obsidian
+            no_obsidian=args.no_obsidian,
+            summarizer=args.summarizer,
         )
     else:
         parser.print_help()
         print("\nExamples:")
-        print("  python transcribe.py meeting.mp4")
-        print("  python transcribe.py podcast.mp3 --no-obsidian")
+        print("  python transcribe.py lecture.mp3                           # single file, Claude summary")
+        print("  python transcribe.py lecture.mp3 --summarizer local        # single file, local Ollama")
+        print('  python transcribe.py --batch "C:\\yt-dlp\\out"              # whole folder')
+        print('  python transcribe.py --batch "C:\\yt-dlp\\out" --limit 5    # first 5 files only')
+        print('  python transcribe.py --batch "C:\\yt-dlp\\out" --limit 5 --summarizer claude')
+        print("  python transcribe.py meeting.mp4 --no-obsidian")
         print("  python transcribe.py interview.m4a --transcript-only")
-        print("  python transcribe.py meeting.mp4 --model large")
         print("  python transcribe.py --watch")
