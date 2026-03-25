@@ -3,6 +3,11 @@
 *.log
 _categorizer_rules.json
  
+# Config — contains API keys, local paths. Never commit.
+# Use config.template.yaml as the committed blank template instead.
+config.yaml
+config.yaml.bak
+ 
 # Python
 __pycache__/
 *.pyc
@@ -21,9 +26,8 @@ Thumbs.db
 # Google Drive sync artifacts
 .tmp.driveupload/
  
-# Generated output — transcripts, backups, never commit these
+# Generated output — transcripts, never commit these
 output/
-config.yaml.bak
  
 # Runtime files — generated, not for version control
 17_intent_switcher/active_focus_rules.json

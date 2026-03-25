@@ -1,0 +1,68 @@
+user:
+  name: Karl
+  windows_username: Karl
+
+paths:
+  obsidian_vault: C:\Users\Karl\Documents\Obsidian Vault
+  downloads_dir: C:\Users\Karl\Downloads
+  output_dir: C:\Users\Karl\Documents\productivity-os\output
+  chroma_dir: C:\Users\Karl\Documents\second_brain_db
+  shared_db: C:\Users\Karl\Documents\productivity_os.db
+
+browser:
+  history_path: C:\Users\Karl\AppData\Local\BraveSoftware\Brave-Browser\User Data\Default\History
+  browser_type: brave
+
+# 'claude' = Anthropic API | 'local' = Ollama
+summarizer: claude
+
+anthropic:
+  api_key: ""                       # paste your sk-ant-... key here
+  model: claude-haiku-4-5-20251001  # cheapest + fastest, ~$0.002/lecture
+
+models:
+  default: llama3:8b
+  transcription: deepseek-r1:14b    # used when summarizer: local
+  reasoning: deepseek-r1:14b
+  vision: llava:7b
+  embedding: mxbai-embed-large
+
+ollama:
+  url: http://localhost:11434
+  default_model: llama3:8b
+  reasoning_model: deepseek-r1:14b
+  embedding_model: mxbai-embed-large
+
+whisper:
+  model: medium
+
+second_brain:
+  vaults:
+  - C:\Users\Karl\Documents\Obsidian Vault
+  codebases: []
+  code_extensions:
+  - .py
+  - .js
+  - .ts
+  - .jsx
+  - .tsx
+  - .md
+  - .sql
+  - .yaml
+  - .toml
+  skip_folders:
+  - node_modules
+  - .git
+  - __pycache__
+  - .venv
+  - venv
+  - dist
+  - build
+  - .next
+  - .obsidian
+  - .trash
+  embed_model: mxbai-embed-large
+  chat_model: deepseek-r1:14b
+  top_k: 6
+  chunk_size: 800
+  chunk_overlap: 150
