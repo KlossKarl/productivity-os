@@ -1,0 +1,71 @@
+# Stanford Encyclopedia of Philosophy — entry slugs
+# Usage: python sep_batch.py --topics topics/sep_philosophy.txt
+# Full entry list: https://plato.stanford.edu/contents.html
+
+# ── MIND + CONSCIOUSNESS ─────────────────────────────────────────────────────
+consciousness
+qualia
+hard-problem-of-consciousness
+intentionality
+mental-representation
+mind-body
+dualism
+physicalism
+functionalism-philosophy-mind
+eliminative-reductionism
+
+# ── AI + COGNITIVE SCIENCE ───────────────────────────────────────────────────
+artificial-intelligence
+computationalism
+chinese-room
+turing-test
+cognition
+cognitive-science
+embodied-cognition
+situated-cognition
+
+# ── ETHICS + MORAL PHILOSOPHY ────────────────────────────────────────────────
+ethics
+consequentialism
+deontological-ethics
+virtue-ethics
+moral-realism
+moral-anti-realism
+contractualism
+population-ethics
+ethics-ai
+effective-altruism
+
+# ── EPISTEMOLOGY ─────────────────────────────────────────────────────────────
+epistemology
+knowledge-how
+justified-belief
+bayesian-epistemology
+scientific-realism
+inference-best-explanation
+thought-experiments
+
+# ── LOGIC + PHILOSOPHY OF LANGUAGE ──────────────────────────────────────────
+logic
+propositional-attitude
+reference
+truth
+vagueness
+compositionality
+
+# ── METAPHYSICS ──────────────────────────────────────────────────────────────
+metaphysics
+causation
+free-will
+personal-identity
+time
+possible-worlds
+realism-modal
+
+# ── PHILOSOPHY OF SCIENCE ────────────────────────────────────────────────────
+science-theory-observation
+scientific-explanation
+reduction-biology
+probability-interpretations
+philosophy-statistics
+machine-learning-science

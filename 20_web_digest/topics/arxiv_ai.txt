@@ -1,0 +1,44 @@
+# arXiv Query Topics — AI/ML Frontier
+# Usage: python arxiv_batch.py --topics topics/arxiv_ai.txt --max 15
+# Each line is a search query — fetches top N papers per query
+
+# ── CORE LLM + TRANSFORMERS ──────────────────────────────────────────────────
+retrieval augmented generation
+chain of thought reasoning large language models
+mixture of experts language models
+speculative decoding inference
+long context language models
+instruction tuning RLHF
+constitutional AI alignment
+
+# ── AGENTS + TOOL USE ────────────────────────────────────────────────────────
+LLM agents tool use
+multi-agent systems language models
+autonomous agents planning
+model context protocol LLM
+
+# ── KNOWLEDGE + MEMORY ───────────────────────────────────────────────────────
+knowledge graph language models
+graphRAG retrieval augmented generation
+vector database approximate nearest neighbor
+continual learning catastrophic forgetting
+
+# ── MECHANISTIC INTERPRETABILITY ────────────────────────────────────────────
+mechanistic interpretability transformer circuits
+superposition polysemanticity neural networks
+sparse autoencoders features
+
+# ── EFFICIENT AI ─────────────────────────────────────────────────────────────
+low rank adaptation LoRA fine-tuning
+quantization neural network inference
+knowledge distillation compression
+
+# ── MULTIMODAL ───────────────────────────────────────────────────────────────
+vision language models multimodal
+diffusion models image generation
+speech recognition whisper
+
+# ── REINFORCEMENT LEARNING ───────────────────────────────────────────────────
+reinforcement learning from human feedback
+proximal policy optimization
+reward modeling language models

@@ -1,0 +1,28 @@
+# arXiv Query Topics — Quantitative Finance + Mathematics
+# Usage: python arxiv_batch.py --topics topics/arxiv_quant.txt --max 10
+
+# ── QUANT FINANCE ────────────────────────────────────────────────────────────
+deep learning portfolio optimization
+reinforcement learning algorithmic trading
+machine learning credit risk
+transformer financial time series
+graph neural networks financial networks
+natural language processing earnings calls sentiment
+options pricing neural networks
+
+# ── HIGH FREQUENCY TRADING ───────────────────────────────────────────────────
+market microstructure machine learning
+limit order book deep learning
+optimal execution reinforcement learning
+market making stochastic control
+
+# ── RISK + DERIVATIVES ───────────────────────────────────────────────────────
+deep learning derivatives pricing
+neural network stochastic volatility
+CVA counterparty credit risk machine learning
+
+# ── MATHEMATICS ──────────────────────────────────────────────────────────────
+stochastic differential equations neural networks
+topological data analysis applications
+optimal transport machine learning
+random matrix theory applications

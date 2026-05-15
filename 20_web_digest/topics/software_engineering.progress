@@ -4,6 +4,7 @@
     "https://en.wikipedia.org/wiki/Test-driven_development",
     "https://en.wikipedia.org/wiki/Rust_(programming_language)",
     "https://en.wikipedia.org/wiki/Observer_pattern",
+    "https://en.wikipedia.org/wiki/OpenAPI_Specification",
     "https://en.wikipedia.org/wiki/Python_(programming_language)",
     "https://en.wikipedia.org/wiki/Load_balancing_(computing)",
     "https://en.wikipedia.org/wiki/Scalability",
@@ -25,6 +26,8 @@
     "https://en.wikipedia.org/wiki/Pair_programming",
     "https://en.wikipedia.org/wiki/Refactoring",
     "https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)",
+    "https://en.wikipedia.org/wiki/WebSocket",
+    "https://en.wikipedia.org/wiki/Webhook",
     "https://en.wikipedia.org/wiki/Representational_state_transfer"
   ]
 }
