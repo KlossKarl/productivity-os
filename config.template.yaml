@@ -1,24 +1,24 @@
 user:
-  name: Karl
-  windows_username: Karl
+  name: YourName
+  windows_username: YourWindowsUsername
 
 paths:
-  obsidian_vault: C:\Users\Karl\Documents\Obsidian Vault
-  downloads_dir: C:\Users\Karl\Downloads
-  output_dir: C:\Users\Karl\Documents\productivity-os\output
-  chroma_dir: C:\Users\Karl\Documents\second_brain_db
-  shared_db: C:\Users\Karl\Documents\productivity_os.db
+  obsidian_vault: C:\Users\YOURUSERNAME\Documents\Obsidian Vault
+  downloads_dir: C:\Users\YOURUSERNAME\Downloads
+  output_dir: C:\Users\YOURUSERNAME\Documents\productivity-os\output
+  chroma_dir: C:\Users\YOURUSERNAME\Documents\second_brain_db
+  shared_db: C:\Users\YOURUSERNAME\Documents\productivity_os.db
 
 browser:
-  history_path: C:\Users\Karl\AppData\Local\BraveSoftware\Brave-Browser\User Data\Default\History
-  browser_type: brave
+  history_path: C:\Users\YOURUSERNAME\AppData\Local\BraveSoftware\Brave-Browser\User Data\Default\History
+  browser_type: brave   # brave | chrome | edge | firefox
 
 # 'claude' = Anthropic API | 'local' = Ollama
 summarizer: claude
 
 anthropic:
-  api_key: ""                       # paste your sk-ant-... key here
-  model: claude-haiku-4-5-20251001  # cheapest + fastest, ~$0.002/lecture
+  api_key: "sk-ant-..."   # paste your key from console.anthropic.com
+  model: claude-haiku-4-5-20251001  # cheapest + fastest for summarization
 
 models:
   default: llama3:8b
@@ -34,35 +34,87 @@ ollama:
   embedding_model: mxbai-embed-large
 
 whisper:
-  model: medium
+  model: medium   # tiny | base | small | medium | large — larger = slower + more accurate
 
 second_brain:
   vaults:
-  - C:\Users\Karl\Documents\Obsidian Vault
+    - C:\Users\YOURUSERNAME\Documents\Obsidian Vault
+  # Add more vaults if needed:
+  # - C:\Users\YOURUSERNAME\Documents\Work Vault
+
   codebases: []
+  # Add local code repos to index:
+  # - C:\Users\YOURUSERNAME\Projects\my-repo
+
   code_extensions:
-  - .py
-  - .js
-  - .ts
-  - .jsx
-  - .tsx
-  - .md
-  - .sql
-  - .yaml
-  - .toml
+    - .py
+    - .js
+    - .ts
+    - .jsx
+    - .tsx
+    - .md
+    - .sql
+    - .yaml
+    - .toml
+
   skip_folders:
-  - node_modules
-  - .git
-  - __pycache__
-  - .venv
-  - venv
-  - dist
-  - build
-  - .next
-  - .obsidian
-  - .trash
+    - node_modules
+    - .git
+    - __pycache__
+    - .venv
+    - venv
+    - dist
+    - build
+    - .next
+    - .obsidian
+    - .trash
+    - Screenshots
+
   embed_model: mxbai-embed-large
   chat_model: deepseek-r1:14b
-  top_k: 6
-  chunk_size: 800
-  chunk_overlap: 150
+
+  # Retrieval
+  top_k: 10
+
+  # Enhanced retrieval — toggle in chat with /hyde /expand /rerank /graph
+  hyde: true
+  query_expansion: true
+  rerank: true
+  graph: true
+
+  # Neo4j knowledge graph — install Neo4j Desktop and create a local DBMS
+  neo4j_uri: neo4j://127.0.0.1:7687
+  neo4j_user: neo4j
+  neo4j_password: yourpassword   # set this when creating your Neo4j instance
+
+  # Content-aware chunking
+  chunk_size_notes: 1200
+  chunk_overlap_notes: 200
+  chunk_size_code: 1600
+  chunk_overlap_code: 300
+
+  # Max chunks per file — raise for very large PDFs (default 200 ≈ 30k words)
+  max_chunks_per_file: 200
+
+  # Custom entity types for graph extraction
+  # Add domain-specific types to match your field
+  entity_types:
+    - Person
+    - Concept
+    - Method
+    - Paper
+    - Organization
+    - Dataset
+    - Tool
+    - Event
+
+  # Legacy fallback
+  chunk_size: 1200
+  chunk_overlap: 200
+
+intake:
+  # Folder watcher — drop any file here, it routes automatically
+  folder: C:\Users\YOURUSERNAME\Documents\productivity-os\intake
+  auto_index: true          # run --index after each successful file
+  web_digest_comments: 400  # max comments to pull per HN/Reddit thread
+  web_digest_free: true     # true = Claude Code (free), false = Anthropic API
