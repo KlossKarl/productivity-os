@@ -1,96 +1,39 @@
-# Downloads Auto-Categorizer
-Karl's Productivity OS — Project 2
+# 02 Downloads Categorizer
 
----
+Watches `C:\Users\Karl\Downloads` in real time and automatically moves files into typed subfolders (`PDFs/`, `Images/`, `Code/`, `Installers/`, `ZIPs/`, `Videos/`, `Docs/`, `Finance/`, `Reading/`). Extension rules handle most files instantly; ambiguous types (`.pdf`, `.txt`, `.md`, `.csv`, `.zip`, `.docx`) get a second pass through Ollama `llama3:8b` to determine the right bucket. Files it can't classify go to `_review/`. All moves are logged to a local SQLite DB.
 
-## Setup (one time, ~5 minutes)
+## How to run
 
-### 1. Install dependencies
-```powershell
-pip install watchdog requests
 ```
-Ollama must be running with llama3:8b pulled:
-```powershell
-ollama pull llama3:8b
-```
-
-### 2. Copy files
-```powershell
-mkdir $env:USERPROFILE\productivity_os\downloads_categorizer
-# Copy downloads_watcher.py here
-```
-
-### 3. Test it manually first
-```powershell
+# Start the file watcher (runs until Ctrl+C)
 python downloads_watcher.py
-# Drop a file into Downloads and watch the log
-# Ctrl+C to stop
-```
 
-### 4. Install as background startup task (run as Administrator)
-```powershell
-.\install_startup_task.ps1
-Start-ScheduledTask -TaskName "DownloadsCategorizer"
-```
-
----
-
-## Daily usage
-
-The script runs silently. You'll never notice it.
-
-**Check today's digest:**
-```powershell
+# Print today's move digest
 python downloads_watcher.py digest
-```
 
-**Teach it a custom rule** (it'll remember forever):
-```powershell
+# Teach a custom keyword rule
+python downloads_watcher.py teach stripe Finance
 python downloads_watcher.py teach invoice Finance
-python downloads_watcher.py teach "annual report" Reading
-python downloads_watcher.py teach "setup_" Installers
+
+# Register as a Windows startup task
+.\install_startup_task.ps1
 ```
 
-**Check the log:**
-```powershell
-Get-Content $env:USERPROFILE\Downloads\_categorizer.log -Tail 50
-```
+## What it outputs
 
----
+- Moves files into subfolders under `C:\Users\Karl\Downloads\`
+- Writes move log to `_categorizer_log.db` (tables: `moves`, `review_items`)
+- Writes text log to `_categorizer.log`
+- Prints daily digest on Ctrl+C showing files moved by folder and pending review items
+- Saves custom keyword rules to `_categorizer_rules.json`
 
-## How it decides
+## Config
 
-1. **Custom rules** (your corrections) — checked first, always win
-2. **Extension rules** — fast lookup for 50+ file types
-3. **LLM pass** — for ambiguous types (.pdf, .txt, .md, .csv, .zip, .docx)
-   - e.g. a PDF named "invoice_march_2026.pdf" → Finance/
-   - e.g. a PDF named "deep-learning-whitepaper.pdf" → Reading/
-4. **Unknown extension** → _review/ quarantine
+All paths are hardcoded. Key constants in the script header:
 
----
+| Constant | Default |
+|---|---|
+| `DOWNLOADS_DIR` | `C:\Users\Karl\Downloads` |
+| `OLLAMA_MODEL` | `llama3:8b` |
 
-## Folder structure created in Downloads/
-
-```
-Downloads/
-├── PDFs/
-├── Images/
-├── Code/
-├── Installers/
-├── ZIPs/
-├── Videos/
-├── Docs/
-├── Finance/
-├── Reading/
-├── _review/          ← uncertain files, check these
-├── _categorizer.log  ← full activity log
-├── _categorizer_log.db  ← SQLite history
-└── _categorizer_rules.json  ← your learned rules
-```
-
----
-
-## Integration with Productivity OS
-
-The SQLite DB (`_categorizer_log.db`) feeds into the central `events` table in Phase 3.
-Every move becomes an event: `{"source": "downloads", "type": "file_moved", "folder": "Finance", ...}`
+Requires Ollama running locally with `llama3:8b` pulled. Ollama is optional — falls back to rule-based classification if unavailable.

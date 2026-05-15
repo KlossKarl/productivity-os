@@ -1,28 +1,11 @@
-# Browser History Analyzer
-Karl's Productivity OS — Project 7
+# 07 Browser Analyzer
 
-Reads your local Brave history, analyzes it with Ollama, and generates
-a structured report answering: what are you deep in, what's killing your
-focus, when are you most productive, and what should you explore next.
-100% local — your browsing data never leaves your machine.
+Reads Brave browser history (local SQLite DB), scores visits as productive vs. distraction with smart YouTube/Reddit classification, then sends the data to Ollama `llama3:8b` for a narrative summary. Outputs a structured markdown report saved to Obsidian and backed up locally. Also writes focus score, visit counts, and session data to the shared `productivity_os.db`.
 
----
+## How to run
 
-## Setup
-
-No installs needed — uses only Python standard library + requests (already installed).
-
-Just run it:
-```powershell
-python browser_analysis.py
 ```
-
----
-
-## Usage
-
-```powershell
-# Full report — both 7 day and 30 day windows
+# Run full report for both 7-day and 30-day windows
 python browser_analysis.py
 
 # Custom window
@@ -32,39 +15,22 @@ python browser_analysis.py --days 14
 python browser_analysis.py --no-obsidian
 ```
 
----
+## What it outputs
 
-## Output
+- Markdown report at `Obsidian Vault/Browser Reports/YYYY-MM-DD Browser Report (Nd).md`
+- Local backup at `C:\Users\Karl\Documents\transcripts\`
+- Report includes: focus score %, top productive/distraction domains, peak hours, LLM narrative, topics deep in, focus killers, explore-next suggestions
+- Writes to shared DB: 1 artifact row, 1 session row, 4 metric rows (focus score, total visits, productive/distraction visit counts)
 
-Two reports saved to `Obsidian Vault/Browser Reports/`:
-- `YYYY-MM-DD Browser Report (7d).md`
-- `YYYY-MM-DD Browser Report (30d).md`
+## Config
 
-Each report contains:
-- **Focus Score** — % of visits to productive vs distraction sites
-- **Topics you're deep in** — LLM-inferred from your page titles
-- **Actively building/researching** — what projects/areas you're working on
-- **Focus killers** — sites eating your attention
-- **Peak productivity window** — when you're most active
-- **Recommendations** — concrete suggestions based on your patterns
-- **Explore next** — topics worth diving into given your interests
-- **Top sites table** — productive vs distraction split
-- **Activity by hour** — sparkline chart of when you browse
+All paths are hardcoded. Key constants:
 
----
+| Constant | Default |
+|---|---|
+| `BRAVE_HISTORY` | `C:\Users\Karl\AppData\Local\BraveSoftware\...\History` |
+| `OBSIDIAN_VAULT` | `C:\Users\Karl\Documents\Obsidian Vault` |
+| `OLLAMA_MODEL` | `llama3:8b` |
+| `SHARED_DB` | `C:\Users\Karl\Documents\productivity_os.db` |
 
-## How it works
-
-1. Copies the Brave SQLite history DB to a temp file (Brave locks the original)
-2. Reads all visits within the time window
-3. Counts domains, hours, days, classifies productive vs distraction
-4. Sends a condensed summary + page title sample to Ollama for narrative analysis
-5. Builds a structured markdown report and saves it to Obsidian
-
----
-
-## Integration with Productivity OS
-
-- Focus scores feed into Project 14 (Focus Guardian) to auto-schedule blockers
-- Peak hour data feeds into Project 16 (Time & Energy Observatory)
-- Run weekly as a scheduled task for ongoing tracking
+Requires Brave installed and Ollama running with `llama3:8b`. The script copies the DB to a temp file automatically so Brave doesn't need to be closed.

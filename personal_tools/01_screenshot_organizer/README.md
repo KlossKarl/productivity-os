@@ -1,140 +1,48 @@
-# Project 1 — Screenshot Organizer
+# 01 Screenshot Organizer
 
-> Renames 4,000+ screenshots from gibberish to meaningful names using LLaVA vision model locally. Builds a searchable index. Feeds into the Second Brain.
+Walks your ShareX screenshots folder, sends each image to LLaVA running locally via Ollama, and renames the file to a meaningful slug (`2026-03-14_vscode-python-import-error.png`). Builds a searchable `index.csv` and can export monthly markdown notes into your Obsidian vault for second-brain indexing.
 
-**Status:** ✅ Live — 4,237 screenshots indexed
+## How to run
 
----
-
-## What It Does
-
-- Walks your ShareX screenshots folder recursively
-- Sends each image to LLaVA (local vision model via Ollama) — no API key, no cost
-- Gets a plain-English description, tags, and a meaningful filename slug
-- Renames files from `brave_7x1UknX58l.png` → `2026-03-19_nfl-draft-rankings-dashboard.png`
-- Builds `index.csv` with description, tags, date, and path for every screenshot
-- Converts index to Obsidian markdown notes for Second Brain indexing
-- Resumable — safe to stop and restart anytime
-
----
-
-## Scripts
-
-| Script | What it does |
-|--------|-------------|
-| `organize_screenshots.py` | Main organizer — processes new screenshots, reprocesses weak ones |
-| `screenshots_to_md.py` | Converts index.csv → Obsidian markdown for Second Brain indexing |
-
----
-
-## Setup
-
-```powershell
-pip install requests pillow tqdm
-ollama pull llava:13b   # recommended — better at reading text and UI
-# or
-ollama pull llava:7b    # faster, weaker descriptions
 ```
-
----
-
-## Usage
-
-### Process new screenshots
-```powershell
+# Process new screenshots (skips already-indexed ones)
 python organize_screenshots.py
-```
-Skips already-processed files automatically. Safe to run repeatedly.
 
-### Check how many descriptions are generic/weak
-```powershell
-python organize_screenshots.py --stats
-```
+# Preview renames without touching files
+python organize_screenshots.py --dry-run
 
-### Re-run on weak descriptions only
-```powershell
-# Test first — see what would be reprocessed
-python organize_screenshots.py --reprocess-generic --dry-run
-
-# Reprocess all generic entries (can take a while — ~1800 images)
+# Re-run LLaVA on entries with weak/generic descriptions
 python organize_screenshots.py --reprocess-generic
 
-# Reprocess just the first 50 to test quality
-python organize_screenshots.py --reprocess-generic --limit 50
+# Show index stats and top tags
+python organize_screenshots.py --stats
 
-# Use a specific model
-python organize_screenshots.py --reprocess-generic --model llava:13b
+# Override the default model (llava:13b)
+python organize_screenshots.py --model llava:7b
+
+# Compare llava:7b vs llava:13b on 20 generic images
+python organize_screenshots.py --compare
+
+# Convert index.csv to Obsidian markdown notes
+python screenshots_to_md.py
+python screenshots_to_md.py --month 2026-03
 ```
 
-### Convert index to Obsidian markdown
-```powershell
-python screenshots_to_md.py              # convert all months
-python screenshots_to_md.py --stats     # show stats
-python screenshots_to_md.py --month 2026-03  # single month
-```
+## What it outputs
 
-### Index into Second Brain
-```powershell
-cd ..\08_second_brain
-python second_brain.py --index
-```
+- Renames image files in-place to `YYYY-MM-DD_kebab-slug.ext`
+- Appends rows to `index.csv` with: original name, new name, date, description, tags, path
+- `screenshots_to_md.py` writes one `Screenshots YYYY-MM.md` per month into `Obsidian Vault/Screenshots/`
 
-### Search screenshots via Second Brain
-```powershell
-python second_brain.py --search "NTI scouting dashboard"
-python second_brain.py --search "fantasy football rankings february"
-python second_brain.py --search "python error terminal"
-```
+## Config
 
----
+All paths are hardcoded in the script headers. Key constants:
 
-## File Structure
+| Constant | Default |
+|---|---|
+| `SCREENSHOTS_DIR` | `C:\Users\Karl\Documents\ShareX\Screenshots` |
+| `INDEX_FILE` | `C:\Users\Karl\Documents\ShareX\index.csv` |
+| `MODEL` | `llava:13b` |
+| `OBSIDIAN_VAULT` | `C:\Users\Karl\Documents\Obsidian Vault` |
 
-```
-ShareX/
-  Screenshots/
-    2025-12/   — 6 screenshots
-    2026-01/   — 15 screenshots
-    2026-02/   — 1,707 screenshots
-    2026-03/   — 2,509 screenshots
-  index.csv    — master index (4,237 entries)
-
-Obsidian Vault/
-  Screenshots/
-    Screenshots 2025-12.md
-    Screenshots 2026-01.md
-    Screenshots 2026-02.md
-    Screenshots 2026-03.md
-```
-
----
-
-## Model Notes
-
-| Model | Speed | Quality | VRAM |
-|-------|-------|---------|------|
-| `llava:7b` | Fast (~2s/img) | Generic descriptions | ~5GB |
-| `llava:13b` | Slower (~5s/img) | Much better at reading text and UI | ~9GB |
-
-RTX 4070 Ti (12GB) handles `llava:13b` comfortably.
-
----
-
-## Improving Description Quality
-
-If descriptions are too generic ("developer work session"), run:
-```powershell
-python organize_screenshots.py --reprocess-generic --model llava:13b
-```
-
-The improved prompt forces LLaVA to name specific apps, websites, and content
-instead of defaulting to generic descriptions. Then re-run `screenshots_to_md.py`
-and re-index the Second Brain.
-
----
-
-## Dependencies
-
-- Python 3.12
-- `requests`, `pillow`, `tqdm`
-- Ollama running locally with `llava:7b` or `llava:13b`
+Requires Ollama running locally with `llava:13b` (or `llava:7b`) pulled.
