@@ -1,0 +1,46 @@
+# productivity-os requirements
+# Core knowledge base product only.
+# Install: pip install -r requirements.txt
+
+# ── CORE ─────────────────────────────────────────────────────────────────────
+pyyaml>=6.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# ── VECTOR INDEX (ChromaDB) ──────────────────────────────────────────────────
+chromadb>=1.0.0
+
+# ── KNOWLEDGE GRAPH (Neo4j) ──────────────────────────────────────────────────
+neo4j>=5.0.0
+
+# ── LLM + EMBEDDINGS (Ollama via HTTP — no extra package needed) ─────────────
+anthropic>=0.86.0           # for Claude API summarizer mode
+
+# ── TRANSCRIPTION ────────────────────────────────────────────────────────────
+openai-whisper>=20250625
+torch>=2.0.0                # required by whisper
+torchaudio>=2.0.0
+
+# ── PDF PROCESSING ───────────────────────────────────────────────────────────
+PyMuPDF>=1.27.0             # pdf_to_md.py and arxiv_batch.py PDF extraction
+
+# ── WEB SCRAPING + INGESTION ─────────────────────────────────────────────────
+beautifulsoup4>=4.12.0
+lxml>=5.0.0                 # faster BS4 parser
+
+# ── INTAKE WATCHER ───────────────────────────────────────────────────────────
+watchdog>=4.0.0
+
+# ── SYSTEM TRAY APP (Windows) ────────────────────────────────────────────────
+pystray>=0.19.0
+pillow>=10.0.0
+tkinterdnd2>=0.3.0
+
+# ── LIGHTRAG (optional — parallel graph experiment) ──────────────────────────
+# lightrag-hku>=1.4.0       # uncomment to enable lightrag_test.py
+
+# ── DATA + UTILITIES ─────────────────────────────────────────────────────────
+pandas>=2.0.0
+numpy>=1.24.0
+tqdm>=4.0.0
+tenacity>=8.0.0             # retry logic for Ollama 500 errors
