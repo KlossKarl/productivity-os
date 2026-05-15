@@ -4,6 +4,8 @@
 
 A local-first personal knowledge base. It ingests audio, PDFs, web threads, browser history, and markdown notes, indexes everything with vector search and a knowledge graph, and lets you chat with all of it through a local LLM. No cloud, no subscriptions, your data stays on your machine.
 
+Most local RAG tools just embed chunks and hope. productivity-os builds an entity-resolved, relation-typed knowledge graph and uses an adaptive router to decide when to hit vectors vs graph. That lets it answer structural cross-document questions that pure vector systems can't express.
+
 ---
 
 ## What it actually does
@@ -50,6 +52,20 @@ second_brain.py --graph     <- extracts entities/relationships into Neo4j
     |
 second_brain.py --chat      <- hybrid retrieval: vector + graph + HyDE + rerank
 ```
+
+---
+
+## What's actually different
+
+A few specific things, since "local-first RAG" is a crowded space.
+
+**Constrained typed relationships, not LLM-emergent slop.** The Neo4j schema uses a fixed set of relationship types: CITES, INFLUENCES, EXTENDS, CONTRASTS_WITH, POSSIBLY_SAME_AS, and CO_OCCURS_WITH. Anything the LLM tries to emit outside that set gets rewritten to POSSIBLY_SAME_AS or dropped. This is more restrictive than letting the model invent edge types, but the graph stays coherent at scale instead of fragmenting into thousands of one-off predicate names. The validation happens at the graph write layer, not just in the prompt.
+
+**Entity resolution with canonical keys + aliases.** "PAC-learning", "PAC learning", and "pac learning" all collapse to the same canonical key in the graph, with the original surface forms preserved as Alias nodes linked via HAS_ALIAS. This handles the entity dedup problem most LLM-extracted graphs ignore. Without it, the graph fills with near-duplicate nodes and cross-document traversal breaks down.
+
+**Agentic routing, not blind hybrid retrieval.** Most personal RAG tools run the same retrieval pipeline regardless of query type. This one classifies the query first (semantic, relational, or hybrid), routes to the appropriate store (ChromaDB, Neo4j, or both), then runs a sufficiency check and loops up to 3 times if context is insufficient. The router falls back to vector if graph comes up empty, or expands into graph if vector results don't answer the question. The route taken is logged so you can see how the system is thinking.
+
+**Cross-document queries vector search cannot answer.** Because entities are shared nodes across documents, you can traverse Document -> Chunk -> Entity <- Chunk <- Document to find pairs of documents that both reference the same concept. That's a single Cypher traversal. Pure vector RAG cannot answer this structurally no matter how big the context window gets.
 
 ---
 
@@ -288,8 +304,11 @@ The tradeoff is real though. Setup takes time and you need decent hardware. This
 
 ## Roadmap
 
+- [ ] **Argument layer**: extract claims, evidence, and debate structure into the graph (supports/contradicts/refines relationships between assertions, not just entities)
 - [ ] Replace Ollama HTTP embeddings with in-process sentence-transformers (kills the 500 errors)
 - [ ] LightRAG integration as alternative graph layer
+- [ ] Graph-native query primitives: co-reference explorer, bridge finder, relational filter
+- [ ] `--entities` CLI flag to inspect canonical entities, aliases, and document counts
 - [ ] Graph visualization UI
 - [ ] Mac/Linux testing and fixes
 - [ ] One-command installer
