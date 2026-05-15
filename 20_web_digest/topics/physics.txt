@@ -1,0 +1,114 @@
+# Physics — wiki_batch topic file
+# Complete arc: classical foundations → modern → cutting edge theoretical
+# Usage: python wiki_batch.py topics/physics.txt --free
+
+# ── CLASSICAL MECHANICS ──────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Classical_mechanics
+https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion
+https://en.wikipedia.org/wiki/Lagrangian_mechanics
+https://en.wikipedia.org/wiki/Hamiltonian_mechanics
+https://en.wikipedia.org/wiki/Conservation_of_energy
+https://en.wikipedia.org/wiki/Conservation_of_momentum
+https://en.wikipedia.org/wiki/Gravitation
+https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion
+https://en.wikipedia.org/wiki/Fluid_dynamics
+https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations
+https://en.wikipedia.org/wiki/Chaos_theory
+
+# ── THERMODYNAMICS + STATISTICAL MECHANICS ───────────────────────────────────
+https://en.wikipedia.org/wiki/Thermodynamics
+https://en.wikipedia.org/wiki/Laws_of_thermodynamics
+https://en.wikipedia.org/wiki/Entropy
+https://en.wikipedia.org/wiki/Statistical_mechanics
+https://en.wikipedia.org/wiki/Boltzmann_constant
+https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution
+https://en.wikipedia.org/wiki/Phase_transition
+https://en.wikipedia.org/wiki/Bose%E2%80%93Einstein_condensate
+
+# ── ELECTROMAGNETISM ─────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Electromagnetism
+https://en.wikipedia.org/wiki/Maxwell%27s_equations
+https://en.wikipedia.org/wiki/Electric_field
+https://en.wikipedia.org/wiki/Magnetic_field
+https://en.wikipedia.org/wiki/Electromagnetic_radiation
+https://en.wikipedia.org/wiki/Light
+https://en.wikipedia.org/wiki/Photon
+https://en.wikipedia.org/wiki/Laser
+
+# ── RELATIVITY ───────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Special_relativity
+https://en.wikipedia.org/wiki/General_relativity
+https://en.wikipedia.org/wiki/Spacetime
+https://en.wikipedia.org/wiki/Gravitational_wave
+https://en.wikipedia.org/wiki/Black_hole
+https://en.wikipedia.org/wiki/Schwarzschild_radius
+https://en.wikipedia.org/wiki/Equivalence_principle
+https://en.wikipedia.org/wiki/Time_dilation
+
+# ── QUANTUM MECHANICS ────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Quantum_mechanics
+https://en.wikipedia.org/wiki/Wave%E2%80%93particle_duality
+https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation
+https://en.wikipedia.org/wiki/Uncertainty_principle
+https://en.wikipedia.org/wiki/Quantum_entanglement
+https://en.wikipedia.org/wiki/Quantum_superposition
+https://en.wikipedia.org/wiki/Copenhagen_interpretation
+https://en.wikipedia.org/wiki/Many-worlds_interpretation
+https://en.wikipedia.org/wiki/Quantum_decoherence
+https://en.wikipedia.org/wiki/Bell%27s_theorem
+https://en.wikipedia.org/wiki/Spin_(physics)
+
+# ── PARTICLE PHYSICS ─────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Standard_Model
+https://en.wikipedia.org/wiki/Elementary_particle
+https://en.wikipedia.org/wiki/Quark
+https://en.wikipedia.org/wiki/Higgs_boson
+https://en.wikipedia.org/wiki/Large_Hadron_Collider
+https://en.wikipedia.org/wiki/Quantum_field_theory
+https://en.wikipedia.org/wiki/Quantum_electrodynamics
+https://en.wikipedia.org/wiki/Quantum_chromodynamics
+https://en.wikipedia.org/wiki/Antimatter
+https://en.wikipedia.org/wiki/Neutrino
+
+# ── CONDENSED MATTER ─────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Condensed_matter_physics
+https://en.wikipedia.org/wiki/Superconductivity
+https://en.wikipedia.org/wiki/Semiconductor
+https://en.wikipedia.org/wiki/Graphene
+https://en.wikipedia.org/wiki/Topological_insulator
+https://en.wikipedia.org/wiki/Quantum_Hall_effect
+
+# ── QUANTUM COMPUTING + INFORMATION ─────────────────────────────────────────
+https://en.wikipedia.org/wiki/Quantum_computing
+https://en.wikipedia.org/wiki/Qubit
+https://en.wikipedia.org/wiki/Quantum_algorithm
+https://en.wikipedia.org/wiki/Shor%27s_algorithm
+https://en.wikipedia.org/wiki/Grover%27s_algorithm
+https://en.wikipedia.org/wiki/Quantum_error_correction
+https://en.wikipedia.org/wiki/Quantum_cryptography
+
+# ── THEORETICAL + CUTTING EDGE ───────────────────────────────────────────────
+https://en.wikipedia.org/wiki/String_theory
+https://en.wikipedia.org/wiki/M-theory
+https://en.wikipedia.org/wiki/Loop_quantum_gravity
+https://en.wikipedia.org/wiki/Theory_of_everything
+https://en.wikipedia.org/wiki/Supersymmetry
+https://en.wikipedia.org/wiki/Dark_matter
+https://en.wikipedia.org/wiki/Dark_energy
+https://en.wikipedia.org/wiki/Inflation_(cosmology)
+https://en.wikipedia.org/wiki/Multiverse
+https://en.wikipedia.org/wiki/Holographic_principle
+https://en.wikipedia.org/wiki/AdS/CFT_correspondence
+https://en.wikipedia.org/wiki/Arrow_of_time
+
+# ── HISTORY OF PHYSICS ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/History_of_physics
+https://en.wikipedia.org/wiki/Isaac_Newton
+https://en.wikipedia.org/wiki/Albert_Einstein
+https://en.wikipedia.org/wiki/Niels_Bohr
+https://en.wikipedia.org/wiki/Richard_Feynman
+https://en.wikipedia.org/wiki/Max_Planck
+https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
+https://en.wikipedia.org/wiki/Werner_Heisenberg
+https://en.wikipedia.org/wiki/James_Clerk_Maxwell
+https://en.wikipedia.org/wiki/Galileo_Galilei

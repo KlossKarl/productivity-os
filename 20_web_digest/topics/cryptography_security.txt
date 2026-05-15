@@ -1,0 +1,54 @@
+# Cryptography + Security — wiki_batch topic file
+# Post-quantum crypto, ZK proofs, privacy tech — deeply relevant to finance and AI
+# Usage: python wiki_batch.py topics/cryptography_security.txt --free
+
+# ── CRYPTOGRAPHY FOUNDATIONS ─────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Cryptography
+https://en.wikipedia.org/wiki/Symmetric-key_algorithm
+https://en.wikipedia.org/wiki/Public-key_cryptography
+https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+https://en.wikipedia.org/wiki/Elliptic-curve_cryptography
+https://en.wikipedia.org/wiki/Hash_function
+https://en.wikipedia.org/wiki/Digital_signature
+https://en.wikipedia.org/wiki/Transport_Layer_Security
+
+# ── POST-QUANTUM CRYPTOGRAPHY ────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Post-quantum_cryptography
+https://en.wikipedia.org/wiki/Lattice-based_cryptography
+https://en.wikipedia.org/wiki/Quantum_computing
+https://en.wikipedia.org/wiki/Shor%27s_algorithm
+https://en.wikipedia.org/wiki/Grover%27s_algorithm
+https://en.wikipedia.org/wiki/Quantum_key_distribution
+
+# ── ZERO KNOWLEDGE + PRIVACY ─────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Zero-knowledge_proof
+https://en.wikipedia.org/wiki/zk-SNARK
+https://en.wikipedia.org/wiki/Homomorphic_encryption
+https://en.wikipedia.org/wiki/Secure_multi-party_computation
+https://en.wikipedia.org/wiki/Differential_privacy
+https://en.wikipedia.org/wiki/Federated_learning
+https://en.wikipedia.org/wiki/Blind_signature
+
+# ── BLOCKCHAIN + DEFI SECURITY ───────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Blockchain
+https://en.wikipedia.org/wiki/Smart_contract
+https://en.wikipedia.org/wiki/Decentralized_finance
+https://en.wikipedia.org/wiki/Formal_verification
+https://en.wikipedia.org/wiki/51%25_attack
+https://en.wikipedia.org/wiki/Reentrancy_attack
+
+# ── ADVERSARIAL ML + AI SECURITY ─────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Adversarial_machine_learning
+https://en.wikipedia.org/wiki/Adversarial_examples
+https://en.wikipedia.org/wiki/Backdoor_attack
+https://en.wikipedia.org/wiki/Model_inversion_attack
+https://en.wikipedia.org/wiki/Membership_inference_attack
+https://en.wikipedia.org/wiki/Prompt_injection
+
+# ── PRACTICAL SECURITY ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Penetration_test
+https://en.wikipedia.org/wiki/Social_engineering_(security)
+https://en.wikipedia.org/wiki/Phishing
+https://en.wikipedia.org/wiki/Ransomware
+https://en.wikipedia.org/wiki/Supply_chain_attack
+https://en.wikipedia.org/wiki/Zero-day_vulnerability

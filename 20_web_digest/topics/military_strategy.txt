@@ -1,0 +1,66 @@
+# Military Strategy + Warfare — wiki_batch topic file
+# Art of War through modern AI warfare — strategy, doctrine, history
+# Usage: python wiki_batch.py topics/military_strategy.txt --free
+
+# ── CLASSICAL STRATEGY ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/The_Art_of_War
+https://en.wikipedia.org/wiki/Sun_Tzu
+https://en.wikipedia.org/wiki/On_War
+https://en.wikipedia.org/wiki/Carl_von_Clausewitz
+https://en.wikipedia.org/wiki/The_Prince
+https://en.wikipedia.org/wiki/Niccol%C3%B2_Machiavelli
+https://en.wikipedia.org/wiki/Military_strategy
+https://en.wikipedia.org/wiki/Tactics
+https://en.wikipedia.org/wiki/Grand_strategy
+https://en.wikipedia.org/wiki/Stratagems
+
+# ── STRATEGIC THEORY ─────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Deterrence_theory
+https://en.wikipedia.org/wiki/Mutual_assured_destruction
+https://en.wikipedia.org/wiki/Game_theory
+https://en.wikipedia.org/wiki/Prisoner%27s_dilemma
+https://en.wikipedia.org/wiki/Asymmetric_warfare
+https://en.wikipedia.org/wiki/Guerrilla_warfare
+https://en.wikipedia.org/wiki/Fourth-generation_warfare
+https://en.wikipedia.org/wiki/Hybrid_warfare
+https://en.wikipedia.org/wiki/OODA_loop
+https://en.wikipedia.org/wiki/Maneuver_warfare
+
+# ── HISTORICAL WARFARE ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/History_of_warfare
+https://en.wikipedia.org/wiki/Ancient_warfare
+https://en.wikipedia.org/wiki/Battle_of_Marathon
+https://en.wikipedia.org/wiki/Peloponnesian_War
+https://en.wikipedia.org/wiki/Punic_Wars
+https://en.wikipedia.org/wiki/Mongol_Empire
+https://en.wikipedia.org/wiki/Napoleonic_Wars
+https://en.wikipedia.org/wiki/World_War_I
+https://en.wikipedia.org/wiki/World_War_II
+https://en.wikipedia.org/wiki/Cold_War
+https://en.wikipedia.org/wiki/Vietnam_War
+
+# ── MODERN + FUTURE WARFARE ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Cyberwarfare
+https://en.wikipedia.org/wiki/Information_warfare
+https://en.wikipedia.org/wiki/Drone_warfare
+https://en.wikipedia.org/wiki/Autonomous_weapon
+https://en.wikipedia.org/wiki/Lethal_autonomous_weapon
+https://en.wikipedia.org/wiki/Electronic_warfare
+https://en.wikipedia.org/wiki/Space_warfare
+https://en.wikipedia.org/wiki/Nuclear_warfare
+https://en.wikipedia.org/wiki/Biological_warfare
+https://en.wikipedia.org/wiki/Psychological_warfare
+
+# ── MILITARY INTELLIGENCE + LOGISTICS ───────────────────────────────────────
+https://en.wikipedia.org/wiki/Military_intelligence
+https://en.wikipedia.org/wiki/Intelligence_cycle
+https://en.wikipedia.org/wiki/SIGINT
+https://en.wikipedia.org/wiki/Reconnaissance
+https://en.wikipedia.org/wiki/Military_logistics
+https://en.wikipedia.org/wiki/Command_and_control
+
+# ── AI + MILITARY ────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Artificial_intelligence_arms_race
+https://en.wikipedia.org/wiki/Military_robot
+https://en.wikipedia.org/wiki/Predictive_analytics
+https://en.wikipedia.org/wiki/Battlefield_management_system

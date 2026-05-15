@@ -1,0 +1,12 @@
+https://en.wikipedia.org/wiki/Named_entity_recognition
+https://en.wikipedia.org/wiki/Relation_extraction
+https://en.wikipedia.org/wiki/Coreference_resolution
+https://en.wikipedia.org/wiki/Personal_knowledge_management
+https://en.wikipedia.org/wiki/Personal_knowledge_base
+https://en.wikipedia.org/wiki/Zettelkasten
+https://en.wikipedia.org/wiki/Memex
+https://en.wikipedia.org/wiki/Vannevar_Bush
+https://en.wikipedia.org/wiki/Neo4j
+https://en.wikipedia.org/wiki/SQLite
+https://en.wikipedia.org/wiki/Vector_database
+https://en.wikipedia.org/wiki/Entity_linking

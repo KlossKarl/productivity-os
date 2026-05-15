@@ -1,0 +1,66 @@
+# Nature + Natural Phenomena — wiki_batch topic file
+# The astonishing mechanics of the natural world — patterns, systems, wonders
+# Usage: python wiki_batch.py topics/nature.txt --free
+
+# ── PATTERNS IN NATURE ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Patterns_in_nature
+https://en.wikipedia.org/wiki/Fractal
+https://en.wikipedia.org/wiki/Golden_ratio
+https://en.wikipedia.org/wiki/Fibonacci_sequence
+https://en.wikipedia.org/wiki/Voronoi_diagram
+https://en.wikipedia.org/wiki/Reaction%E2%80%93diffusion_system
+https://en.wikipedia.org/wiki/Turing_pattern
+https://en.wikipedia.org/wiki/Self-organization
+https://en.wikipedia.org/wiki/Emergence
+
+# ── REMARKABLE ORGANISMS ─────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Octopus
+https://en.wikipedia.org/wiki/Tardigrade
+https://en.wikipedia.org/wiki/Mycelium
+https://en.wikipedia.org/wiki/Slime_mold
+https://en.wikipedia.org/wiki/Mantis_shrimp
+https://en.wikipedia.org/wiki/Electric_eel
+https://en.wikipedia.org/wiki/Platypus
+https://en.wikipedia.org/wiki/Axolotl
+https://en.wikipedia.org/wiki/Naked_mole_rat
+https://en.wikipedia.org/wiki/Immortal_jellyfish
+https://en.wikipedia.org/wiki/Leafcutter_ant
+https://en.wikipedia.org/wiki/Migratory_bird
+
+# ── ANIMAL INTELLIGENCE + PERCEPTION ────────────────────────────────────────
+https://en.wikipedia.org/wiki/Animal_cognition
+https://en.wikipedia.org/wiki/Tool_use_by_animals
+https://en.wikipedia.org/wiki/Echolocation
+https://en.wikipedia.org/wiki/Electroreception
+https://en.wikipedia.org/wiki/Magnetoreception
+https://en.wikipedia.org/wiki/Collective_animal_behaviour
+https://en.wikipedia.org/wiki/Swarm_behaviour
+https://en.wikipedia.org/wiki/Murmuration
+
+# ── PLANT INTELLIGENCE ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Plant_cognition
+https://en.wikipedia.org/wiki/Mimosa_pudica
+https://en.wikipedia.org/wiki/Venus_flytrap
+https://en.wikipedia.org/wiki/Carnivorous_plant
+https://en.wikipedia.org/wiki/Wood_wide_web
+https://en.wikipedia.org/wiki/Allelopathy
+https://en.wikipedia.org/wiki/Plant_communication
+
+# ── NATURAL SYSTEMS + CYCLES ─────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Water_cycle
+https://en.wikipedia.org/wiki/Nitrogen_cycle
+https://en.wikipedia.org/wiki/Carbon_cycle
+https://en.wikipedia.org/wiki/Ocean_current
+https://en.wikipedia.org/wiki/Tidal_locking
+https://en.wikipedia.org/wiki/Circadian_rhythm
+https://en.wikipedia.org/wiki/Phenology
+
+# ── EXTREME NATURE ───────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Extremophile
+https://en.wikipedia.org/wiki/Deep_sea
+https://en.wikipedia.org/wiki/Hydrothermal_vent
+https://en.wikipedia.org/wiki/Aurora
+https://en.wikipedia.org/wiki/Ball_lightning
+https://en.wikipedia.org/wiki/Rogue_wave
+https://en.wikipedia.org/wiki/Superorganism
+https://en.wikipedia.org/wiki/Bioluminescence

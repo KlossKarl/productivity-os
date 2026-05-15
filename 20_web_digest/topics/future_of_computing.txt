@@ -1,0 +1,41 @@
+# ── Future of Computing & Technology ─────────────────────────────────────────
+# Where things are actually going — the frontier
+# Run: python wiki_batch.py topics/future_of_computing.txt --free
+
+# Hardware frontiers
+https://en.wikipedia.org/wiki/Quantum_computing
+https://en.wikipedia.org/wiki/Neuromorphic_engineering
+https://en.wikipedia.org/wiki/Graphics_processing_unit
+https://en.wikipedia.org/wiki/Tensor_processing_unit
+https://en.wikipedia.org/wiki/Application-specific_integrated_circuit
+https://en.wikipedia.org/wiki/3D_integrated_circuit
+
+# New programming paradigms
+https://en.wikipedia.org/wiki/Functional_programming
+https://en.wikipedia.org/wiki/Logic_programming
+https://en.wikipedia.org/wiki/Probabilistic_programming
+https://en.wikipedia.org/wiki/Differentiable_programming
+https://en.wikipedia.org/wiki/Concurrent_computing
+https://en.wikipedia.org/wiki/Reactive_programming
+
+# Decentralized systems
+https://en.wikipedia.org/wiki/Distributed_computing
+https://en.wikipedia.org/wiki/Peer-to-peer
+https://en.wikipedia.org/wiki/Blockchain
+https://en.wikipedia.org/wiki/Byzantine_fault
+https://en.wikipedia.org/wiki/Consensus_(computer_science)
+https://en.wikipedia.org/wiki/CAP_theorem
+
+# Human-computer interaction
+https://en.wikipedia.org/wiki/Human%E2%80%93computer_interaction
+https://en.wikipedia.org/wiki/Augmented_reality
+https://en.wikipedia.org/wiki/Brain%E2%80%93computer_interface
+https://en.wikipedia.org/wiki/Ambient_computing
+https://en.wikipedia.org/wiki/Ubiquitous_computing
+
+# Privacy and surveillance
+https://en.wikipedia.org/wiki/Differential_privacy
+https://en.wikipedia.org/wiki/Homomorphic_encryption
+https://en.wikipedia.org/wiki/Federated_learning
+https://en.wikipedia.org/wiki/Zero-knowledge_proof
+https://en.wikipedia.org/wiki/Mass_surveillance

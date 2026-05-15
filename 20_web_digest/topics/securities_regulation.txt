@@ -1,0 +1,77 @@
+# Securities Regulation + Investment Adviser Compliance — wiki_batch topic file
+# The regulatory stack for registered investment advisers and alternative fund managers
+# Usage: python wiki_batch.py topics/securities_regulation.txt --free
+
+# ── CORE SECURITIES LAWS ─────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Securities_Act_of_1933
+https://en.wikipedia.org/wiki/Securities_Exchange_Act_of_1934
+https://en.wikipedia.org/wiki/Investment_Company_Act_of_1940
+https://en.wikipedia.org/wiki/Investment_Advisers_Act_of_1940
+https://en.wikipedia.org/wiki/Dodd%E2%80%93Frank_Wall_Street_Reform_and_Consumer_Protection_Act
+https://en.wikipedia.org/wiki/Sarbanes%E2%80%93Oxley_Act
+https://en.wikipedia.org/wiki/Jumpstart_Our_Business_Startups_Act
+
+# ── SEC + REGULATORY BODIES ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission
+https://en.wikipedia.org/wiki/Financial_Industry_Regulatory_Authority
+https://en.wikipedia.org/wiki/Commodity_Futures_Trading_Commission
+https://en.wikipedia.org/wiki/Financial_Stability_Oversight_Council
+https://en.wikipedia.org/wiki/Office_of_Foreign_Assets_Control
+
+# ── REGISTRATION + EXEMPTIONS ────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Registered_investment_adviser
+https://en.wikipedia.org/wiki/Accredited_investor
+https://en.wikipedia.org/wiki/Qualified_purchaser
+https://en.wikipedia.org/wiki/Qualified_institutional_buyer
+https://en.wikipedia.org/wiki/Regulation_D
+https://en.wikipedia.org/wiki/Private_placement
+https://en.wikipedia.org/wiki/Regulation_S
+
+# ── KEY REGULATORY FILINGS ───────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Form_ADV
+https://en.wikipedia.org/wiki/Form_PF
+https://en.wikipedia.org/wiki/Form_13F
+https://en.wikipedia.org/wiki/Schedule_13D
+https://en.wikipedia.org/wiki/Form_S-1
+https://en.wikipedia.org/wiki/Form_10-K
+https://en.wikipedia.org/wiki/Form_10-Q
+https://en.wikipedia.org/wiki/Form_8-K
+https://en.wikipedia.org/wiki/Proxy_statement
+
+# ── INVESTMENT ADVISER COMPLIANCE ────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Fiduciary
+https://en.wikipedia.org/wiki/Best_interest_standard
+https://en.wikipedia.org/wiki/Regulation_Best_Interest
+https://en.wikipedia.org/wiki/Code_of_ethics_(finance)
+https://en.wikipedia.org/wiki/Compliance_program
+https://en.wikipedia.org/wiki/Insider_trading
+https://en.wikipedia.org/wiki/Front_running
+https://en.wikipedia.org/wiki/Conflicts_of_interest_(financial_services)
+https://en.wikipedia.org/wiki/Marketing_rule_(investment_advisers)
+
+# ── ANTI-MONEY LAUNDERING + SANCTIONS ───────────────────────────────────────
+https://en.wikipedia.org/wiki/Anti-money_laundering
+https://en.wikipedia.org/wiki/Know_your_customer
+https://en.wikipedia.org/wiki/Bank_Secrecy_Act
+https://en.wikipedia.org/wiki/Financial_Action_Task_Force
+https://en.wikipedia.org/wiki/Sanctions_(law)
+https://en.wikipedia.org/wiki/Beneficial_ownership
+https://en.wikipedia.org/wiki/Corporate_Transparency_Act
+
+# ── PUBLIC COMPANY LAW ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Public_company
+https://en.wikipedia.org/wiki/Initial_public_offering
+https://en.wikipedia.org/wiki/Securities_fraud
+https://en.wikipedia.org/wiki/Material_nonpublic_information
+https://en.wikipedia.org/wiki/Selective_disclosure
+https://en.wikipedia.org/wiki/Short-swing_profit
+https://en.wikipedia.org/wiki/Section_16_(Securities_Exchange_Act)
+
+# ── ESG + EMERGING REGULATION ────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Environmental,_social,_and_corporate_governance
+https://en.wikipedia.org/wiki/Greenwashing
+https://en.wikipedia.org/wiki/Climate_risk
+https://en.wikipedia.org/wiki/Task_Force_on_Climate-related_Financial_Disclosures
+https://en.wikipedia.org/wiki/Sustainable_finance
+https://en.wikipedia.org/wiki/Data_privacy_law
+https://en.wikipedia.org/wiki/General_Data_Protection_Regulation

@@ -1,0 +1,49 @@
+# Climate + Energy Systems — wiki_batch topic file
+# Grid optimization, carbon markets, climate modeling, energy transition
+# Usage: python wiki_batch.py topics/climate_energy.txt --free
+
+# ── CLIMATE SCIENCE ──────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Climate_change
+https://en.wikipedia.org/wiki/Global_warming
+https://en.wikipedia.org/wiki/Greenhouse_gas
+https://en.wikipedia.org/wiki/Carbon_cycle
+https://en.wikipedia.org/wiki/Climate_model
+https://en.wikipedia.org/wiki/General_circulation_model
+https://en.wikipedia.org/wiki/Tipping_points_in_the_climate_system
+https://en.wikipedia.org/wiki/Sea_level_rise
+https://en.wikipedia.org/wiki/Ocean_acidification
+https://en.wikipedia.org/wiki/Permafrost
+https://en.wikipedia.org/wiki/Albedo
+
+# ── ENERGY SYSTEMS ───────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Electrical_grid
+https://en.wikipedia.org/wiki/Smart_grid
+https://en.wikipedia.org/wiki/Energy_storage
+https://en.wikipedia.org/wiki/Battery_electric_vehicle
+https://en.wikipedia.org/wiki/Lithium-ion_battery
+https://en.wikipedia.org/wiki/Solid-state_battery
+https://en.wikipedia.org/wiki/Hydrogen_economy
+https://en.wikipedia.org/wiki/Nuclear_power
+https://en.wikipedia.org/wiki/Nuclear_fusion
+https://en.wikipedia.org/wiki/Solar_power
+https://en.wikipedia.org/wiki/Wind_power
+https://en.wikipedia.org/wiki/Carbon_capture_and_storage
+
+# ── CARBON MARKETS + POLICY ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Carbon_market
+https://en.wikipedia.org/wiki/Carbon_tax
+https://en.wikipedia.org/wiki/Emissions_trading
+https://en.wikipedia.org/wiki/Paris_Agreement
+https://en.wikipedia.org/wiki/Carbon_offset
+https://en.wikipedia.org/wiki/Environmental,_social,_and_corporate_governance
+https://en.wikipedia.org/wiki/Climate_finance
+https://en.wikipedia.org/wiki/Green_bond
+
+# ── AI + CLIMATE ─────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Climate_informatics
+https://en.wikipedia.org/wiki/Numerical_weather_prediction
+https://en.wikipedia.org/wiki/Weather_forecasting
+https://en.wikipedia.org/wiki/Remote_sensing
+https://en.wikipedia.org/wiki/Digital_twin
+https://en.wikipedia.org/wiki/Reinforcement_learning
+https://en.wikipedia.org/wiki/Optimization_problem

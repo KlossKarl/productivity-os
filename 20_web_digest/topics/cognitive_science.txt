@@ -1,0 +1,40 @@
+# ── Cognitive Science & Intelligence ─────────────────────────────────────────
+# Understanding intelligence itself — biological and artificial
+# Run: python wiki_batch.py topics/cognitive_science.txt --free
+
+# How the brain works
+https://en.wikipedia.org/wiki/Neuroscience
+https://en.wikipedia.org/wiki/Neuron
+https://en.wikipedia.org/wiki/Synapse
+https://en.wikipedia.org/wiki/Hebbian_theory
+https://en.wikipedia.org/wiki/Neuroplasticity
+https://en.wikipedia.org/wiki/Default_mode_network
+
+# Memory and learning (biological)
+https://en.wikipedia.org/wiki/Memory_consolidation
+https://en.wikipedia.org/wiki/Long-term_potentiation
+https://en.wikipedia.org/wiki/Spaced_repetition
+https://en.wikipedia.org/wiki/Forgetting_curve
+https://en.wikipedia.org/wiki/Dual_coding_theory
+
+# Cognition and reasoning
+https://en.wikipedia.org/wiki/Cognitive_bias
+https://en.wikipedia.org/wiki/Dual_process_theory
+https://en.wikipedia.org/wiki/Mental_model
+https://en.wikipedia.org/wiki/Metacognition
+https://en.wikipedia.org/wiki/Working_memory
+https://en.wikipedia.org/wiki/Executive_functions
+
+# Intelligence theory
+https://en.wikipedia.org/wiki/General_factor_of_intelligence
+https://en.wikipedia.org/wiki/Multiple_intelligences
+https://en.wikipedia.org/wiki/Fluid_and_crystallized_intelligence
+https://en.wikipedia.org/wiki/Artificial_general_intelligence
+
+# Philosophy of mind (relevant to AI alignment)
+https://en.wikipedia.org/wiki/Philosophy_of_mind
+https://en.wikipedia.org/wiki/Chinese_room
+https://en.wikipedia.org/wiki/Turing_test
+https://en.wikipedia.org/wiki/Consciousness
+https://en.wikipedia.org/wiki/Qualia
+https://en.wikipedia.org/wiki/Functionalism_(philosophy_of_mind)

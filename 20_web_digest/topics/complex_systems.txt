@@ -1,0 +1,55 @@
+# Complex Systems — wiki_batch topic file
+# Emergence, chaos, network theory, self-organization — the math behind everything
+# Usage: python wiki_batch.py topics/complex_systems.txt --free
+
+# ── FOUNDATIONS ──────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Complex_system
+https://en.wikipedia.org/wiki/Emergence
+https://en.wikipedia.org/wiki/Self-organization
+https://en.wikipedia.org/wiki/Chaos_theory
+https://en.wikipedia.org/wiki/Butterfly_effect
+https://en.wikipedia.org/wiki/Nonlinear_system
+https://en.wikipedia.org/wiki/Dynamical_system
+https://en.wikipedia.org/wiki/Attractor
+https://en.wikipedia.org/wiki/Bifurcation_theory
+https://en.wikipedia.org/wiki/Phase_transition
+https://en.wikipedia.org/wiki/Critical_phenomena
+https://en.wikipedia.org/wiki/Self-organized_criticality
+
+# ── NETWORK THEORY ───────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Network_theory
+https://en.wikipedia.org/wiki/Scale-free_network
+https://en.wikipedia.org/wiki/Small-world_network
+https://en.wikipedia.org/wiki/Barab%C3%A1si%E2%80%93Albert_model
+https://en.wikipedia.org/wiki/Erdős%E2%80%93Rényi_model
+https://en.wikipedia.org/wiki/Centrality
+https://en.wikipedia.org/wiki/Community_structure
+https://en.wikipedia.org/wiki/Percolation_theory
+https://en.wikipedia.org/wiki/Contagion_(epidemiology)
+https://en.wikipedia.org/wiki/Cascading_failure
+
+# ── INFORMATION THEORY ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Information_theory
+https://en.wikipedia.org/wiki/Entropy_(information_theory)
+https://en.wikipedia.org/wiki/Kolmogorov_complexity
+https://en.wikipedia.org/wiki/Mutual_information
+https://en.wikipedia.org/wiki/Shannon%27s_theorem
+
+# ── EVOLUTIONARY + ADAPTIVE SYSTEMS ─────────────────────────────────────────
+https://en.wikipedia.org/wiki/Evolution
+https://en.wikipedia.org/wiki/Natural_selection
+https://en.wikipedia.org/wiki/Genetic_algorithm
+https://en.wikipedia.org/wiki/Evolutionary_game_theory
+https://en.wikipedia.org/wiki/Adaptive_system
+https://en.wikipedia.org/wiki/Swarm_intelligence
+https://en.wikipedia.org/wiki/Ant_colony_optimization
+https://en.wikipedia.org/wiki/Stigmergy
+
+# ── SYSTEMS THINKING ─────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Systems_thinking
+https://en.wikipedia.org/wiki/Feedback
+https://en.wikipedia.org/wiki/Cybernetics
+https://en.wikipedia.org/wiki/Homeostasis
+https://en.wikipedia.org/wiki/Resilience_(systems)
+https://en.wikipedia.org/wiki/Robustness_(evolution)
+https://en.wikipedia.org/wiki/Antifragility

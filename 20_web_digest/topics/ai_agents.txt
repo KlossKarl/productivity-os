@@ -1,0 +1,42 @@
+# ── AI Agents & Agentic Systems ──────────────────────────────────────────────
+# The frontier of where AI is actually going — autonomous systems
+# Run: python wiki_batch.py topics/ai_agents.txt --free
+
+# Agent fundamentals
+https://en.wikipedia.org/wiki/Intelligent_agent
+https://en.wikipedia.org/wiki/Rational_agent
+https://en.wikipedia.org/wiki/Multi-agent_system
+https://en.wikipedia.org/wiki/Autonomous_agent
+https://en.wikipedia.org/wiki/Software_agent
+
+# Planning and reasoning
+https://en.wikipedia.org/wiki/Automated_planning_and_scheduling
+https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
+https://en.wikipedia.org/wiki/Tree_of_thought
+https://en.wikipedia.org/wiki/Means%E2%80%93ends_analysis
+https://en.wikipedia.org/wiki/Belief%E2%80%93desire%E2%80%93intention_software_model
+
+# Memory systems
+https://en.wikipedia.org/wiki/Episodic_memory
+https://en.wikipedia.org/wiki/Semantic_memory
+https://en.wikipedia.org/wiki/Working_memory
+https://en.wikipedia.org/wiki/Cognitive_architecture
+
+# Tool use and function calling
+https://en.wikipedia.org/wiki/Tool_use_by_animals
+https://en.wikipedia.org/wiki/Application_programming_interface
+https://en.wikipedia.org/wiki/Function_composition_(computer_science)
+https://en.wikipedia.org/wiki/Model_Context_Protocol
+
+# Reinforcement learning for agents
+https://en.wikipedia.org/wiki/Reinforcement_learning
+https://en.wikipedia.org/wiki/Markov_decision_process
+https://en.wikipedia.org/wiki/Reward_function
+https://en.wikipedia.org/wiki/Exploration%E2%80%93exploitation_dilemma
+https://en.wikipedia.org/wiki/Policy_gradient_method
+
+# Safety and alignment for agents
+https://en.wikipedia.org/wiki/AI_control_problem
+https://en.wikipedia.org/wiki/Corrigibility
+https://en.wikipedia.org/wiki/Wireheading_(artificial_intelligence)
+https://en.wikipedia.org/wiki/Goodhart%27s_law

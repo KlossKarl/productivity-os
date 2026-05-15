@@ -1,0 +1,42 @@
+# ── Software Engineering & Architecture ──────────────────────────────────────
+# What elite engineers actually know and practice
+# Run: python wiki_batch.py topics/software_engineering.txt --free
+
+# Design patterns
+https://en.wikipedia.org/wiki/Design_pattern_(computer_science)
+https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
+https://en.wikipedia.org/wiki/Observer_pattern
+https://en.wikipedia.org/wiki/Factory_method_pattern
+https://en.wikipedia.org/wiki/Dependency_injection
+https://en.wikipedia.org/wiki/Event-driven_architecture
+
+# System design
+https://en.wikipedia.org/wiki/Scalability
+https://en.wikipedia.org/wiki/Load_balancing_(computing)
+https://en.wikipedia.org/wiki/Caching
+https://en.wikipedia.org/wiki/Message_queue
+https://en.wikipedia.org/wiki/Database_sharding
+https://en.wikipedia.org/wiki/Content_delivery_network
+
+# Code quality and process
+https://en.wikipedia.org/wiki/Test-driven_development
+https://en.wikipedia.org/wiki/Refactoring
+https://en.wikipedia.org/wiki/Code_review
+https://en.wikipedia.org/wiki/Pair_programming
+https://en.wikipedia.org/wiki/Agile_software_development
+https://en.wikipedia.org/wiki/DevOps
+
+# Languages and paradigms
+https://en.wikipedia.org/wiki/Type_system
+https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)
+https://en.wikipedia.org/wiki/Memory_safety
+https://en.wikipedia.org/wiki/Rust_(programming_language)
+https://en.wikipedia.org/wiki/Python_(programming_language)
+https://en.wikipedia.org/wiki/Domain-specific_language
+
+# API and integration design
+https://en.wikipedia.org/wiki/Representational_state_transfer
+https://en.wikipedia.org/wiki/GraphQL
+https://en.wikipedia.org/wiki/WebSocket
+https://en.wikipedia.org/wiki/Webhook
+https://en.wikipedia.org/wiki/OpenAPI_Specification

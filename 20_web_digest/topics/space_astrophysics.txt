@@ -1,0 +1,56 @@
+# Space + Astrophysics — wiki_batch topic file
+# Cosmology, space tech, AI in astronomy — frontier science
+# Usage: python wiki_batch.py topics/space_astrophysics.txt --free
+
+# ── COSMOLOGY + ASTROPHYSICS ─────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Cosmology
+https://en.wikipedia.org/wiki/Big_Bang
+https://en.wikipedia.org/wiki/Dark_matter
+https://en.wikipedia.org/wiki/Dark_energy
+https://en.wikipedia.org/wiki/Black_hole
+https://en.wikipedia.org/wiki/Neutron_star
+https://en.wikipedia.org/wiki/Gravitational_wave
+https://en.wikipedia.org/wiki/Event_Horizon_Telescope
+https://en.wikipedia.org/wiki/Cosmic_microwave_background
+https://en.wikipedia.org/wiki/Hubble_tension
+https://en.wikipedia.org/wiki/Multiverse
+https://en.wikipedia.org/wiki/Fermi_paradox
+
+# ── SPACE TECHNOLOGY ─────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/SpaceX
+https://en.wikipedia.org/wiki/Starship_(rocket)
+https://en.wikipedia.org/wiki/Satellite
+https://en.wikipedia.org/wiki/Starlink
+https://en.wikipedia.org/wiki/Space_debris
+https://en.wikipedia.org/wiki/Orbital_mechanics
+https://en.wikipedia.org/wiki/Rocket_propulsion
+https://en.wikipedia.org/wiki/Ion_thruster
+https://en.wikipedia.org/wiki/Nuclear_thermal_rocket
+https://en.wikipedia.org/wiki/Space_elevator
+
+# ── PLANETARY SCIENCE + EXPLORATION ─────────────────────────────────────────
+https://en.wikipedia.org/wiki/Mars
+https://en.wikipedia.org/wiki/Moon
+https://en.wikipedia.org/wiki/Europa_(moon)
+https://en.wikipedia.org/wiki/Astrobiology
+https://en.wikipedia.org/wiki/Exoplanet
+https://en.wikipedia.org/wiki/James_Webb_Space_Telescope
+https://en.wikipedia.org/wiki/Terraforming
+https://en.wikipedia.org/wiki/Space_colonization
+
+# ── AI IN ASTRONOMY ──────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Astroinformatics
+https://en.wikipedia.org/wiki/Radio_telescope
+https://en.wikipedia.org/wiki/Transient_astronomical_event
+https://en.wikipedia.org/wiki/Gravitational_lensing
+https://en.wikipedia.org/wiki/Neural_network
+https://en.wikipedia.org/wiki/Anomaly_detection
+https://en.wikipedia.org/wiki/Citizen_science
+
+# ── PHYSICS FOUNDATIONS ──────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/General_relativity
+https://en.wikipedia.org/wiki/Quantum_mechanics
+https://en.wikipedia.org/wiki/Standard_Model
+https://en.wikipedia.org/wiki/String_theory
+https://en.wikipedia.org/wiki/Loop_quantum_gravity
+https://en.wikipedia.org/wiki/Theory_of_everything

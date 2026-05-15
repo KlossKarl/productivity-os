@@ -1,0 +1,57 @@
+# Computational Biology + Drug Discovery — wiki_batch topic file
+# Post-AlphaFold era: protein structure, genomics, AI-driven drug discovery
+# Usage: python wiki_batch.py topics/computational_biology.txt --free
+
+# ── MOLECULAR BIOLOGY FOUNDATIONS ───────────────────────────────────────────
+https://en.wikipedia.org/wiki/DNA
+https://en.wikipedia.org/wiki/RNA
+https://en.wikipedia.org/wiki/Protein
+https://en.wikipedia.org/wiki/Protein_folding
+https://en.wikipedia.org/wiki/Protein_structure
+https://en.wikipedia.org/wiki/Enzyme
+https://en.wikipedia.org/wiki/Gene_expression
+https://en.wikipedia.org/wiki/Transcription_(biology)
+https://en.wikipedia.org/wiki/Translation_(biology)
+https://en.wikipedia.org/wiki/Epigenetics
+https://en.wikipedia.org/wiki/Cell_signaling
+
+# ── GENOMICS + SEQUENCING ────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Genomics
+https://en.wikipedia.org/wiki/Genome_sequencing
+https://en.wikipedia.org/wiki/Single-cell_sequencing
+https://en.wikipedia.org/wiki/CRISPR
+https://en.wikipedia.org/wiki/Gene_therapy
+https://en.wikipedia.org/wiki/Pharmacogenomics
+https://en.wikipedia.org/wiki/Polygenic_score
+https://en.wikipedia.org/wiki/Genome-wide_association_study
+
+# ── AI IN BIOLOGY ────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/AlphaFold
+https://en.wikipedia.org/wiki/Protein_structure_prediction
+https://en.wikipedia.org/wiki/De_novo_protein_design
+https://en.wikipedia.org/wiki/Molecular_dynamics
+https://en.wikipedia.org/wiki/Docking_(molecular)
+https://en.wikipedia.org/wiki/Bioinformatics
+https://en.wikipedia.org/wiki/Systems_biology
+https://en.wikipedia.org/wiki/Synthetic_biology
+
+# ── DRUG DISCOVERY ───────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Drug_discovery
+https://en.wikipedia.org/wiki/Drug_design
+https://en.wikipedia.org/wiki/Clinical_trial
+https://en.wikipedia.org/wiki/Pharmacokinetics
+https://en.wikipedia.org/wiki/Pharmacodynamics
+https://en.wikipedia.org/wiki/ADME
+https://en.wikipedia.org/wiki/Generative_model
+https://en.wikipedia.org/wiki/Reinforcement_learning
+https://en.wikipedia.org/wiki/Transfer_learning
+
+# ── PRECISION MEDICINE ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Precision_medicine
+https://en.wikipedia.org/wiki/Biomarker
+https://en.wikipedia.org/wiki/Liquid_biopsy
+https://en.wikipedia.org/wiki/Cancer_immunotherapy
+https://en.wikipedia.org/wiki/Monoclonal_antibody
+https://en.wikipedia.org/wiki/mRNA_vaccine
+https://en.wikipedia.org/wiki/Digital_health
+https://en.wikipedia.org/wiki/Wearable_technology

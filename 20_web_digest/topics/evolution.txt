@@ -1,0 +1,74 @@
+# Evolution + Evolutionary Biology — wiki_batch topic file
+# Darwin to evo-devo, evolutionary psychology, cultural evolution
+# Usage: python wiki_batch.py topics/evolution.txt --free
+
+# ── FOUNDATIONS ──────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Evolution
+https://en.wikipedia.org/wiki/Charles_Darwin
+https://en.wikipedia.org/wiki/On_the_Origin_of_Species
+https://en.wikipedia.org/wiki/Natural_selection
+https://en.wikipedia.org/wiki/Survival_of_the_fittest
+https://en.wikipedia.org/wiki/Common_descent
+https://en.wikipedia.org/wiki/Tree_of_life_(biology)
+https://en.wikipedia.org/wiki/Last_universal_common_ancestor
+
+# ── MECHANISMS OF EVOLUTION ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Mutation
+https://en.wikipedia.org/wiki/Genetic_drift
+https://en.wikipedia.org/wiki/Gene_flow
+https://en.wikipedia.org/wiki/Sexual_selection
+https://en.wikipedia.org/wiki/Kin_selection
+https://en.wikipedia.org/wiki/Inclusive_fitness
+https://en.wikipedia.org/wiki/Group_selection
+https://en.wikipedia.org/wiki/Punctuated_equilibrium
+https://en.wikipedia.org/wiki/Convergent_evolution
+https://en.wikipedia.org/wiki/Coevolution
+https://en.wikipedia.org/wiki/Arms_race_(biology)
+
+# ── GENETICS + MODERN SYNTHESIS ─────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Modern_synthesis_(20th_century)
+https://en.wikipedia.org/wiki/Gregor_Mendel
+https://en.wikipedia.org/wiki/Gene
+https://en.wikipedia.org/wiki/Allele
+https://en.wikipedia.org/wiki/Population_genetics
+https://en.wikipedia.org/wiki/Hardy%E2%80%93Weinberg_principle
+https://en.wikipedia.org/wiki/Epigenetics
+https://en.wikipedia.org/wiki/Horizontal_gene_transfer
+
+# ── MACROEVOLUTION + PALEONTOLOGY ────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Macroevolution
+https://en.wikipedia.org/wiki/Speciation
+https://en.wikipedia.org/wiki/Mass_extinction
+https://en.wikipedia.org/wiki/Cambrian_explosion
+https://en.wikipedia.org/wiki/Fossil
+https://en.wikipedia.org/wiki/Phylogenetics
+https://en.wikipedia.org/wiki/Clade
+https://en.wikipedia.org/wiki/Human_evolution
+https://en.wikipedia.org/wiki/Homo_sapiens
+https://en.wikipedia.org/wiki/Neanderthal
+
+# ── EVOLUTIONARY PSYCHOLOGY + BEHAVIOR ──────────────────────────────────────
+https://en.wikipedia.org/wiki/Evolutionary_psychology
+https://en.wikipedia.org/wiki/Altruism
+https://en.wikipedia.org/wiki/Reciprocal_altruism
+https://en.wikipedia.org/wiki/Cooperation
+https://en.wikipedia.org/wiki/Tribalism
+https://en.wikipedia.org/wiki/Status_(social)
+https://en.wikipedia.org/wiki/Mating_systems_in_biology
+https://en.wikipedia.org/wiki/Parental_investment
+
+# ── CULTURAL + MEMETIC EVOLUTION ─────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Cultural_evolution
+https://en.wikipedia.org/wiki/Meme
+https://en.wikipedia.org/wiki/Richard_Dawkins
+https://en.wikipedia.org/wiki/The_Selfish_Gene
+https://en.wikipedia.org/wiki/Dual_inheritance_theory
+https://en.wikipedia.org/wiki/Language_evolution
+
+# ── EVO-DEVO + CUTTING EDGE ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Evolutionary_developmental_biology
+https://en.wikipedia.org/wiki/Hox_gene
+https://en.wikipedia.org/wiki/Phenotypic_plasticity
+https://en.wikipedia.org/wiki/Niche_construction
+https://en.wikipedia.org/wiki/Extended_evolutionary_synthesis
+https://en.wikipedia.org/wiki/Evolutionary_game_theory

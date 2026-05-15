@@ -1,0 +1,31 @@
+# ── Economics, Markets & Business ────────────────────────────────────────────
+# Broader context for understanding tech industry and markets
+# Run: python wiki_batch.py topics/economics_and_markets.txt --free
+
+# Market structure
+https://en.wikipedia.org/wiki/Network_effect
+https://en.wikipedia.org/wiki/Economies_of_scale
+https://en.wikipedia.org/wiki/Switching_costs
+https://en.wikipedia.org/wiki/Moat_(business)
+https://en.wikipedia.org/wiki/Platform_economy
+https://en.wikipedia.org/wiki/Two-sided_market
+
+# Tech industry dynamics
+https://en.wikipedia.org/wiki/Innovator%27s_dilemma
+https://en.wikipedia.org/wiki/Technology_adoption_life_cycle
+https://en.wikipedia.org/wiki/Open-source_software_movement
+https://en.wikipedia.org/wiki/Software_as_a_service
+https://en.wikipedia.org/wiki/Venture_capital
+
+# Incentive structures
+https://en.wikipedia.org/wiki/Principal%E2%80%93agent_problem
+https://en.wikipedia.org/wiki/Moral_hazard
+https://en.wikipedia.org/wiki/Adverse_selection
+https://en.wikipedia.org/wiki/Game_theory
+https://en.wikipedia.org/wiki/Nash_equilibrium
+
+# Data economy
+https://en.wikipedia.org/wiki/Data_economy
+https://en.wikipedia.org/wiki/Surveillance_capitalism
+https://en.wikipedia.org/wiki/Data_broker
+https://en.wikipedia.org/wiki/Right_to_be_forgotten

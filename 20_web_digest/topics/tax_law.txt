@@ -1,0 +1,77 @@
+# Tax Law — wiki_batch topic file
+# Federal, corporate, partnership, international, fund-specific tax treatment
+# Usage: python wiki_batch.py topics/tax_law.txt --free
+
+# ── FOUNDATIONS ──────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Taxation_in_the_United_States
+https://en.wikipedia.org/wiki/Internal_Revenue_Code
+https://en.wikipedia.org/wiki/Internal_Revenue_Service
+https://en.wikipedia.org/wiki/Income_tax_in_the_United_States
+https://en.wikipedia.org/wiki/Corporate_tax_in_the_United_States
+https://en.wikipedia.org/wiki/Tax_bracket
+https://en.wikipedia.org/wiki/Taxable_income
+https://en.wikipedia.org/wiki/Tax_deduction
+https://en.wikipedia.org/wiki/Tax_credit
+https://en.wikipedia.org/wiki/Tax_basis
+
+# ── CAPITAL GAINS + INVESTMENT INCOME ───────────────────────────────────────
+https://en.wikipedia.org/wiki/Capital_gains_tax_in_the_United_States
+https://en.wikipedia.org/wiki/Capital_gain
+https://en.wikipedia.org/wiki/Carried_interest
+https://en.wikipedia.org/wiki/Dividend_tax
+https://en.wikipedia.org/wiki/Qualified_dividend
+https://en.wikipedia.org/wiki/Net_investment_income_tax
+https://en.wikipedia.org/wiki/Mark-to-market_accounting
+https://en.wikipedia.org/wiki/Wash_sale
+
+# ── PARTNERSHIP + PASS-THROUGH TAXATION ─────────────────────────────────────
+https://en.wikipedia.org/wiki/Partnership_taxation_in_the_United_States
+https://en.wikipedia.org/wiki/Limited_partnership
+https://en.wikipedia.org/wiki/Limited_liability_company
+https://en.wikipedia.org/wiki/S_corporation
+https://en.wikipedia.org/wiki/Pass-through_entity
+https://en.wikipedia.org/wiki/Schedule_K-1
+https://en.wikipedia.org/wiki/Qualified_business_income_deduction
+
+# ── CORPORATE TAX ────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Corporate_tax
+https://en.wikipedia.org/wiki/Depreciation
+https://en.wikipedia.org/wiki/Amortization_(tax_law)
+https://en.wikipedia.org/wiki/Net_operating_loss
+https://en.wikipedia.org/wiki/Tax_Cuts_and_Jobs_Act_of_2017
+https://en.wikipedia.org/wiki/Alternative_minimum_tax
+https://en.wikipedia.org/wiki/Dividend_received_deduction
+
+# ── M&A TAX ──────────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Tax-free_reorganization
+https://en.wikipedia.org/wiki/Asset_purchase
+https://en.wikipedia.org/wiki/Stock_purchase
+https://en.wikipedia.org/wiki/338_election
+https://en.wikipedia.org/wiki/Tax_basis
+https://en.wikipedia.org/wiki/Like-kind_exchange
+https://en.wikipedia.org/wiki/Opportunity_zone
+
+# ── INTERNATIONAL TAX ────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/International_taxation
+https://en.wikipedia.org/wiki/Transfer_pricing
+https://en.wikipedia.org/wiki/Tax_treaty
+https://en.wikipedia.org/wiki/Foreign_tax_credit
+https://en.wikipedia.org/wiki/FATCA
+https://en.wikipedia.org/wiki/Base_erosion_and_profit_shifting
+https://en.wikipedia.org/wiki/OECD
+https://en.wikipedia.org/wiki/Tax_haven
+https://en.wikipedia.org/wiki/Controlled_foreign_corporation
+https://en.wikipedia.org/wiki/Global_minimum_corporate_tax_rate
+
+# ── FUND-SPECIFIC TAX ────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Regulated_investment_company
+https://en.wikipedia.org/wiki/Real_estate_investment_trust
+https://en.wikipedia.org/wiki/Unrelated_business_taxable_income
+https://en.wikipedia.org/wiki/Blocker_corporation
+https://en.wikipedia.org/wiki/Tax-exempt_organization
+
+# ── ESTATE + GIFT TAX ────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Estate_tax_in_the_United_States
+https://en.wikipedia.org/wiki/Gift_tax_in_the_United_States
+https://en.wikipedia.org/wiki/Generation-skipping_transfer_tax
+https://en.wikipedia.org/wiki/Stepped-up_basis

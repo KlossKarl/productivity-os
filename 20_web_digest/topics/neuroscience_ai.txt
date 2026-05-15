@@ -1,0 +1,64 @@
+# Neuroscience + AI — wiki_batch topic file
+# Where brain science and ML intersect — one of the most active research frontiers
+# Usage: python wiki_batch.py topics/neuroscience_ai.txt --free
+
+# ── BRAIN FUNDAMENTALS ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Neuron
+https://en.wikipedia.org/wiki/Synapse
+https://en.wikipedia.org/wiki/Action_potential
+https://en.wikipedia.org/wiki/Neural_circuit
+https://en.wikipedia.org/wiki/Cerebral_cortex
+https://en.wikipedia.org/wiki/Prefrontal_cortex
+https://en.wikipedia.org/wiki/Hippocampus
+https://en.wikipedia.org/wiki/Amygdala
+https://en.wikipedia.org/wiki/Basal_ganglia
+https://en.wikipedia.org/wiki/Cerebellum
+
+# ── COMPUTATIONAL NEUROSCIENCE ───────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Computational_neuroscience
+https://en.wikipedia.org/wiki/Predictive_coding
+https://en.wikipedia.org/wiki/Free_energy_principle
+https://en.wikipedia.org/wiki/Hebbian_learning
+https://en.wikipedia.org/wiki/Spike-timing-dependent_plasticity
+https://en.wikipedia.org/wiki/Neural_coding
+https://en.wikipedia.org/wiki/Population_coding
+https://en.wikipedia.org/wiki/Attractor_network
+https://en.wikipedia.org/wiki/Hopfield_network
+https://en.wikipedia.org/wiki/Integrate-and-fire_model
+
+# ── LEARNING + MEMORY ────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Long-term_potentiation
+https://en.wikipedia.org/wiki/Memory_consolidation
+https://en.wikipedia.org/wiki/Working_memory
+https://en.wikipedia.org/wiki/Episodic_memory
+https://en.wikipedia.org/wiki/Semantic_memory
+https://en.wikipedia.org/wiki/Neuroplasticity
+https://en.wikipedia.org/wiki/Adult_neurogenesis
+
+# ── AI-NEUROSCIENCE BRIDGES ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Spiking_neural_network
+https://en.wikipedia.org/wiki/Neuromorphic_computing
+https://en.wikipedia.org/wiki/Deep_learning
+https://en.wikipedia.org/wiki/Reinforcement_learning
+https://en.wikipedia.org/wiki/Reward_system
+https://en.wikipedia.org/wiki/Dopamine
+https://en.wikipedia.org/wiki/Temporal_difference_learning
+https://en.wikipedia.org/wiki/Attention_(machine_learning)
+https://en.wikipedia.org/wiki/Consciousness
+https://en.wikipedia.org/wiki/Global_workspace_theory
+https://en.wikipedia.org/wiki/Integrated_information_theory
+
+# ── BRAIN-COMPUTER INTERFACES ────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Brain%E2%80%93computer_interface
+https://en.wikipedia.org/wiki/Electroencephalography
+https://en.wikipedia.org/wiki/Functional_magnetic_resonance_imaging
+https://en.wikipedia.org/wiki/Neuroprosthetics
+https://en.wikipedia.org/wiki/Neuralink
+
+# ── DISEASE + CLINICAL AI ────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Alzheimer%27s_disease
+https://en.wikipedia.org/wiki/Parkinson%27s_disease
+https://en.wikipedia.org/wiki/Depression_(mood)
+https://en.wikipedia.org/wiki/Schizophrenia
+https://en.wikipedia.org/wiki/Neuroimaging
+https://en.wikipedia.org/wiki/Digital_biomarker

@@ -1,0 +1,28 @@
+# ── Cutting Edge AI — HN Threads Worth Digesting ────────────────────────────
+# High-signal recent discussions. Run with 600 comments for full depth.
+# Run: python wiki_batch.py topics/cutting_edge_hn.txt --free --max-comments 600
+
+# Agent systems and reasoning
+https://news.ycombinator.com/item?id=39401393
+# ^ "Anthropic's Claude 3" launch thread — rich discussion on capability jumps
+
+https://news.ycombinator.com/item?id=40363773
+# ^ "Show HN: I made an agent that reads my email" — practical agent design
+
+https://news.ycombinator.com/item?id=38970477
+# ^ "Mixture of Experts explained" — technical deep dive
+
+# RAG and knowledge systems (directly relevant)
+https://news.ycombinator.com/item?id=38189070
+# ^ "Ask HN: How are you using LLMs in production?"
+
+https://news.ycombinator.com/item?id=39519286
+# ^ "GraphRAG: Unlocking LLM discovery on narrative private data"
+
+# Local LLMs and self-hosting
+https://news.ycombinator.com/item?id=38512754
+# ^ "Run Llama 2 locally" — best practices thread
+
+# Lobsters — smaller but higher signal
+https://lobste.rs/s/ypzsop/what_are_you_doing_this_week
+# ^ Weekly "what are you working on" — good signal on what practitioners actually build

@@ -1,0 +1,55 @@
+# Weather + Earth Systems — wiki_batch topic file
+# Meteorology, ocean systems, AI weather prediction — huge 2025-2026 frontier
+# Usage: python wiki_batch.py topics/weather_earth_systems.txt --free
+
+# ── ATMOSPHERIC SCIENCE ──────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Meteorology
+https://en.wikipedia.org/wiki/Atmosphere_of_Earth
+https://en.wikipedia.org/wiki/Weather
+https://en.wikipedia.org/wiki/Tropical_cyclone
+https://en.wikipedia.org/wiki/Tornado
+https://en.wikipedia.org/wiki/Jet_stream
+https://en.wikipedia.org/wiki/El_Ni%C3%B1o%E2%80%93Southern_Oscillation
+https://en.wikipedia.org/wiki/Atmospheric_convection
+https://en.wikipedia.org/wiki/Precipitation
+https://en.wikipedia.org/wiki/Thunderstorm
+
+# ── WEATHER PREDICTION + AI ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Numerical_weather_prediction
+https://en.wikipedia.org/wiki/Weather_forecasting
+https://en.wikipedia.org/wiki/Ensemble_forecasting
+https://en.wikipedia.org/wiki/Data_assimilation
+https://en.wikipedia.org/wiki/GraphCast
+https://en.wikipedia.org/wiki/Pangu-Weather
+https://en.wikipedia.org/wiki/Neural_network
+https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)
+https://en.wikipedia.org/wiki/Chaos_theory
+
+# ── OCEAN + EARTH SYSTEMS ────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Oceanography
+https://en.wikipedia.org/wiki/Ocean_current
+https://en.wikipedia.org/wiki/Thermohaline_circulation
+https://en.wikipedia.org/wiki/Plate_tectonics
+https://en.wikipedia.org/wiki/Earthquake
+https://en.wikipedia.org/wiki/Volcano
+https://en.wikipedia.org/wiki/Hydrological_cycle
+https://en.wikipedia.org/wiki/Groundwater
+https://en.wikipedia.org/wiki/Deforestation
+https://en.wikipedia.org/wiki/Biodiversity
+
+# ── REMOTE SENSING + EARTH OBSERVATION ──────────────────────────────────────
+https://en.wikipedia.org/wiki/Remote_sensing
+https://en.wikipedia.org/wiki/Earth_observation_satellite
+https://en.wikipedia.org/wiki/Synthetic-aperture_radar
+https://en.wikipedia.org/wiki/LiDAR
+https://en.wikipedia.org/wiki/Geographic_information_system
+https://en.wikipedia.org/wiki/Digital_elevation_model
+https://en.wikipedia.org/wiki/Computer_vision
+
+# ── NATURAL DISASTERS + RESILIENCE ──────────────────────────────────────────
+https://en.wikipedia.org/wiki/Natural_disaster
+https://en.wikipedia.org/wiki/Flood
+https://en.wikipedia.org/wiki/Wildfire
+https://en.wikipedia.org/wiki/Drought
+https://en.wikipedia.org/wiki/Early_warning_system
+https://en.wikipedia.org/wiki/Disaster_risk_reduction

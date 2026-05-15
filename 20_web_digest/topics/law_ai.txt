@@ -1,0 +1,61 @@
+# Law + AI — wiki_batch topic file
+# Legal foundations + AI/tech law frontier — for legal tech practitioners and lawyers
+# Usage: python wiki_batch.py topics/law_ai.txt --free
+
+# ── LEGAL FOUNDATIONS ────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Common_law
+https://en.wikipedia.org/wiki/Contract
+https://en.wikipedia.org/wiki/Tort
+https://en.wikipedia.org/wiki/Negligence
+https://en.wikipedia.org/wiki/Strict_liability
+https://en.wikipedia.org/wiki/Due_process
+https://en.wikipedia.org/wiki/Burden_of_proof_(law)
+https://en.wikipedia.org/wiki/Precedent
+https://en.wikipedia.org/wiki/Statutory_interpretation
+https://en.wikipedia.org/wiki/Administrative_law
+
+# ── INTELLECTUAL PROPERTY ────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Intellectual_property
+https://en.wikipedia.org/wiki/Copyright
+https://en.wikipedia.org/wiki/Patent
+https://en.wikipedia.org/wiki/Trade_secret
+https://en.wikipedia.org/wiki/Trademark
+https://en.wikipedia.org/wiki/Fair_use
+https://en.wikipedia.org/wiki/Digital_Millennium_Copyright_Act
+https://en.wikipedia.org/wiki/Open-source_license
+https://en.wikipedia.org/wiki/Creative_Commons_license
+
+# ── AI + TECHNOLOGY LAW ──────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Artificial_intelligence_and_intellectual_property
+https://en.wikipedia.org/wiki/AI_regulation
+https://en.wikipedia.org/wiki/Algorithmic_accountability
+https://en.wikipedia.org/wiki/Automated_decision-making
+https://en.wikipedia.org/wiki/Explainable_artificial_intelligence
+https://en.wikipedia.org/wiki/Deepfake
+https://en.wikipedia.org/wiki/Liability_for_artificial_intelligence
+
+# ── DATA + PRIVACY LAW ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/General_Data_Protection_Regulation
+https://en.wikipedia.org/wiki/California_Consumer_Privacy_Act
+https://en.wikipedia.org/wiki/Right_to_be_forgotten
+https://en.wikipedia.org/wiki/Data_sovereignty
+https://en.wikipedia.org/wiki/Surveillance_capitalism
+https://en.wikipedia.org/wiki/Fourth_Amendment_to_the_United_States_Constitution
+
+# ── FINANCIAL + SECURITIES LAW ───────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Securities_regulation_in_the_United_States
+https://en.wikipedia.org/wiki/Securities_fraud
+https://en.wikipedia.org/wiki/Insider_trading
+https://en.wikipedia.org/wiki/Market_manipulation
+https://en.wikipedia.org/wiki/Dodd%E2%80%93Frank_Wall_Street_Reform_and_Consumer_Protection_Act
+https://en.wikipedia.org/wiki/MiFID_II
+https://en.wikipedia.org/wiki/Cryptocurrency_regulation
+https://en.wikipedia.org/wiki/Anti-money_laundering
+
+# ── LEGAL TECH ───────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Legal_technology
+https://en.wikipedia.org/wiki/Electronic_discovery
+https://en.wikipedia.org/wiki/Natural_language_processing
+https://en.wikipedia.org/wiki/Contract_management
+https://en.wikipedia.org/wiki/Smart_contract
+https://en.wikipedia.org/wiki/Online_dispute_resolution

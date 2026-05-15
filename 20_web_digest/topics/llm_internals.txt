@@ -1,0 +1,38 @@
+# ── LLM Internals & Training ─────────────────────────────────────────────────
+# How large language models actually work under the hood
+# Run: python wiki_batch.py topics/llm_internals.txt --free
+
+# Core transformer mechanics
+https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)
+https://en.wikipedia.org/wiki/Attention_(machine_learning)
+https://en.wikipedia.org/wiki/Positional_encoding
+https://en.wikipedia.org/wiki/Layer_normalization
+https://en.wikipedia.org/wiki/Residual_neural_network
+https://en.wikipedia.org/wiki/Mixture_of_experts
+
+# Training techniques
+https://en.wikipedia.org/wiki/Transfer_learning
+https://en.wikipedia.org/wiki/Fine-tuning_(deep_learning)
+https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback
+https://en.wikipedia.org/wiki/Constitutional_AI
+https://en.wikipedia.org/wiki/Prompt_engineering
+https://en.wikipedia.org/wiki/In-context_learning_(natural_language_processing)
+https://en.wikipedia.org/wiki/Chain-of-thought_prompting
+
+# Scaling and efficiency
+https://en.wikipedia.org/wiki/Scaling_hypothesis
+https://en.wikipedia.org/wiki/Neural_scaling_law
+https://en.wikipedia.org/wiki/Quantization_(machine_learning)
+https://en.wikipedia.org/wiki/Knowledge_distillation
+https://en.wikipedia.org/wiki/Low-rank_adaptation
+https://en.wikipedia.org/wiki/Flash_attention
+
+# Evaluation and benchmarks
+https://en.wikipedia.org/wiki/BLEU
+https://en.wikipedia.org/wiki/Perplexity
+https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)
+https://en.wikipedia.org/wiki/Emergent_abilities_of_large_language_models
+
+# Tokenization
+https://en.wikipedia.org/wiki/Byte_pair_encoding
+https://en.wikipedia.org/wiki/SentencePiece

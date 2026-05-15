@@ -1,0 +1,71 @@
+# M&A + Corporate Transactions — wiki_batch topic file
+# Deals, deal structures, diligence, documentation — for corporate/transactional lawyers
+# Usage: python wiki_batch.py topics/mergers_acquisitions.txt --free
+
+# ── M&A FOUNDATIONS ──────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Mergers_and_acquisitions
+https://en.wikipedia.org/wiki/Takeover
+https://en.wikipedia.org/wiki/Leveraged_buyout
+https://en.wikipedia.org/wiki/Management_buyout
+https://en.wikipedia.org/wiki/Hostile_takeover
+https://en.wikipedia.org/wiki/Reverse_merger
+https://en.wikipedia.org/wiki/Special-purpose_acquisition_company
+https://en.wikipedia.org/wiki/Tuck-in_acquisition
+
+# ── DEAL STRUCTURES ──────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Asset_purchase_agreement
+https://en.wikipedia.org/wiki/Stock_purchase_agreement
+https://en.wikipedia.org/wiki/Merger_agreement
+https://en.wikipedia.org/wiki/Letter_of_intent
+https://en.wikipedia.org/wiki/Term_sheet
+https://en.wikipedia.org/wiki/Earn-out
+https://en.wikipedia.org/wiki/Seller_financing
+https://en.wikipedia.org/wiki/Escrow
+https://en.wikipedia.org/wiki/Rollover_equity
+https://en.wikipedia.org/wiki/Working_capital
+
+# ── LEGAL DOCUMENTATION ──────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Representations_and_warranties
+https://en.wikipedia.org/wiki/Indemnification
+https://en.wikipedia.org/wiki/Non-compete_clause
+https://en.wikipedia.org/wiki/Non-disclosure_agreement
+https://en.wikipedia.org/wiki/Employment_contract
+https://en.wikipedia.org/wiki/Stock_option
+https://en.wikipedia.org/wiki/Vesting
+https://en.wikipedia.org/wiki/Restrictive_covenant
+
+# ── DUE DILIGENCE ────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Due_diligence
+https://en.wikipedia.org/wiki/Legal_due_diligence
+https://en.wikipedia.org/wiki/Financial_due_diligence
+https://en.wikipedia.org/wiki/Data_room
+https://en.wikipedia.org/wiki/Material_adverse_change
+https://en.wikipedia.org/wiki/Representations_and_warranties_insurance
+
+# ── CORPORATE GOVERNANCE ─────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Corporate_governance
+https://en.wikipedia.org/wiki/Board_of_directors
+https://en.wikipedia.org/wiki/Fiduciary_duty
+https://en.wikipedia.org/wiki/Business_judgment_rule
+https://en.wikipedia.org/wiki/Shareholder_rights
+https://en.wikipedia.org/wiki/Delaware_General_Corporation_Law
+https://en.wikipedia.org/wiki/Piercing_the_corporate_veil
+https://en.wikipedia.org/wiki/Officer_and_director_liability
+
+# ── ANTITRUST + REGULATORY ───────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Antitrust_law
+https://en.wikipedia.org/wiki/Hart%E2%80%93Scott%E2%80%93Rodino_Antitrust_Improvements_Act
+https://en.wikipedia.org/wiki/Clayton_Act
+https://en.wikipedia.org/wiki/Sherman_Antitrust_Act
+https://en.wikipedia.org/wiki/Committee_on_Foreign_Investment_in_the_United_States
+https://en.wikipedia.org/wiki/Regulatory_approval
+
+# ── FINANCING + CAPITAL STRUCTURE ────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Capital_structure
+https://en.wikipedia.org/wiki/Debt_financing
+https://en.wikipedia.org/wiki/Syndicated_loan
+https://en.wikipedia.org/wiki/Bridge_loan
+https://en.wikipedia.org/wiki/Commitment_letter
+https://en.wikipedia.org/wiki/Debt_covenants
+https://en.wikipedia.org/wiki/Intercreditor_agreement
+https://en.wikipedia.org/wiki/Subordination_(finance)

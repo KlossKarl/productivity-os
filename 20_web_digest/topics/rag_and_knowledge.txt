@@ -1,0 +1,40 @@
+# ── RAG, Knowledge Systems & Information Retrieval ───────────────────────────
+# Directly relevant to what you're building
+# Run: python wiki_batch.py topics/rag_and_knowledge.txt --free
+
+# Retrieval and RAG
+https://en.wikipedia.org/wiki/Retrieval-augmented_generation
+https://en.wikipedia.org/wiki/Information_retrieval
+https://en.wikipedia.org/wiki/Semantic_search
+https://en.wikipedia.org/wiki/Vector_space_model
+https://en.wikipedia.org/wiki/Tf%E2%80%93idf
+https://en.wikipedia.org/wiki/BM25
+
+# Vector databases and embeddings
+https://en.wikipedia.org/wiki/Word_embedding
+https://en.wikipedia.org/wiki/Sentence_embedding
+https://en.wikipedia.org/wiki/Nearest_neighbor_search
+https://en.wikipedia.org/wiki/Locality-sensitive_hashing
+
+# Knowledge graphs
+https://en.wikipedia.org/wiki/Knowledge_graph
+https://en.wikipedia.org/wiki/Ontology_(information_science)
+https://en.wikipedia.org/wiki/Graph_database
+https://en.wikipedia.org/wiki/Resource_Description_Framework
+https://en.wikipedia.org/wiki/Named_entity_recognition
+https://en.wikipedia.org/wiki/Relation_extraction
+https://en.wikipedia.org/wiki/Entity_linking
+https://en.wikipedia.org/wiki/Coreference_resolution
+
+# Personal knowledge management
+https://en.wikipedia.org/wiki/Personal_knowledge_management
+https://en.wikipedia.org/wiki/Personal_knowledge_base
+https://en.wikipedia.org/wiki/Zettelkasten
+https://en.wikipedia.org/wiki/Memex
+https://en.wikipedia.org/wiki/Vannevar_Bush
+
+# Database systems relevant to the stack
+https://en.wikipedia.org/wiki/Graph_database
+https://en.wikipedia.org/wiki/Neo4j
+https://en.wikipedia.org/wiki/SQLite
+https://en.wikipedia.org/wiki/Vector_database

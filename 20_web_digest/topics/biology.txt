@@ -1,0 +1,83 @@
+# Biology — wiki_batch topic file
+# Cell to ecosystem: comprehensive biology across scales
+# Usage: python wiki_batch.py topics/biology.txt --free
+
+# ── CELL BIOLOGY ─────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Cell_(biology)
+https://en.wikipedia.org/wiki/Cell_membrane
+https://en.wikipedia.org/wiki/Mitochondrion
+https://en.wikipedia.org/wiki/Nucleus_(cell)
+https://en.wikipedia.org/wiki/Ribosome
+https://en.wikipedia.org/wiki/Endoplasmic_reticulum
+https://en.wikipedia.org/wiki/Cell_division
+https://en.wikipedia.org/wiki/Mitosis
+https://en.wikipedia.org/wiki/Meiosis
+https://en.wikipedia.org/wiki/Apoptosis
+https://en.wikipedia.org/wiki/Stem_cell
+
+# ── MOLECULAR BIOLOGY ────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/DNA
+https://en.wikipedia.org/wiki/RNA
+https://en.wikipedia.org/wiki/Protein
+https://en.wikipedia.org/wiki/Enzyme
+https://en.wikipedia.org/wiki/Metabolism
+https://en.wikipedia.org/wiki/ATP
+https://en.wikipedia.org/wiki/Photosynthesis
+https://en.wikipedia.org/wiki/Cellular_respiration
+https://en.wikipedia.org/wiki/Gene_expression
+https://en.wikipedia.org/wiki/Epigenetics
+https://en.wikipedia.org/wiki/CRISPR
+
+# ── MICROBIOLOGY ─────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Bacteria
+https://en.wikipedia.org/wiki/Virus
+https://en.wikipedia.org/wiki/Fungi
+https://en.wikipedia.org/wiki/Microbiome
+https://en.wikipedia.org/wiki/Gut–brain_axis
+https://en.wikipedia.org/wiki/Antibiotic_resistance
+https://en.wikipedia.org/wiki/Prion
+https://en.wikipedia.org/wiki/Bacteriophage
+
+# ── PHYSIOLOGY ───────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Human_body
+https://en.wikipedia.org/wiki/Immune_system
+https://en.wikipedia.org/wiki/Nervous_system
+https://en.wikipedia.org/wiki/Endocrine_system
+https://en.wikipedia.org/wiki/Cardiovascular_system
+https://en.wikipedia.org/wiki/Homeostasis
+https://en.wikipedia.org/wiki/Circadian_rhythm
+https://en.wikipedia.org/wiki/Hormone
+https://en.wikipedia.org/wiki/Inflammation
+
+# ── ECOLOGY ──────────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Ecology
+https://en.wikipedia.org/wiki/Ecosystem
+https://en.wikipedia.org/wiki/Food_web
+https://en.wikipedia.org/wiki/Trophic_level
+https://en.wikipedia.org/wiki/Keystone_species
+https://en.wikipedia.org/wiki/Symbiosis
+https://en.wikipedia.org/wiki/Predation
+https://en.wikipedia.org/wiki/Biodiversity
+https://en.wikipedia.org/wiki/Invasive_species
+https://en.wikipedia.org/wiki/Extinction
+
+# ── ANIMAL BEHAVIOR ──────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Ethology
+https://en.wikipedia.org/wiki/Animal_cognition
+https://en.wikipedia.org/wiki/Tool_use_by_animals
+https://en.wikipedia.org/wiki/Animal_communication
+https://en.wikipedia.org/wiki/Swarm_behaviour
+https://en.wikipedia.org/wiki/Migration_(animals)
+https://en.wikipedia.org/wiki/Camouflage
+https://en.wikipedia.org/wiki/Bioluminescence
+
+# ── NATURE'S ENGINEERING ─────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Biomimicry
+https://en.wikipedia.org/wiki/Mycelium
+https://en.wikipedia.org/wiki/Slime_mold
+https://en.wikipedia.org/wiki/Ant_colony
+https://en.wikipedia.org/wiki/Coral_reef
+https://en.wikipedia.org/wiki/Spider_silk
+https://en.wikipedia.org/wiki/Tardigrade
+https://en.wikipedia.org/wiki/Extremophile
+https://en.wikipedia.org/wiki/Quorum_sensing

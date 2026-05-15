@@ -1,0 +1,37 @@
+# ── Multimodal AI & Computer Vision ──────────────────────────────────────────
+# Vision, audio, and cross-modal AI — rapidly becoming central
+# Run: python wiki_batch.py topics/multimodal_ai.txt --free
+
+# Computer vision
+https://en.wikipedia.org/wiki/Computer_vision
+https://en.wikipedia.org/wiki/Image_recognition
+https://en.wikipedia.org/wiki/Object_detection
+https://en.wikipedia.org/wiki/Semantic_segmentation
+https://en.wikipedia.org/wiki/Convolutional_neural_network
+https://en.wikipedia.org/wiki/ResNet
+
+# Generative models
+https://en.wikipedia.org/wiki/Generative_adversarial_network
+https://en.wikipedia.org/wiki/Diffusion_model
+https://en.wikipedia.org/wiki/Variational_autoencoder
+https://en.wikipedia.org/wiki/DALL-E
+https://en.wikipedia.org/wiki/Stable_Diffusion
+
+# Multimodal and cross-modal
+https://en.wikipedia.org/wiki/Multimodal_learning
+https://en.wikipedia.org/wiki/Contrastive_Language-Image_Pre-training
+https://en.wikipedia.org/wiki/Vision_transformer
+https://en.wikipedia.org/wiki/Visual_question_answering
+https://en.wikipedia.org/wiki/Image_captioning
+
+# Speech and audio
+https://en.wikipedia.org/wiki/Speech_recognition
+https://en.wikipedia.org/wiki/Text-to-speech
+https://en.wikipedia.org/wiki/Speaker_diarisation
+https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system)
+
+# Robotics and embodied AI
+https://en.wikipedia.org/wiki/Robotics
+https://en.wikipedia.org/wiki/Embodied_cognition
+https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping
+https://en.wikipedia.org/wiki/Robot_learning

@@ -1,0 +1,68 @@
+# Politics + Political Theory — wiki_batch topic file
+# From Plato to modern democracy, populism, and political AI
+# Usage: python wiki_batch.py topics/politics.txt --free
+
+# ── POLITICAL PHILOSOPHY ─────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Political_philosophy
+https://en.wikipedia.org/wiki/Social_contract
+https://en.wikipedia.org/wiki/Thomas_Hobbes
+https://en.wikipedia.org/wiki/John_Locke
+https://en.wikipedia.org/wiki/Jean-Jacques_Rousseau
+https://en.wikipedia.org/wiki/Montesquieu
+https://en.wikipedia.org/wiki/John_Stuart_Mill
+https://en.wikipedia.org/wiki/Karl_Marx
+https://en.wikipedia.org/wiki/Hannah_Arendt
+https://en.wikipedia.org/wiki/John_Rawls
+https://en.wikipedia.org/wiki/Isaiah_Berlin
+
+# ── POLITICAL SYSTEMS ────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Democracy
+https://en.wikipedia.org/wiki/Liberal_democracy
+https://en.wikipedia.org/wiki/Authoritarianism
+https://en.wikipedia.org/wiki/Totalitarianism
+https://en.wikipedia.org/wiki/Fascism
+https://en.wikipedia.org/wiki/Communism
+https://en.wikipedia.org/wiki/Socialism
+https://en.wikipedia.org/wiki/Libertarianism
+https://en.wikipedia.org/wiki/Anarchism
+https://en.wikipedia.org/wiki/Federalism
+
+# ── DEMOCRATIC THEORY + INSTITUTIONS ────────────────────────────────────────
+https://en.wikipedia.org/wiki/Separation_of_powers
+https://en.wikipedia.org/wiki/Checks_and_balances
+https://en.wikipedia.org/wiki/Rule_of_law
+https://en.wikipedia.org/wiki/Civil_liberties
+https://en.wikipedia.org/wiki/Voting
+https://en.wikipedia.org/wiki/Electoral_system
+https://en.wikipedia.org/wiki/Gerrymandering
+https://en.wikipedia.org/wiki/Political_party
+https://en.wikipedia.org/wiki/Lobbying
+https://en.wikipedia.org/wiki/Propaganda
+
+# ── MODERN POLITICAL DYNAMICS ────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Populism
+https://en.wikipedia.org/wiki/Polarization_(politics)
+https://en.wikipedia.org/wiki/Political_polarization
+https://en.wikipedia.org/wiki/Misinformation
+https://en.wikipedia.org/wiki/Social_media_and_political_communication
+https://en.wikipedia.org/wiki/Filter_bubble
+https://en.wikipedia.org/wiki/Post-truth_politics
+https://en.wikipedia.org/wiki/Nationalism
+https://en.wikipedia.org/wiki/Technocracy
+
+# ── POWER + GOVERNANCE ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Power_(social_and_political)
+https://en.wikipedia.org/wiki/Legitimacy_(political)
+https://en.wikipedia.org/wiki/State_(polity)
+https://en.wikipedia.org/wiki/Bureaucracy
+https://en.wikipedia.org/wiki/Public_policy
+https://en.wikipedia.org/wiki/Regulatory_capture
+https://en.wikipedia.org/wiki/Deep_state
+
+# ── AI + POLITICS ────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Computational_propaganda
+https://en.wikipedia.org/wiki/Disinformation
+https://en.wikipedia.org/wiki/Deepfake
+https://en.wikipedia.org/wiki/Algorithmic_accountability
+https://en.wikipedia.org/wiki/Surveillance_capitalism
+https://en.wikipedia.org/wiki/Digital_democracy

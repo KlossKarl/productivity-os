@@ -1,0 +1,52 @@
+# Geopolitics + International Relations — wiki_batch topic file
+# Power dynamics, technology competition, global institutions
+# Usage: python wiki_batch.py topics/geopolitics.txt --free
+
+# ── IR THEORY + FOUNDATIONS ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/International_relations
+https://en.wikipedia.org/wiki/Realism_(international_relations)
+https://en.wikipedia.org/wiki/Liberalism_(international_relations)
+https://en.wikipedia.org/wiki/Constructivism_(international_relations)
+https://en.wikipedia.org/wiki/Balance_of_power_(international_relations)
+https://en.wikipedia.org/wiki/Hegemony
+https://en.wikipedia.org/wiki/Soft_power
+https://en.wikipedia.org/wiki/Deterrence_theory
+https://en.wikipedia.org/wiki/Nuclear_warfare
+
+# ── MAJOR POWER COMPETITION ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/United_States%E2%80%93China_relations
+https://en.wikipedia.org/wiki/Thucydides_trap
+https://en.wikipedia.org/wiki/Belt_and_Road_Initiative
+https://en.wikipedia.org/wiki/Taiwan_Strait
+https://en.wikipedia.org/wiki/NATO
+https://en.wikipedia.org/wiki/BRICS
+https://en.wikipedia.org/wiki/De-dollarization
+
+# ── TECHNOLOGY + GEOPOLITICS ─────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Techno-nationalism
+https://en.wikipedia.org/wiki/Semiconductor_industry
+https://en.wikipedia.org/wiki/Export_control
+https://en.wikipedia.org/wiki/Cyberwarfare
+https://en.wikipedia.org/wiki/Information_warfare
+https://en.wikipedia.org/wiki/Artificial_intelligence_arms_race
+https://en.wikipedia.org/wiki/Surveillance_state
+https://en.wikipedia.org/wiki/Internet_censorship
+https://en.wikipedia.org/wiki/Splinternet
+
+# ── GLOBAL INSTITUTIONS ──────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/United_Nations
+https://en.wikipedia.org/wiki/World_Trade_Organization
+https://en.wikipedia.org/wiki/International_Monetary_Fund
+https://en.wikipedia.org/wiki/World_Bank
+https://en.wikipedia.org/wiki/G7
+https://en.wikipedia.org/wiki/G20
+https://en.wikipedia.org/wiki/World_Economic_Forum
+
+# ── CONFLICT + SECURITY ──────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Hybrid_warfare
+https://en.wikipedia.org/wiki/Drone_warfare
+https://en.wikipedia.org/wiki/Autonomous_weapon
+https://en.wikipedia.org/wiki/Sanctions_(law)
+https://en.wikipedia.org/wiki/Energy_security
+https://en.wikipedia.org/wiki/Food_security
+https://en.wikipedia.org/wiki/Water_security

@@ -1,0 +1,45 @@
+# ── ML & AI Foundations ──────────────────────────────────────────────────────
+# Core concepts every ML practitioner should have indexed
+# Run: python wiki_batch.py topics/ml_foundations.txt --free
+
+# Neural network fundamentals
+https://en.wikipedia.org/wiki/Artificial_neural_network
+https://en.wikipedia.org/wiki/Backpropagation
+https://en.wikipedia.org/wiki/Gradient_descent
+https://en.wikipedia.org/wiki/Overfitting
+https://en.wikipedia.org/wiki/Regularization_(mathematics)
+https://en.wikipedia.org/wiki/Activation_function
+
+# Architectures
+https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)
+https://en.wikipedia.org/wiki/Attention_(machine_learning)
+https://en.wikipedia.org/wiki/Long_short-term_memory
+https://en.wikipedia.org/wiki/Convolutional_neural_network
+https://en.wikipedia.org/wiki/Generative_adversarial_network
+https://en.wikipedia.org/wiki/Variational_autoencoder
+https://en.wikipedia.org/wiki/Diffusion_model
+
+# Learning theory
+https://en.wikipedia.org/wiki/Probably_approximately_correct_learning
+https://en.wikipedia.org/wiki/VC_dimension
+https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff
+https://en.wikipedia.org/wiki/No_free_lunch_theorem
+
+# Reinforcement learning
+https://en.wikipedia.org/wiki/Reinforcement_learning
+https://en.wikipedia.org/wiki/Q-learning
+https://en.wikipedia.org/wiki/Markov_decision_process
+https://en.wikipedia.org/wiki/Proximal_policy_optimization
+
+# NLP / LLMs
+https://en.wikipedia.org/wiki/Large_language_model
+https://en.wikipedia.org/wiki/Word2vec
+https://en.wikipedia.org/wiki/BERT_(language_model)
+https://en.wikipedia.org/wiki/GPT-3
+https://en.wikipedia.org/wiki/Tokenization_(data_security)
+
+# AI safety and alignment
+https://en.wikipedia.org/wiki/AI_alignment
+https://en.wikipedia.org/wiki/AI_safety
+https://en.wikipedia.org/wiki/Instrumental_convergence
+https://en.wikipedia.org/wiki/Existential_risk_from_artificial_general_intelligence

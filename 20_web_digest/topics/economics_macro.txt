@@ -1,0 +1,57 @@
+# Economics + Macro — wiki_batch topic file
+# Macro theory, behavioral economics, complexity economics, global systems
+# Usage: python wiki_batch.py topics/economics_macro.txt --free
+
+# ── MACRO FOUNDATIONS ────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Macroeconomics
+https://en.wikipedia.org/wiki/Gross_domestic_product
+https://en.wikipedia.org/wiki/Inflation
+https://en.wikipedia.org/wiki/Monetary_policy
+https://en.wikipedia.org/wiki/Fiscal_policy
+https://en.wikipedia.org/wiki/Interest_rate
+https://en.wikipedia.org/wiki/Yield_curve
+https://en.wikipedia.org/wiki/Business_cycle
+https://en.wikipedia.org/wiki/Recession
+https://en.wikipedia.org/wiki/Phillips_curve
+https://en.wikipedia.org/wiki/Quantitative_easing
+https://en.wikipedia.org/wiki/Modern_monetary_theory
+
+# ── TRADE + GLOBAL SYSTEMS ───────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/International_trade
+https://en.wikipedia.org/wiki/Comparative_advantage
+https://en.wikipedia.org/wiki/Balance_of_payments
+https://en.wikipedia.org/wiki/Exchange_rate
+https://en.wikipedia.org/wiki/Currency_war
+https://en.wikipedia.org/wiki/Global_supply_chain
+https://en.wikipedia.org/wiki/Deglobalization
+https://en.wikipedia.org/wiki/Bretton_Woods_system
+https://en.wikipedia.org/wiki/Petrodollar
+
+# ── BEHAVIORAL + COMPLEXITY ECONOMICS ───────────────────────────────────────
+https://en.wikipedia.org/wiki/Behavioral_economics
+https://en.wikipedia.org/wiki/Prospect_theory
+https://en.wikipedia.org/wiki/Nudge_theory
+https://en.wikipedia.org/wiki/Game_theory
+https://en.wikipedia.org/wiki/Nash_equilibrium
+https://en.wikipedia.org/wiki/Mechanism_design
+https://en.wikipedia.org/wiki/Complexity_economics
+https://en.wikipedia.org/wiki/Agent-based_model
+https://en.wikipedia.org/wiki/Network_effect
+https://en.wikipedia.org/wiki/Information_asymmetry
+
+# ── INEQUALITY + DEVELOPMENT ─────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Economic_inequality
+https://en.wikipedia.org/wiki/Gini_coefficient
+https://en.wikipedia.org/wiki/Human_Development_Index
+https://en.wikipedia.org/wiki/Poverty_trap
+https://en.wikipedia.org/wiki/Universal_basic_income
+https://en.wikipedia.org/wiki/Automation
+https://en.wikipedia.org/wiki/Technological_unemployment
+
+# ── AI + ECONOMICS ───────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Algorithmic_pricing
+https://en.wikipedia.org/wiki/Auction_theory
+https://en.wikipedia.org/wiki/Prediction_market
+https://en.wikipedia.org/wiki/Econometrics
+https://en.wikipedia.org/wiki/Causal_inference
+https://en.wikipedia.org/wiki/Natural_experiment

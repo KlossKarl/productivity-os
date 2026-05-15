@@ -1,0 +1,71 @@
+# AI + ML Frontier — wiki_batch topic file
+# Cutting edge as of 2026: architectures, training methods, agents, alignment
+# Usage: python wiki_batch.py topics/ai_frontier.txt --free
+
+# ── FOUNDATION MODELS + ARCHITECTURES ───────────────────────────────────────
+https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)
+https://en.wikipedia.org/wiki/Attention_(machine_learning)
+https://en.wikipedia.org/wiki/Large_language_model
+https://en.wikipedia.org/wiki/Generative_pre-trained_transformer
+https://en.wikipedia.org/wiki/BERT_(language_model)
+https://en.wikipedia.org/wiki/Mixture_of_experts
+https://en.wikipedia.org/wiki/Diffusion_model
+https://en.wikipedia.org/wiki/Variational_autoencoder
+https://en.wikipedia.org/wiki/Generative_adversarial_network
+https://en.wikipedia.org/wiki/Autoencoder
+https://en.wikipedia.org/wiki/Recurrent_neural_network
+https://en.wikipedia.org/wiki/Long_short-term_memory
+https://en.wikipedia.org/wiki/Convolutional_neural_network
+https://en.wikipedia.org/wiki/Graph_neural_network
+https://en.wikipedia.org/wiki/Mamba_(deep_learning)
+
+# ── TRAINING + OPTIMIZATION ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Backpropagation
+https://en.wikipedia.org/wiki/Stochastic_gradient_descent
+https://en.wikipedia.org/wiki/Batch_normalization
+https://en.wikipedia.org/wiki/Dropout_(neural_networks)
+https://en.wikipedia.org/wiki/Transfer_learning
+https://en.wikipedia.org/wiki/Fine-tuning_(deep_learning)
+https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback
+https://en.wikipedia.org/wiki/Proximal_policy_optimization
+https://en.wikipedia.org/wiki/Low-rank_adaptation
+https://en.wikipedia.org/wiki/Quantization_(signal_processing)
+https://en.wikipedia.org/wiki/Knowledge_distillation
+https://en.wikipedia.org/wiki/Curriculum_learning
+
+# ── REASONING + AGENTS ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Prompt_engineering
+https://en.wikipedia.org/wiki/Chain-of-thought_prompting
+https://en.wikipedia.org/wiki/Intelligent_agent
+https://en.wikipedia.org/wiki/Multi-agent_system
+https://en.wikipedia.org/wiki/Model_Context_Protocol
+https://en.wikipedia.org/wiki/Retrieval-augmented_generation
+https://en.wikipedia.org/wiki/Tool_use_(language_models)
+https://en.wikipedia.org/wiki/Planning_(artificial_intelligence)
+
+# ── ALIGNMENT + SAFETY ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/AI_alignment
+https://en.wikipedia.org/wiki/AI_safety
+https://en.wikipedia.org/wiki/Instrumental_convergence
+https://en.wikipedia.org/wiki/Corrigibility
+https://en.wikipedia.org/wiki/Interpretability_(machine_learning)
+https://en.wikipedia.org/wiki/Mechanistic_interpretability
+https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)
+https://en.wikipedia.org/wiki/Goodhart%27s_law
+
+# ── MULTIMODAL + EMBODIED ────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Multimodal_learning
+https://en.wikipedia.org/wiki/Vision_transformer
+https://en.wikipedia.org/wiki/CLIP_(model)
+https://en.wikipedia.org/wiki/Text-to-image_generation
+https://en.wikipedia.org/wiki/Robotics
+https://en.wikipedia.org/wiki/Embodied_cognition
+https://en.wikipedia.org/wiki/Sim-to-real_transfer
+
+# ── COMPUTE + INFRASTRUCTURE ─────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Graphics_processing_unit
+https://en.wikipedia.org/wiki/Tensor_Processing_Unit
+https://en.wikipedia.org/wiki/Neuromorphic_computing
+https://en.wikipedia.org/wiki/Federated_learning
+https://en.wikipedia.org/wiki/Edge_computing
+https://en.wikipedia.org/wiki/Scaling_hypothesis

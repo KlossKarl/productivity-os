@@ -1,0 +1,46 @@
+# ── Systems, Dev Tools & CS Fundamentals ─────────────────────────────────────
+# Pairs with your HN thread digests on tooling topics
+# Run: python wiki_batch.py topics/systems_and_devtools.txt --free
+
+# Version control (pairs with jujutsu thread)
+https://en.wikipedia.org/wiki/Version_control
+https://en.wikipedia.org/wiki/Git
+https://en.wikipedia.org/wiki/Mercurial
+https://en.wikipedia.org/wiki/Distributed_version_control
+https://en.wikipedia.org/wiki/Directed_acyclic_graph
+
+# Operating systems fundamentals
+https://en.wikipedia.org/wiki/Operating_system
+https://en.wikipedia.org/wiki/Process_(computing)
+https://en.wikipedia.org/wiki/Thread_(computing)
+https://en.wikipedia.org/wiki/Memory_management
+https://en.wikipedia.org/wiki/Virtual_memory
+https://en.wikipedia.org/wiki/File_system
+
+# Networking
+https://en.wikipedia.org/wiki/Internet_protocol_suite
+https://en.wikipedia.org/wiki/Transmission_Control_Protocol
+https://en.wikipedia.org/wiki/Domain_Name_System
+https://en.wikipedia.org/wiki/HTTPS
+https://en.wikipedia.org/wiki/WebSocket
+
+# Web and browsers (pairs with back button hijacking thread)
+https://en.wikipedia.org/wiki/Web_browser
+https://en.wikipedia.org/wiki/Document_Object_Model
+https://en.wikipedia.org/wiki/Browser_history
+https://en.wikipedia.org/wiki/Single-page_application
+https://en.wikipedia.org/wiki/Progressive_web_application
+
+# Software architecture
+https://en.wikipedia.org/wiki/Microservices
+https://en.wikipedia.org/wiki/Event-driven_architecture
+https://en.wikipedia.org/wiki/SOLID
+https://en.wikipedia.org/wiki/Technical_debt
+https://en.wikipedia.org/wiki/Continuous_integration
+
+# Security
+https://en.wikipedia.org/wiki/Transport_Layer_Security
+https://en.wikipedia.org/wiki/Public-key_cryptography
+https://en.wikipedia.org/wiki/Zero-knowledge_proof
+https://en.wikipedia.org/wiki/SQL_injection
+https://en.wikipedia.org/wiki/Cross-site_scripting

@@ -1,0 +1,59 @@
+# Mathematics Foundations — wiki_batch topic file
+# Pure and applied math underlying all of modern science, AI, and finance
+# Usage: python wiki_batch.py topics/mathematics.txt --free
+
+# ── ANALYSIS + CALCULUS ──────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Real_analysis
+https://en.wikipedia.org/wiki/Calculus
+https://en.wikipedia.org/wiki/Differential_equation
+https://en.wikipedia.org/wiki/Partial_differential_equation
+https://en.wikipedia.org/wiki/Fourier_analysis
+https://en.wikipedia.org/wiki/Fourier_transform
+https://en.wikipedia.org/wiki/Wavelet
+https://en.wikipedia.org/wiki/Functional_analysis
+https://en.wikipedia.org/wiki/Measure_theory
+
+# ── LINEAR ALGEBRA ───────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Linear_algebra
+https://en.wikipedia.org/wiki/Matrix_(mathematics)
+https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors
+https://en.wikipedia.org/wiki/Singular_value_decomposition
+https://en.wikipedia.org/wiki/Tensor
+https://en.wikipedia.org/wiki/Vector_space
+
+# ── PROBABILITY + STATISTICS ─────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Probability_theory
+https://en.wikipedia.org/wiki/Probability_distribution
+https://en.wikipedia.org/wiki/Bayes%27_theorem
+https://en.wikipedia.org/wiki/Central_limit_theorem
+https://en.wikipedia.org/wiki/Law_of_large_numbers
+https://en.wikipedia.org/wiki/Statistical_inference
+https://en.wikipedia.org/wiki/Maximum_likelihood_estimation
+https://en.wikipedia.org/wiki/Hypothesis_testing
+https://en.wikipedia.org/wiki/Confidence_interval
+https://en.wikipedia.org/wiki/Monte_Carlo_method
+
+# ── OPTIMIZATION ─────────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Mathematical_optimization
+https://en.wikipedia.org/wiki/Convex_optimization
+https://en.wikipedia.org/wiki/Linear_programming
+https://en.wikipedia.org/wiki/Integer_programming
+https://en.wikipedia.org/wiki/Gradient_descent
+https://en.wikipedia.org/wiki/Lagrange_multiplier
+https://en.wikipedia.org/wiki/Dynamic_programming
+
+# ── DISCRETE MATH + ALGORITHMS ───────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Graph_theory
+https://en.wikipedia.org/wiki/Combinatorics
+https://en.wikipedia.org/wiki/Number_theory
+https://en.wikipedia.org/wiki/Computational_complexity_theory
+https://en.wikipedia.org/wiki/P_versus_NP_problem
+https://en.wikipedia.org/wiki/Algorithm
+https://en.wikipedia.org/wiki/Big_O_notation
+
+# ── TOPOLOGY + GEOMETRY ──────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Topology
+https://en.wikipedia.org/wiki/Differential_geometry
+https://en.wikipedia.org/wiki/Manifold
+https://en.wikipedia.org/wiki/Riemannian_geometry
+https://en.wikipedia.org/wiki/Topological_data_analysis

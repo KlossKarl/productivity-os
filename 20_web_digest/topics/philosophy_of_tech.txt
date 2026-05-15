@@ -1,0 +1,41 @@
+# ── Philosophy of Technology & Society ───────────────────────────────────────
+# The bigger picture — why any of this matters
+# Run: python wiki_batch.py topics/philosophy_of_tech.txt --free
+
+# Technology and society
+https://en.wikipedia.org/wiki/Philosophy_of_technology
+https://en.wikipedia.org/wiki/Technological_determinism
+https://en.wikipedia.org/wiki/Technological_unemployment
+https://en.wikipedia.org/wiki/Automation
+https://en.wikipedia.org/wiki/Fourth_Industrial_Revolution
+https://en.wikipedia.org/wiki/Information_Age
+
+# Epistemology (how we know things)
+https://en.wikipedia.org/wiki/Epistemology
+https://en.wikipedia.org/wiki/Scientific_method
+https://en.wikipedia.org/wiki/Falsifiability
+https://en.wikipedia.org/wiki/Paradigm_shift
+https://en.wikipedia.org/wiki/Occam%27s_razor
+https://en.wikipedia.org/wiki/Abductive_reasoning
+
+# Ethics
+https://en.wikipedia.org/wiki/Ethics_of_artificial_intelligence
+https://en.wikipedia.org/wiki/Digital_ethics
+https://en.wikipedia.org/wiki/Privacy
+https://en.wikipedia.org/wiki/Informed_consent
+https://en.wikipedia.org/wiki/Trolley_problem
+
+# Power and systems
+https://en.wikipedia.org/wiki/Systems_theory
+https://en.wikipedia.org/wiki/Complex_system
+https://en.wikipedia.org/wiki/Emergence
+https://en.wikipedia.org/wiki/Feedback
+https://en.wikipedia.org/wiki/Second-order_effects
+
+# History of computing and ideas
+https://en.wikipedia.org/wiki/History_of_computing
+https://en.wikipedia.org/wiki/Alan_Turing
+https://en.wikipedia.org/wiki/John_von_Neumann
+https://en.wikipedia.org/wiki/Claude_Shannon
+https://en.wikipedia.org/wiki/Norbert_Wiener
+https://en.wikipedia.org/wiki/Vannevar_Bush

@@ -1,0 +1,48 @@
+# ── CS Theory Fundamentals ───────────────────────────────────────────────────
+# The math and theory that underpins everything else
+# Run: python wiki_batch.py topics/cs_theory.txt --free
+
+# Complexity theory
+https://en.wikipedia.org/wiki/Computational_complexity_theory
+https://en.wikipedia.org/wiki/P_versus_NP_problem
+https://en.wikipedia.org/wiki/NP-completeness
+https://en.wikipedia.org/wiki/Reduction_(complexity)
+https://en.wikipedia.org/wiki/Big_O_notation
+
+# Information theory
+https://en.wikipedia.org/wiki/Information_theory
+https://en.wikipedia.org/wiki/Entropy_(information_theory)
+https://en.wikipedia.org/wiki/Kolmogorov_complexity
+https://en.wikipedia.org/wiki/Data_compression
+https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem
+
+# Algorithms and data structures
+https://en.wikipedia.org/wiki/Dynamic_programming
+https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm
+https://en.wikipedia.org/wiki/Hash_table
+https://en.wikipedia.org/wiki/Binary_search_tree
+https://en.wikipedia.org/wiki/Graph_(abstract_data_type)
+https://en.wikipedia.org/wiki/Breadth-first_search
+https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+
+# Probability and statistics
+https://en.wikipedia.org/wiki/Bayes%27_theorem
+https://en.wikipedia.org/wiki/Maximum_likelihood_estimation
+https://en.wikipedia.org/wiki/Central_limit_theorem
+https://en.wikipedia.org/wiki/Markov_chain
+https://en.wikipedia.org/wiki/Monte_Carlo_method
+https://en.wikipedia.org/wiki/Bayesian_inference
+
+# Linear algebra (core to ML)
+https://en.wikipedia.org/wiki/Matrix_(mathematics)
+https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors
+https://en.wikipedia.org/wiki/Singular_value_decomposition
+https://en.wikipedia.org/wiki/Principal_component_analysis
+https://en.wikipedia.org/wiki/Dot_product
+
+# Optimization
+https://en.wikipedia.org/wiki/Mathematical_optimization
+https://en.wikipedia.org/wiki/Convex_optimization
+https://en.wikipedia.org/wiki/Stochastic_gradient_descent
+https://en.wikipedia.org/wiki/Lagrange_multiplier
+https://en.wikipedia.org/wiki/Adam_(optimization_algorithm)

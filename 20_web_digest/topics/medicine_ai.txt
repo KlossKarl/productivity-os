@@ -1,0 +1,62 @@
+# Medicine + Clinical AI — wiki_batch topic file
+# AI diagnostics, clinical decision support, digital health frontier
+# Usage: python wiki_batch.py topics/medicine_ai.txt --free
+
+# ── CLINICAL FOUNDATIONS ─────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Evidence-based_medicine
+https://en.wikipedia.org/wiki/Randomized_controlled_trial
+https://en.wikipedia.org/wiki/Clinical_trial
+https://en.wikipedia.org/wiki/Systematic_review
+https://en.wikipedia.org/wiki/Epidemiology
+https://en.wikipedia.org/wiki/Diagnosis
+https://en.wikipedia.org/wiki/Medical_imaging
+https://en.wikipedia.org/wiki/Electronic_health_record
+https://en.wikipedia.org/wiki/Clinical_decision_support_system
+
+# ── AI DIAGNOSTICS ───────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Artificial_intelligence_in_healthcare
+https://en.wikipedia.org/wiki/Computer-aided_diagnosis
+https://en.wikipedia.org/wiki/Radiology
+https://en.wikipedia.org/wiki/Pathology
+https://en.wikipedia.org/wiki/Dermatology
+https://en.wikipedia.org/wiki/Ophthalmology
+https://en.wikipedia.org/wiki/Convolutional_neural_network
+https://en.wikipedia.org/wiki/Transfer_learning
+https://en.wikipedia.org/wiki/Federated_learning
+
+# ── DIGITAL HEALTH + WEARABLES ───────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Digital_health
+https://en.wikipedia.org/wiki/Wearable_technology
+https://en.wikipedia.org/wiki/Digital_biomarker
+https://en.wikipedia.org/wiki/Remote_patient_monitoring
+https://en.wikipedia.org/wiki/Telemedicine
+https://en.wikipedia.org/wiki/Health_informatics
+https://en.wikipedia.org/wiki/Interoperability_(healthcare)
+
+# ── PRECISION + PERSONALIZED MEDICINE ───────────────────────────────────────
+https://en.wikipedia.org/wiki/Precision_medicine
+https://en.wikipedia.org/wiki/Pharmacogenomics
+https://en.wikipedia.org/wiki/Biomarker
+https://en.wikipedia.org/wiki/Liquid_biopsy
+https://en.wikipedia.org/wiki/Cancer_immunotherapy
+https://en.wikipedia.org/wiki/CAR_T_cell_therapy
+https://en.wikipedia.org/wiki/mRNA_vaccine
+https://en.wikipedia.org/wiki/Gene_therapy
+
+# ── MENTAL HEALTH + NEUROLOGY ────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Mental_health
+https://en.wikipedia.org/wiki/Depression_(mood)
+https://en.wikipedia.org/wiki/Anxiety_disorder
+https://en.wikipedia.org/wiki/Schizophrenia
+https://en.wikipedia.org/wiki/Alzheimer%27s_disease
+https://en.wikipedia.org/wiki/Parkinson%27s_disease
+https://en.wikipedia.org/wiki/Neuroimaging
+https://en.wikipedia.org/wiki/Digital_therapeutics
+
+# ── HEALTH SYSTEMS + ETHICS ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Health_equity
+https://en.wikipedia.org/wiki/Algorithmic_bias
+https://en.wikipedia.org/wiki/Medical_ethics
+https://en.wikipedia.org/wiki/Informed_consent
+https://en.wikipedia.org/wiki/Health_data
+https://en.wikipedia.org/wiki/HIPAA

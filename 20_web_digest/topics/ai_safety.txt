@@ -1,0 +1,37 @@
+# ── AI Safety & Alignment ────────────────────────────────────────────────────
+# The most important unsolved problem in technology
+# Run: python wiki_batch.py topics/ai_safety.txt --free
+
+# Core alignment concepts
+https://en.wikipedia.org/wiki/AI_alignment
+https://en.wikipedia.org/wiki/AI_control_problem
+https://en.wikipedia.org/wiki/Superintelligence
+https://en.wikipedia.org/wiki/Instrumental_convergence
+https://en.wikipedia.org/wiki/Orthogonality_thesis
+https://en.wikipedia.org/wiki/Paperclip_maximizer
+
+# Interpretability
+https://en.wikipedia.org/wiki/Explainable_artificial_intelligence
+https://en.wikipedia.org/wiki/Black_box_(computing)
+https://en.wikipedia.org/wiki/Feature_visualization
+https://en.wikipedia.org/wiki/Mechanistic_interpretability
+
+# Safety techniques
+https://en.wikipedia.org/wiki/Constitutional_AI
+https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback
+https://en.wikipedia.org/wiki/Red_team
+https://en.wikipedia.org/wiki/Adversarial_machine_learning
+https://en.wikipedia.org/wiki/Robustness_(computer_science)
+
+# Existential risk
+https://en.wikipedia.org/wiki/Existential_risk_from_artificial_general_intelligence
+https://en.wikipedia.org/wiki/Global_catastrophic_risk
+https://en.wikipedia.org/wiki/Longtermism
+https://en.wikipedia.org/wiki/Effective_altruism
+
+# Governance and policy
+https://en.wikipedia.org/wiki/AI_governance
+https://en.wikipedia.org/wiki/Regulation_of_artificial_intelligence
+https://en.wikipedia.org/wiki/Algorithmic_bias
+https://en.wikipedia.org/wiki/Autonomous_weapon
+https://en.wikipedia.org/wiki/AI_winter

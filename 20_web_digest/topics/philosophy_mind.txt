@@ -1,0 +1,60 @@
+# Philosophy of Mind + AI Consciousness — wiki_batch topic file
+# Deeply relevant to AI alignment, AGI, and understanding what intelligence is
+# Usage: python wiki_batch.py topics/philosophy_mind.txt --free
+
+# ── PHILOSOPHY OF MIND ───────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Philosophy_of_mind
+https://en.wikipedia.org/wiki/Consciousness
+https://en.wikipedia.org/wiki/Hard_problem_of_consciousness
+https://en.wikipedia.org/wiki/Qualia
+https://en.wikipedia.org/wiki/Phenomenology_(philosophy)
+https://en.wikipedia.org/wiki/Intentionality
+https://en.wikipedia.org/wiki/Mental_representation
+https://en.wikipedia.org/wiki/Mind%E2%80%93body_problem
+https://en.wikipedia.org/wiki/Dualism_(philosophy_of_mind)
+https://en.wikipedia.org/wiki/Physicalism
+https://en.wikipedia.org/wiki/Functionalism_(philosophy_of_mind)
+https://en.wikipedia.org/wiki/Eliminative_materialism
+
+# ── THEORIES OF CONSCIOUSNESS ────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Integrated_information_theory
+https://en.wikipedia.org/wiki/Global_workspace_theory
+https://en.wikipedia.org/wiki/Higher-order_theories_of_consciousness
+https://en.wikipedia.org/wiki/Predictive_coding
+https://en.wikipedia.org/wiki/Free_energy_principle
+https://en.wikipedia.org/wiki/Attention_schema_theory
+https://en.wikipedia.org/wiki/Orchestrated_objective_reduction
+
+# ── COGNITION + INTELLIGENCE ─────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Cognitive_science
+https://en.wikipedia.org/wiki/Embodied_cognition
+https://en.wikipedia.org/wiki/Extended_mind_thesis
+https://en.wikipedia.org/wiki/Situated_cognition
+https://en.wikipedia.org/wiki/Metacognition
+https://en.wikipedia.org/wiki/Working_memory
+https://en.wikipedia.org/wiki/Dual_process_theory
+https://en.wikipedia.org/wiki/Bounded_rationality
+https://en.wikipedia.org/wiki/Intelligence
+
+# ── AI CONSCIOUSNESS + AGI ───────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Artificial_general_intelligence
+https://en.wikipedia.org/wiki/Artificial_consciousness
+https://en.wikipedia.org/wiki/Chinese_room
+https://en.wikipedia.org/wiki/Turing_test
+https://en.wikipedia.org/wiki/Symbol_grounding_problem
+https://en.wikipedia.org/wiki/Technological_singularity
+https://en.wikipedia.org/wiki/Superintelligence
+https://en.wikipedia.org/wiki/AI_alignment
+https://en.wikipedia.org/wiki/Existential_risk_from_artificial_general_intelligence
+https://en.wikipedia.org/wiki/Instrumental_convergence
+https://en.wikipedia.org/wiki/Orthogonality_thesis
+
+# ── ETHICS + MORAL PHILOSOPHY ────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Ethics
+https://en.wikipedia.org/wiki/Utilitarianism
+https://en.wikipedia.org/wiki/Deontological_ethics
+https://en.wikipedia.org/wiki/Virtue_ethics
+https://en.wikipedia.org/wiki/Moral_realism
+https://en.wikipedia.org/wiki/Effective_altruism
+https://en.wikipedia.org/wiki/Population_ethics
+https://en.wikipedia.org/wiki/Machine_ethics

@@ -1,0 +1,70 @@
+# Corporate Compliance + General Counsel — wiki_batch topic file
+# The full CCO/GC stack: compliance programs, employment, litigation, data privacy, sanctions
+# Usage: python wiki_batch.py topics/corporate_compliance.txt --free
+
+# ── COMPLIANCE FUNDAMENTALS ──────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Regulatory_compliance
+https://en.wikipedia.org/wiki/Compliance_program
+https://en.wikipedia.org/wiki/Chief_compliance_officer
+https://en.wikipedia.org/wiki/General_counsel
+https://en.wikipedia.org/wiki/Corporate_liability
+https://en.wikipedia.org/wiki/Whistleblower
+https://en.wikipedia.org/wiki/Dodd%E2%80%93Frank_Wall_Street_Reform_and_Consumer_Protection_Act
+https://en.wikipedia.org/wiki/False_Claims_Act
+
+# ── EMPLOYMENT LAW ───────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Employment_law
+https://en.wikipedia.org/wiki/Employment_contract
+https://en.wikipedia.org/wiki/Non-compete_clause
+https://en.wikipedia.org/wiki/Non-disclosure_agreement
+https://en.wikipedia.org/wiki/At-will_employment
+https://en.wikipedia.org/wiki/Wrongful_dismissal
+https://en.wikipedia.org/wiki/Discrimination_law
+https://en.wikipedia.org/wiki/Sexual_harassment
+https://en.wikipedia.org/wiki/Worker_classification
+https://en.wikipedia.org/wiki/Independent_contractor
+
+# ── DATA PRIVACY + CYBERSECURITY ─────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Data_privacy_law
+https://en.wikipedia.org/wiki/General_Data_Protection_Regulation
+https://en.wikipedia.org/wiki/California_Consumer_Privacy_Act
+https://en.wikipedia.org/wiki/Gramm%E2%80%93Leach%E2%80%93Bliley_Act
+https://en.wikipedia.org/wiki/Data_breach
+https://en.wikipedia.org/wiki/Cybersecurity_law
+https://en.wikipedia.org/wiki/SEC_cybersecurity_rules
+https://en.wikipedia.org/wiki/Incident_response
+
+# ── SANCTIONS + FCPA ─────────────────────────────────────────────────────────
+https://en.wikipedia.org/wiki/Office_of_Foreign_Assets_Control
+https://en.wikipedia.org/wiki/Sanctions_(law)
+https://en.wikipedia.org/wiki/Foreign_Corrupt_Practices_Act
+https://en.wikipedia.org/wiki/UK_Bribery_Act_2010
+https://en.wikipedia.org/wiki/Anti-money_laundering
+https://en.wikipedia.org/wiki/Know_your_customer
+https://en.wikipedia.org/wiki/Beneficial_ownership
+https://en.wikipedia.org/wiki/Corporate_Transparency_Act
+
+# ── LITIGATION + DISPUTE RESOLUTION ─────────────────────────────────────────
+https://en.wikipedia.org/wiki/Litigation
+https://en.wikipedia.org/wiki/Arbitration
+https://en.wikipedia.org/wiki/Mediation
+https://en.wikipedia.org/wiki/Discovery_(law)
+https://en.wikipedia.org/wiki/Indemnification
+https://en.wikipedia.org/wiki/Injunction
+https://en.wikipedia.org/wiki/Class_action
+https://en.wikipedia.org/wiki/Securities_litigation
+
+# ── MARKETING + FUND COMMUNICATIONS ─────────────────────────────────────────
+https://en.wikipedia.org/wiki/Marketing_rule_(investment_advisers)
+https://en.wikipedia.org/wiki/Advertising_law
+https://en.wikipedia.org/wiki/Material_misrepresentation
+https://en.wikipedia.org/wiki/Selective_disclosure
+https://en.wikipedia.org/wiki/Regulation_FD
+
+# ── AI + COMPLIANCE (EMERGING) ───────────────────────────────────────────────
+https://en.wikipedia.org/wiki/AI_regulation
+https://en.wikipedia.org/wiki/Algorithmic_accountability
+https://en.wikipedia.org/wiki/Explainable_artificial_intelligence
+https://en.wikipedia.org/wiki/Algorithmic_bias
+https://en.wikipedia.org/wiki/RegTech
+https://en.wikipedia.org/wiki/Regulatory_technology
