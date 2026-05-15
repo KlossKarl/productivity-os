@@ -2,7 +2,7 @@
 
 > I built this because I kept losing things I had already read.
 
-A local-first personal knowledge base that ingests everything — audio, PDFs, web threads, browser history, markdown notes — indexes it with vector search and a knowledge graph, and lets you chat with all of it through a local LLM. No cloud. No subscriptions. Your data stays on your machine.
+A local-first personal knowledge base. It ingests audio, PDFs, web threads, browser history, and markdown notes, indexes everything with vector search and a knowledge graph, and lets you chat with all of it through a local LLM. No cloud, no subscriptions, your data stays on your machine.
 
 ---
 
@@ -11,11 +11,11 @@ A local-first personal knowledge base that ingests everything — audio, PDFs, w
 Drop a file into the intake folder. It routes itself.
 
 ```
-lecture.mp3          →  Whisper transcription → vault → indexed
-paper.pdf            →  PDF to markdown → vault → indexed
-thread.txt           →  Web digest → structured note → vault → indexed  
-https://...url       →  Same as above
-note.md              →  Copied directly to vault → indexed
+lecture.mp3          ->  Whisper transcription -> vault -> indexed
+paper.pdf            ->  PDF to markdown -> vault -> indexed
+thread.txt           ->  Web digest -> structured note -> vault -> indexed  
+https://...url       ->  Same as above
+note.md              ->  Copied directly to vault -> indexed
 ```
 
 Then ask questions:
@@ -27,28 +27,28 @@ Then ask questions:
 > find everything I've read about CLO structures
 ```
 
-The system retrieves from ChromaDB (vector search), traverses Neo4j (knowledge graph), and generates answers using a local LLM. Everything runs on your hardware.
+Retrieves from ChromaDB (vector search), traverses Neo4j (knowledge graph), generates answers using a local LLM. Everything runs on your hardware.
 
 ---
 
 ## Architecture
 
 ```
-intake/                     ← drop anything here
-    ↓
-intake_watcher.py           ← watches folder, routes by file type
-    ↓
-┌─────────────────────────────────────────────────┐
-│  transcribe.py   pdf_to_md.py   web_digest.py   │
-│         Whisper     pymupdf        Claude Code   │
-└─────────────────────────────────────────────────┘
-    ↓
-Obsidian Vault              ← all content lands here as markdown
-    ↓
-second_brain.py --index     ← chunks + embeds into ChromaDB
-second_brain.py --graph     ← extracts entities/relationships into Neo4j
-    ↓
-second_brain.py --chat      ← hybrid retrieval: vector + graph + HyDE + rerank
+intake/                     <- drop anything here
+    |
+intake_watcher.py           <- watches folder, routes by file type
+    |
++--------------------------------------------------+
+|  transcribe.py   pdf_to_md.py   web_digest.py   |
+|        Whisper      pymupdf        Claude Code   |
++--------------------------------------------------+
+    |
+Obsidian Vault              <- all content lands here as markdown
+    |
+second_brain.py --index     <- chunks + embeds into ChromaDB
+second_brain.py --graph     <- extracts entities/relationships into Neo4j
+    |
+second_brain.py --chat      <- hybrid retrieval: vector + graph + HyDE + rerank
 ```
 
 ---
@@ -58,38 +58,38 @@ second_brain.py --chat      ← hybrid retrieval: vector + graph + HyDE + rerank
 Be honest with yourself about this list before starting.
 
 - **Python 3.10+**
-- **[Ollama](https://ollama.ai)** — local LLM inference
+- **[Ollama](https://ollama.ai)** - local LLM inference
   - `ollama pull deepseek-r1:14b` (~9GB, used for chat + graph extraction)
   - `ollama pull mxbai-embed-large` (~670MB, used for embeddings)
-- **[Neo4j Desktop](https://neo4j.com/download/)** — knowledge graph database
+- **[Neo4j Desktop](https://neo4j.com/download/)** - knowledge graph database
   - Free, but requires manual setup (see below)
-- **[Obsidian](https://obsidian.md)** — vault is just a folder of markdown, Obsidian is optional but recommended
-- **[Claude Code](https://claude.ai/code)** — used for free-tier web digest processing (optional but recommended)
-- Decent hardware. 16GB RAM minimum. A GPU with 8GB+ VRAM makes the graph indexing significantly faster.
+- **[Obsidian](https://obsidian.md)** - vault is just a folder of markdown, Obsidian is optional but recommended
+- **[Claude Code](https://claude.ai/code)** - used for free-tier web digest processing (optional but recommended)
+- Decent hardware. 16GB RAM minimum. A GPU with 8GB+ VRAM makes graph indexing significantly faster.
 
 ---
 
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/productivity-os
+git clone https://github.com/KlossKarl/productivity-os
 cd productivity-os
 pip install -r requirements.txt
 ```
 
-Copy and edit the config:
+Copy and fill in the config:
 
 ```bash
-cp config.example.yaml config.yaml
-# Edit config.yaml with your paths (vault, downloads, chroma DB location)
+cp config.template.yaml config.yaml
+# edit config.yaml with your paths
 ```
 
-**Neo4j setup** (the annoying part, do it once):
+**Neo4j setup** (annoying but only once):
 
 1. Install Neo4j Desktop
-2. Create a new Project → Add → Local DBMS
+2. Create a new Project, add a Local DBMS
 3. Set a password, start the instance
-4. Update `config.yaml` with your password under `second_brain.neo4j_password`
+4. Put the password in `config.yaml` under `second_brain.neo4j_password`
 
 ---
 
@@ -97,20 +97,20 @@ cp config.example.yaml config.yaml
 
 ```yaml
 paths:
-  obsidian_vault: C:\Users\you\Documents\Obsidian Vault   # where markdown lands
-  chroma_dir: C:\Users\you\Documents\second_brain_db      # vector index storage
+  obsidian_vault: C:\Users\you\Documents\Obsidian Vault
+  chroma_dir: C:\Users\you\Documents\second_brain_db
 
 second_brain:
   vaults:
     - C:\Users\you\Documents\Obsidian Vault
   
-  embed_model: mxbai-embed-large    # Ollama embedding model
-  chat_model: deepseek-r1:14b       # Ollama chat model
+  embed_model: mxbai-embed-large
+  chat_model: deepseek-r1:14b
   
   neo4j_uri: neo4j://127.0.0.1:7687
   neo4j_password: yourpassword
   
-  # Custom entity types for your domain — add whatever fits
+  # customize entity types for your domain
   entity_types:
     - Person
     - Concept
@@ -137,40 +137,38 @@ Run the watcher once and forget about it:
 python intake_watcher.py
 ```
 
-Or use the system tray app:
+Or use the system tray app if you want something that lives in the taskbar:
 
 ```bash
 pip install pystray pillow tkinterdnd2
 python intake_tray.py
 ```
 
-Drop files into the `intake/` folder. They process automatically and land in your vault.
+Drop files into `intake/`. They get processed and land in your vault automatically.
 
 ### Manual commands
 
 ```bash
-# Index your vault into ChromaDB (vector search)
+# index vault into ChromaDB
 python 08_second_brain/second_brain.py --index
 
-# Force full re-index (after adding many files)
+# force full re-index
 python 08_second_brain/second_brain.py --index --force
 
-# Build the knowledge graph in Neo4j (slow, run overnight for large vaults)
+# build the knowledge graph in Neo4j (slow on large vaults, run overnight)
 python 08_second_brain/second_brain.py --graph-index
 
-# Check what's indexed
+# check what's indexed
 python 08_second_brain/second_brain.py --stats
 
-# Chat with your vault
+# chat
 python 08_second_brain/second_brain.py --chat
 
-# Search without chat
+# search without chat
 python 08_second_brain/second_brain.py --search "attention mechanism"
 ```
 
 ### Web digests
-
-Process a URL directly:
 
 ```bash
 python 20_web_digest/web_digest.py https://news.ycombinator.com/item?id=12345 400 --free
@@ -182,29 +180,54 @@ python 20_web_digest/web_digest.py https://news.ycombinator.com/item?id=12345 40
 python 03_transcribe/transcribe.py lecture.mp3 --summarizer claude
 ```
 
-### Wiki batch (pre-built knowledge bases)
+### Wiki batch
 
-Build a knowledge base on any topic by running a batch of Wikipedia articles:
+Build a knowledge base on any topic from the included topic files:
 
 ```bash
 python 20_web_digest/wiki_batch.py topics/ai_frontier.txt --free
 python 20_web_digest/wiki_batch.py topics/quant_finance.txt --free
 ```
 
+### Research papers and other sources
+
+```bash
+# arXiv papers by search query or ID
+python 20_web_digest/arxiv_batch.py --query "retrieval augmented generation" --max 20
+python 20_web_digest/arxiv_batch.py --ids 1706.03762 2005.11401
+
+# Stanford Encyclopedia of Philosophy
+python 20_web_digest/sep_batch.py --topics topics/sep_philosophy.txt
+
+# Project Gutenberg classics
+python 20_web_digest/gutenberg_batch.py --classics art-of-war meditations republic
+
+# technical docs
+python 20_web_digest/docs_batch.py --docs python neo4j anthropic
+
+# LessWrong posts
+python 20_web_digest/lesswrong_batch.py --tag "AI" --limit 30
+
+# legal/finance papers
+python 20_web_digest/ssrn_batch.py --curated legal
+python 20_web_digest/sec_edgar_batch.py --rules ia
+python 20_web_digest/irs_batch.py --category partnerships
+```
+
 ---
 
 ## Pre-built topic packs
 
-Drop one of these into `wiki_batch` and you have a structured knowledge base on that domain in a few hours. All free via Claude Code.
+Run any of these with `wiki_batch` and you have a structured knowledge base on that domain in a few hours. All free via Claude Code.
 
 | File | Domain | Articles |
 |------|--------|----------|
 | `topics/ai_frontier.txt` | LLMs, agents, alignment, compute | ~55 |
 | `topics/quant_finance.txt` | Options, HFT, ML in finance | ~75 |
 | `topics/mathematics.txt` | Analysis, linear algebra, optimization | ~45 |
-| `topics/physics.txt` | Classical → quantum → theoretical | ~80 |
-| `topics/biology.txt` | Cell → organism → ecosystem | ~55 |
-| `topics/evolution.txt` | Darwin → evo-devo → cultural evolution | ~50 |
+| `topics/physics.txt` | Classical to quantum to theoretical | ~80 |
+| `topics/biology.txt` | Cell to organism to ecosystem | ~55 |
+| `topics/evolution.txt` | Darwin to evo-devo to cultural evolution | ~50 |
 | `topics/neuroscience_ai.txt` | Computational neuro + brain-AI bridges | ~50 |
 | `topics/complex_systems.txt` | Emergence, chaos, network theory | ~40 |
 | `topics/cs_theory.txt` | Algorithms, complexity, theory | ~60 |
@@ -232,49 +255,46 @@ Drop one of these into `wiki_batch` and you have a structured knowledge base on 
 
 ## Chat features
 
-In `--chat` mode, toggle enhanced retrieval with slash commands:
+In `--chat` mode you can toggle retrieval strategies mid-conversation:
 
 ```
-/hyde      — hypothetical document embeddings (better query expansion)
-/expand    — query expansion
-/rerank    — cross-encoder reranking of results
-/graph     — include Neo4j knowledge graph traversal
-/model     — switch LLM
+/hyde      - hypothetical document embeddings (better query expansion)
+/expand    - query expansion
+/rerank    - cross-encoder reranking of results
+/graph     - include Neo4j knowledge graph traversal
+/model     - switch LLM
 ```
 
-Default behavior uses all four. Toggle them off if you want faster/cheaper responses.
+All four are on by default. Turn them off if you want faster responses.
 
 ---
 
 ## Why local-first
 
-- **Privacy**: Your unpublished research, confidential work, personal notes never leave your machine
-- **No limits**: Index your entire career of notes, not 50 documents
-- **No subscription**: Runs on hardware you own
-- **Graph queries**: Ask how concepts connect across hundreds of documents — vector search alone can't do this
+Privacy is the main thing. Research that isn't published yet, client work, personal notes, anything confidential stays on your machine. There's no document limit either, so you can index your entire working history rather than 50 files at a time. And once the graph index runs, you can ask questions that span hundreds of documents in ways that pure vector search can't handle.
 
-The tradeoff is setup complexity and hardware requirements. This is not a consumer product. Yet.
+The tradeoff is real though. Setup takes time and you need decent hardware. This isn't a consumer product.
 
 ---
 
-## Current limitations
+## Known issues
 
-- Windows-primary (paths and some scripts assume Windows; PRs for Mac/Linux welcome)
-- Ollama under heavy embedding load throws intermittent 500 errors — mitigated with retry logic, but noticeable on large index runs
-- Graph indexing is slow on large vaults (~0.5s per chunk, runs overnight for 10k+ chunks)
-- No web UI — everything is CLI or the intake tray app
+- Windows-primary. Paths use `Path()` throughout so it should work elsewhere but hasn't been tested. PRs welcome.
+- Ollama throws 500 errors under heavy embedding load. There's retry logic but it's noticeable on large index runs. Replacing with in-process sentence-transformers is on the roadmap.
+- Graph indexing is slow on large vaults, roughly 0.5 seconds per chunk. For a vault with thousands of files this means running overnight.
+- No web UI. Everything is command line or the intake tray app.
 
 ---
 
 ## Roadmap
 
-- [ ] Replace Ollama HTTP embeddings with in-process `sentence-transformers` (eliminates 500 errors)
-- [ ] LightRAG integration as alternative/parallel graph layer
+- [ ] Replace Ollama HTTP embeddings with in-process sentence-transformers (kills the 500 errors)
+- [ ] LightRAG integration as alternative graph layer
 - [ ] Graph visualization UI
-- [ ] Mac/Linux path compatibility
-- [ ] `setup.py` / one-command installer
-- [ ] Browser extension for one-click web digest
-- [ ] Export/share graph snapshots (pre-built domain graphs)
+- [ ] Mac/Linux testing and fixes
+- [ ] One-command installer
+- [ ] Browser extension for web digest
+- [ ] Export and share pre-built domain graphs
 
 ---
 
@@ -282,28 +302,22 @@ The tradeoff is setup complexity and hardware requirements. This is not a consum
 
 ```
 productivity-os/
-├── 03_transcribe/          # Whisper transcription pipeline
-├── 08_second_brain/        # Core: indexing, chat, graph (second_brain.py)
-├── 20_web_digest/          # Web scraping, HN/Reddit/Wikipedia digests, wiki_batch
-├── intake/                 # Drop files here
-├── topics/                 # Pre-built wiki batch topic files
-├── intake_watcher.py       # Folder watcher — routes files automatically
-├── intake_tray.py          # System tray app (Windows)
-├── lightrag_test.py        # LightRAG parallel graph experiment
-├── config.yaml             # Your config (gitignored)
-└── config.example.yaml     # Template
+├── 03_whisper_transcription/   # audio/video to markdown
+├── 08_second_brain/            # core: index, chat, graph
+├── 20_web_digest/              # all ingestion scripts + topic files
+├── personal_tools/             # personal tracking tools, separate from core
+├── intake_watcher.py           # folder watcher
+├── intake_tray.py              # system tray app (Windows)
+├── lightrag_test.py            # LightRAG experiment
+├── config.yaml                 # your config (gitignored)
+└── config.template.yaml        # starting point
 ```
 
 ---
 
 ## Contributing
 
-This started as a personal tool. Issues and PRs welcome, especially:
-
-- Mac/Linux compatibility
-- Additional topic pack files for domains not yet covered
-- Alternative embedding backends
-- Documentation improvements
+Started as something I built for myself. Issues and PRs welcome, especially for Mac/Linux compatibility, new topic packs, or alternative embedding backends.
 
 ---
 
