@@ -74,9 +74,16 @@ A few specific things, since "local-first RAG" is a crowded space.
 Be honest with yourself about this list before starting.
 
 - **Python 3.10+**
-- **[Ollama](https://ollama.ai)** - local LLM inference
-  - `ollama pull deepseek-r1:14b` (~9GB, used for chat + graph extraction)
-  - `ollama pull mxbai-embed-large` (~670MB, used for embeddings)
+- **[Ollama](https://ollama.ai)** - local LLM inference. Pull models based on your hardware:
+
+  | Profile | VRAM | Chat model | Graph/embed | Quality |
+  |---------|------|------------|-------------|---------|
+  | Budget | 4-8GB | `ollama pull llama3:8b` | `ollama pull nomic-embed-text` | Good for chat, basic graph |
+  | Mid (default) | 8-16GB | `ollama pull deepseek-r1:14b` | `ollama pull mxbai-embed-large` | Solid all-around |
+  | High | 16-24GB | `ollama pull deepseek-r1:32b` | `ollama pull mxbai-embed-large` | Better graph extraction |
+  | Workstation | 48GB+ | `ollama pull llama3:70b` | `ollama pull mxbai-embed-large` | Near-frontier quality |
+
+  For claim/argument extraction (coming soon), Claude Haiku via API gives best results regardless of hardware.
 - **[Neo4j Desktop](https://neo4j.com/download/)** - knowledge graph database
   - Free, but requires manual setup (see below)
 - **[Obsidian](https://obsidian.md)** - vault is just a folder of markdown, Obsidian is optional but recommended

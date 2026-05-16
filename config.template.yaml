@@ -36,6 +36,13 @@ ollama:
 whisper:
   model: medium   # tiny | base | small | medium | large — larger = slower + more accurate
 
+# Hardware profile — sets default model recommendations
+# Options: budget (4-8GB VRAM) | mid (8-16GB) | high (16-24GB) | workstation (48GB+)
+# Override individual models below regardless of profile
+hardware:
+  profile: mid
+  vram_gb: 12    # your actual VRAM — used for future auto-detection
+
 second_brain:
   vaults:
     - C:\Users\YOURUSERNAME\Documents\Obsidian Vault

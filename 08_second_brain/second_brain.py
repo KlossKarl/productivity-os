@@ -66,6 +66,38 @@ CLAUDE_MODELS = {
     "claude-opus-4-6":           "claude-opus-4-6",
 }
 
+HARDWARE_PROFILES = {
+    "budget": {
+        "chat":  "llama3:8b",
+        "graph": "llama3:8b",
+        "embed": "nomic-embed-text",
+        "note":  "Basic quality. Graph extraction may miss subtle relationships.",
+    },
+    "mid": {
+        "chat":  "deepseek-r1:14b",
+        "graph": "deepseek-r1:14b",
+        "embed": "mxbai-embed-large",
+        "note":  "Good all-around. Solid for most personal knowledge base use cases.",
+    },
+    "high": {
+        "chat":  "deepseek-r1:32b",
+        "graph": "deepseek-r1:32b",
+        "embed": "mxbai-embed-large",
+        "note":  "High quality. Recommended for argument layer claim extraction.",
+    },
+    "workstation": {
+        "chat":  "llama3:70b",
+        "graph": "qwen2.5:72b",
+        "embed": "mxbai-embed-large",
+        "note":  "Near-frontier quality. Best for complex reasoning and claim extraction.",
+    },
+}
+
+def get_hardware_profile(cfg: dict) -> dict:
+    """Return recommended models for the configured hardware profile."""
+    profile = cfg.get("hardware", {}).get("profile", "mid")
+    return HARDWARE_PROFILES.get(profile, HARDWARE_PROFILES["mid"])
+
 def is_claude(model: str) -> bool:
     return "claude" in model.lower()
 
@@ -483,6 +515,14 @@ def show_stats():
     print(f"  Query expansion:  {'on' if sb.get('query_expansion', True) else 'off'}")
     print(f"  Reranking:        {'on' if sb.get('rerank', True) else 'off'}")
     print(f"  DB:               {get_chroma_dir()}")
+
+    hw = get_hardware_profile(cfg)
+    profile_name = cfg.get("hardware", {}).get("profile", "mid")
+    print(f"\n[HARDWARE] Profile: {profile_name}")
+    print(f"  Chat model:  {sb.get('chat_model', 'not set')}")
+    print(f"  Embed model: {sb.get('embed_model', 'not set')}")
+    print(f"  Recommended: chat={hw['chat']}, embed={hw['embed']}")
+    print(f"  Note: {hw['note']}")
 
     # Graph stats (only if Neo4j is available and graph is enabled)
     if NEO4J_AVAILABLE and sb.get('graph', False):
@@ -1815,9 +1855,25 @@ if __name__ == "__main__":
                         help="Skip model picker: claude-haiku | claude-sonnet | claude-opus | llama3:8b etc")
     parser.add_argument("--search",       type=str,            help="Quick vector search")
     parser.add_argument("--stats",        action="store_true", help="Show index stats")
+    parser.add_argument("--hardware",     action="store_true", help="Show hardware profile and model recommendations")
     args = parser.parse_args()
 
-    if args.stats:
+    if args.hardware:
+        cfg = load_config()
+        hw = get_hardware_profile(cfg)
+        profile = cfg.get("hardware", {}).get("profile", "mid")
+        vram = cfg.get("hardware", {}).get("vram_gb", "unknown")
+        print(f"\nHardware Profile: {profile} ({vram}GB VRAM)")
+        print(f"  Recommended chat model:  {hw['chat']}")
+        print(f"  Recommended graph model: {hw['graph']}")
+        print(f"  Recommended embed model: {hw['embed']}")
+        print(f"  Quality note: {hw['note']}")
+        print(f"\nCurrently configured:")
+        sb = cfg.get('second_brain', {})
+        print(f"  chat_model:  {sb.get('chat_model', 'not set')}")
+        print(f"  embed_model: {sb.get('embed_model', 'not set')}")
+        sys.exit(0)
+    elif args.stats:
         show_stats()
     elif args.search:
         quick_search(args.search)

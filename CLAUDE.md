@@ -65,6 +65,9 @@ python 08_second_brain/second_brain.py --graph-index
 # Check stats
 python 08_second_brain/second_brain.py --stats
 
+# Check hardware profile and model recommendations
+python 08_second_brain/second_brain.py --hardware
+
 # Chat
 python 08_second_brain/second_brain.py --chat
 
@@ -143,6 +146,7 @@ pymupdf (fitz)    — PDF text extraction
 ## Active Projects / Known Issues
 
 - **Project 37**: Replace Ollama embed HTTP calls with in-process `sentence-transformers` — eliminates 500 errors. Needs changes to `embed()` function in second_brain.py.
+- **Hardware profiles**: `HARDWARE_PROFILES` dict in second_brain.py maps budget/mid/high/workstation to recommended models. Auto-detection of VRAM is roadmap. Currently user sets profile manually in config.yaml.
 - **LightRAG test**: `lightrag_test.py` is a parallel experiment — run after graph-index completes, use `--ingest --limit 20` first to test quality before full vault ingest.
 - **Max chunks cap**: Default 200 chunks/file. Raise `max_chunks_per_file` in config for large PDFs (textbooks, long papers).
 - **Windows paths**: Project is Windows-primary. Path separators use `Path()` throughout — should be cross-platform but untested on Mac/Linux.
