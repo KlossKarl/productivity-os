@@ -4,7 +4,7 @@
 
 A local-first personal knowledge base. It ingests audio, PDFs, web threads, browser history, and markdown notes, indexes everything with vector search and a knowledge graph, and lets you chat with all of it through a local LLM. No cloud, no subscriptions, your data stays on your machine.
 
-Most local RAG tools just embed chunks and hope. loom builds an entity-resolved, relation-typed knowledge graph and uses an adaptive router to decide when to hit vectors vs graph. That lets it answer structural cross-document questions that pure vector systems can't express.
+Most RAG tools are stateless retrieval pipelines — they find chunks and forget them. loom builds durable semantic memory. It accumulates an entity-resolved, relation-typed knowledge graph that answers structural questions pure vector systems can't express, and grows more connected the more you feed it.
 
 ---
 
@@ -63,7 +63,7 @@ A few specific things, since "local-first RAG" is a crowded space.
 
 **Entity resolution with canonical keys + aliases.** "PAC-learning", "PAC learning", and "pac learning" all collapse to the same canonical key in the graph, with the original surface forms preserved as Alias nodes linked via HAS_ALIAS. This handles the entity dedup problem most LLM-extracted graphs ignore. Without it, the graph fills with near-duplicate nodes and cross-document traversal breaks down.
 
-**Agentic routing, not blind hybrid retrieval.** Most personal RAG tools run the same retrieval pipeline regardless of query type. This one classifies the query first (semantic, relational, or hybrid), routes to the appropriate store (ChromaDB, Neo4j, or both), then runs a sufficiency check and loops up to 3 times if context is insufficient. The router falls back to vector if graph comes up empty, or expands into graph if vector results don't answer the question. The route taken is logged so you can see how the system is thinking.
+**Adaptive query routing, not blind hybrid retrieval.** Most personal RAG tools run the same retrieval pipeline regardless of query type. This one classifies the query first (semantic, relational, or hybrid), routes to the appropriate store (ChromaDB, Neo4j, or both), then runs a sufficiency check and loops up to 3 times if context is insufficient. The router falls back to vector if graph comes up empty, or expands into graph if vector results don't answer the question. The route taken is logged so you can see how the system is thinking.
 
 **Cross-document queries vector search cannot answer.** Because entities are shared nodes across documents, you can traverse Document -> Chunk -> Entity <- Chunk <- Document to find pairs of documents that both reference the same concept. That's a single Cypher traversal. Pure vector RAG cannot answer this structurally no matter how big the context window gets.
 
@@ -241,7 +241,7 @@ python 20_web_digest/irs_batch.py --category partnerships
 
 ## Pre-built topic packs
 
-Run any of these with `wiki_batch` and you have a structured knowledge base on that domain in a few hours. All free via Claude Code.
+loom ships with pre-built semantic corpora — curated knowledge bases you can ingest in a few hours to start with a connected, queryable foundation instead of an empty vault. All free via Claude Code.
 
 | File | Domain | Articles |
 |------|--------|----------|
