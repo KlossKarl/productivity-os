@@ -1,4 +1,4 @@
-# productivity-os
+# loom
 
 A local-first personal knowledge base. Ingests audio, PDFs, web threads, and markdown. Indexes with ChromaDB (vector) + Neo4j (graph). Chat via local LLM.
 

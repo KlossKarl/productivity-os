@@ -1,5 +1,5 @@
 """
-IRS Publications Batch — Productivity OS
+IRS Publications Batch — Loom
 Fetch IRS publications as structured markdown.
 
 IRS publications are authoritative, free, and comprehensive.
@@ -81,7 +81,7 @@ CATEGORIES = {
     "general":       [k for k,v in IRS_PUBS.items() if v[1] == "general"],
 }
 
-HEADERS = {"User-Agent": "productivity-os/1.0 personal-research@example.com"}
+HEADERS = {"User-Agent": "loom/1.0 personal-research@example.com"}
 
 
 def load_config() -> dict:
@@ -219,7 +219,7 @@ def main():
         sys.exit(0)
 
     print(f"\n{'='*56}")
-    print(f"  IRS Publications Batch — Productivity OS")
+    print(f"  IRS Publications Batch — Loom")
     print(f"{'='*56}")
     print(f"  Publications: {len(pub_list)}\n")
 

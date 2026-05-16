@@ -1,5 +1,5 @@
 """
-Docs Batch — Productivity OS
+Docs Batch — Loom
 Fetch technical documentation into your vault.
 
 Covers: Python, Neo4j, ChromaDB, LangChain, FastAPI, PostgreSQL,
@@ -143,7 +143,7 @@ def mark_done(key: str):
     with open(get_done_path(), 'a') as f:
         f.write(key + "\n")
 
-HEADERS = {"User-Agent": "productivity-os/1.0 (personal research tool)"}
+HEADERS = {"User-Agent": "loom/1.0 (personal research tool)"}
 
 
 def fetch_doc_page(url: str) -> str:
@@ -252,7 +252,7 @@ def main():
     keys = list(DOC_SOURCES.keys()) if "all" in args.docs else args.docs
 
     print(f"\n{'='*56}")
-    print(f"  Docs Batch — Productivity OS")
+    print(f"  Docs Batch — Loom")
     print(f"{'='*56}")
     print(f"  Sources: {', '.join(keys)}\n")
 

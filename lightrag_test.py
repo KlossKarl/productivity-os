@@ -1,5 +1,5 @@
 """
-LightRAG Test — Productivity OS
+LightRAG Test — Loom
 Parallel GraphRAG test alongside existing Neo4j/ChromaDB stack.
 
 Ingests your Obsidian vault into LightRAG and lets you query it.
@@ -176,7 +176,7 @@ MODES = {
 
 def chat():
     print(f"\n{'='*56}")
-    print(f"  LightRAG Chat — Productivity OS")
+    print(f"  LightRAG Chat — Loom")
     print(f"{'='*56}")
     print(f"  Modes: h=hybrid  l=local  g=global  n=naive")
     print(f"  Type /mode to switch, quit to exit")

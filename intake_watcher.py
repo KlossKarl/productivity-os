@@ -1,6 +1,6 @@
 """
-Intake Folder Watcher — Productivity OS Project 38
-Karl's Productivity OS
+Intake Folder Watcher — Loom
+Loom
 
 Drop anything into the intake/ folder. It gets routed automatically:
 
@@ -411,7 +411,7 @@ def main():
     auto_index = cfg.get('auto_index', True) and not args.no_index
 
     log.info("=" * 54)
-    log.info("  Intake Watcher  —  Productivity OS")
+    log.info("  Intake Watcher  —  Loom")
     log.info("=" * 54)
     log.info(f"  Watching:   {intake_dir}")
     log.info(f"  Auto-index: {'yes' if auto_index else 'no'}")

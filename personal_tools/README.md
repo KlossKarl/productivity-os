@@ -1,6 +1,6 @@
 # Personal Tools
 
-These are personal productivity tracking tools built on top of the productivity-os stack.
+These are personal productivity tracking tools built on top of the loom stack.
 They are not part of the core knowledge base product but may be useful as examples or starting points.
 
 ## Tools

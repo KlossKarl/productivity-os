@@ -1,5 +1,5 @@
 """
-LessWrong Batch — Productivity OS
+LessWrong Batch — Loom
 Fetch posts from LessWrong using their public GraphQL API.
 
 LessWrong is the highest-quality source for AI alignment, rationality,

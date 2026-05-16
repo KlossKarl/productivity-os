@@ -1,5 +1,5 @@
 """
-SSRN Batch — Productivity OS
+SSRN Batch — Loom
 Fetch research papers from SSRN (Social Science Research Network).
 
 SSRN is the primary repository for legal, finance, economics, and
@@ -221,7 +221,7 @@ def main():
         sys.exit(0)
 
     print(f"\n{'='*56}")
-    print(f"  SSRN Batch — Productivity OS")
+    print(f"  SSRN Batch — Loom")
     print(f"{'='*56}")
     print(f"  Papers: {len(ids)}\n")
 

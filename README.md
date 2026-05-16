@@ -1,10 +1,10 @@
-# productivity-os
+# loom
 
 > I built this because I kept losing things I had already read.
 
 A local-first personal knowledge base. It ingests audio, PDFs, web threads, browser history, and markdown notes, indexes everything with vector search and a knowledge graph, and lets you chat with all of it through a local LLM. No cloud, no subscriptions, your data stays on your machine.
 
-Most local RAG tools just embed chunks and hope. productivity-os builds an entity-resolved, relation-typed knowledge graph and uses an adaptive router to decide when to hit vectors vs graph. That lets it answer structural cross-document questions that pure vector systems can't express.
+Most local RAG tools just embed chunks and hope. loom builds an entity-resolved, relation-typed knowledge graph and uses an adaptive router to decide when to hit vectors vs graph. That lets it answer structural cross-document questions that pure vector systems can't express.
 
 ---
 
@@ -88,8 +88,8 @@ Be honest with yourself about this list before starting.
 ## Installation
 
 ```bash
-git clone https://github.com/KlossKarl/productivity-os
-cd productivity-os
+git clone https://github.com/KlossKarl/loom
+cd loom
 pip install -r requirements.txt
 ```
 
@@ -136,7 +136,7 @@ second_brain:
     - Dataset
 
 intake:
-  folder: C:\Users\you\Documents\productivity-os\intake
+  folder: C:\Users\you\Documents\loom\intake
   auto_index: true
   web_digest_free: true    # true = Claude Code (free), false = Anthropic API
 ```
@@ -320,7 +320,7 @@ The tradeoff is real though. Setup takes time and you need decent hardware. This
 ## Project structure
 
 ```
-productivity-os/
+loom/
 ├── 03_whisper_transcription/   # audio/video to markdown
 ├── 08_second_brain/            # core: index, chat, graph
 ├── 20_web_digest/              # all ingestion scripts + topic files

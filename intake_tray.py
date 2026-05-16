@@ -1,5 +1,5 @@
 """
-Intake Tray — Productivity OS
+Intake Tray — Loom
 System tray app with drag-and-drop drop zone.
 
 Sits quietly in the Windows taskbar.
@@ -170,7 +170,7 @@ class IntakeWindow:
 
     def _build(self):
         r = self.root
-        r.title("Intake — Productivity OS")
+        r.title("Intake — Loom")
         r.configure(bg=BG)
         r.resizable(False, False)
         r.geometry("420x540")
@@ -396,7 +396,7 @@ class TrayController:
         self.icon = pystray.Icon(
             name="intake",
             icon=icon_img,
-            title="Intake — Productivity OS",
+            title="Intake — Loom",
             menu=pystray.Menu(
                 pystray.MenuItem("Open Intake", self._show, default=True),
                 pystray.MenuItem("Open Folder", self._open_folder),
@@ -426,7 +426,7 @@ class TrayController:
 # ─────────────────────────────────────────────
 
 def main():
-    parser = argparse.ArgumentParser(description="Intake Tray — Productivity OS")
+    parser = argparse.ArgumentParser(description="Intake Tray — Loom")
     parser.add_argument("--minimized", action="store_true",
                         help="Start minimized to tray")
     args = parser.parse_args()

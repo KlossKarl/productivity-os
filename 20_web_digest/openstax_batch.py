@@ -1,5 +1,5 @@
 """
-OpenStax + MIT OCW Batch — Productivity OS
+OpenStax + MIT OCW Batch — Loom
 Fetches free textbook chapters (OpenStax) and MIT OCW lecture notes.
 
 OpenStax: Free peer-reviewed textbooks, fully online
@@ -93,7 +93,7 @@ def get_output_dir(subdir: str = "Textbooks") -> Path:
 def fetch_page(url: str) -> BeautifulSoup | None:
     try:
         resp = requests.get(url, timeout=30,
-                            headers={"User-Agent": "productivity-os/1.0"})
+                            headers={"User-Agent": "loom/1.0"})
         resp.raise_for_status()
         return BeautifulSoup(resp.text, 'html.parser')
     except Exception as e:
@@ -189,7 +189,7 @@ def main():
         sys.exit(0)
 
     print(f"\n{'='*56}")
-    print(f"  OpenStax + MIT OCW Batch — Productivity OS")
+    print(f"  OpenStax + MIT OCW Batch — Loom")
     print(f"{'='*56}\n")
 
     if args.ocw:

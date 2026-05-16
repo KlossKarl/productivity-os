@@ -1,5 +1,5 @@
 """
-Stanford Encyclopedia of Philosophy Batch — Productivity OS
+Stanford Encyclopedia of Philosophy Batch — Loom
 Fetches SEP articles by entry name and converts to structured markdown.
 
 SEP is the gold standard for philosophy — peer-reviewed, comprehensive,
@@ -73,7 +73,7 @@ def fetch_sep_entry(entry_slug: str) -> dict | None:
     url = f"{SEP_BASE}/{entry_slug}/"
     try:
         resp = requests.get(url, timeout=30,
-                            headers={"User-Agent": "productivity-os/1.0 (personal research)"})
+                            headers={"User-Agent": "loom/1.0 (personal research)"})
         resp.raise_for_status()
     except Exception as e:
         print(f"    [ERROR] {e}")

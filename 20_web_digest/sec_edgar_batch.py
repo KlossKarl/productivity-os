@@ -1,5 +1,5 @@
 """
-SEC EDGAR Batch — Productivity OS
+SEC EDGAR Batch — Loom
 Fetch SEC filings, rules, and regulatory releases from EDGAR.
 
 EDGAR is completely free and public. Useful for:
@@ -68,7 +68,7 @@ def mark_done(key: str):
         f.write(key + "\n")
 
 HEADERS = {
-    "User-Agent": "productivity-os/1.0 personal-research@example.com",
+    "User-Agent": "loom/1.0 personal-research@example.com",
     "Accept-Encoding": "gzip, deflate",
 }
 
@@ -197,7 +197,7 @@ def main():
         sys.exit(0)
 
     print(f"\n{'='*56}")
-    print(f"  SEC EDGAR Batch — Productivity OS")
+    print(f"  SEC EDGAR Batch — Loom")
     print(f"{'='*56}\n")
 
     categories = list(CURATED_RULES.keys()) if args.rules == "all" else [args.rules]

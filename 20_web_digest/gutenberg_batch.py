@@ -1,5 +1,5 @@
 """
-Project Gutenberg Batch — Productivity OS
+Project Gutenberg Batch — Loom
 Fetch public domain books from Project Gutenberg.
 
 All books are completely free and public domain (pre-1928 US copyright).
@@ -116,7 +116,7 @@ def fetch_book_text(meta: dict) -> str:
             url = formats[mime]
             try:
                 resp = requests.get(url, timeout=60,
-                                    headers={"User-Agent": "productivity-os/1.0"})
+                                    headers={"User-Agent": "loom/1.0"})
                 resp.raise_for_status()
                 return resp.text
             except Exception as e:
@@ -291,7 +291,7 @@ def main():
         sys.exit(0)
 
     print(f"\n{'='*56}")
-    print(f"  Gutenberg Batch — Productivity OS")
+    print(f"  Gutenberg Batch — Loom")
     print(f"{'='*56}")
     print(f"  Books: {len(ids)}\n")
 

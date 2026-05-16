@@ -1,5 +1,5 @@
 """
-arXiv Batch — Productivity OS
+arXiv Batch — Loom
 Fetch research papers from arXiv by search query or paper IDs.
 Converts to structured markdown and drops into vault.
 
@@ -181,7 +181,7 @@ def fetch_pdf_text(pdf_url: str, max_pages: int = 20) -> str:
         with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
             tmp_path = tmp.name
 
-        headers = {"User-Agent": "productivity-os/1.0 (personal research tool)"}
+        headers = {"User-Agent": "loom/1.0 (personal research tool)"}
         req = urllib.request.Request(pdf_url, headers=headers)
         with urllib.request.urlopen(req, timeout=60) as resp:
             with open(tmp_path, 'wb') as f:
@@ -352,7 +352,7 @@ def main():
         sys.exit(0)
 
     print(f"\n{'='*56}")
-    print(f"  arXiv Batch — Productivity OS")
+    print(f"  arXiv Batch — Loom")
     print(f"{'='*56}\n")
 
     if args.ids:
